@@ -10,7 +10,7 @@ export default(req: Request, res: Response, next: NextFunction)=>{
   let sanitizeDataBody: any = {};
   let sanitizeDataQuery: any = {};
   let sanitizeDataParams: any = {};
-
+  
   for(let key in req.query){
     let queryDataString: string|undefined = req.query[key]?.toString();
 
@@ -35,9 +35,13 @@ export default(req: Request, res: Response, next: NextFunction)=>{
    * @param {string} dataToSanitize
    */
   function sanitizeData(dataType: string, dataToSanitize: string) {
+    
     switch(dataType) {
     case 'string': case 'number':
         return xss(sanitizer.escape(dataToSanitize).trim());
+    break;
+    case 'boolean':
+      return dataToSanitize;
     break;
     default:
         return xss(sanitizer.escape(dataToSanitize));

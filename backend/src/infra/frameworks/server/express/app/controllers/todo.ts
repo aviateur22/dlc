@@ -49,9 +49,6 @@ export default {
     // Contenu de la Todo
     const { title, description, status } = req.body;
 
-    console.log(status);
-    console.log('ici')
-    console.log(status);
     // Mise a jour de la Todo
     const todo = await TodoDataAccess.updateTodo(id, title, description, status);
 

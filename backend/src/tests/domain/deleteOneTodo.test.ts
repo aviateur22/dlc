@@ -2,25 +2,22 @@ import { DeleteTodoEntity } from "../../domain/entities/todo/DeleteTodoEntity";
 import { TodoEntity } from "../../domain/entities/todo/TodoEntity";
 import { UseCaseServiceImpl } from "../../domain/services/UseCaseServiceImpl";
 import { TodoNotFindException } from "../../exceptions/TodoNotFindException";
-import { SelectServices } from "./utilities/SelectServices";
-import { TodoGenerator } from "./utilities/TodoGenerator";
+import { TestUtilities } from "../utilities/TestUtilities";
+
+// Selection Server Express
+const testUtilities = new TestUtilities();
+
+// Selection des services pour les tests
+testUtilities.selectService();
 
 describe('DeleteOneTodo useCase', ()=>{
-  //Selection du repository
-  SelectServices.SelectRepositoriesSource();
 
-  // delete useCase
-  const deleteTodoUseCase = UseCaseServiceImpl.getUseCases().deleteOneTodoUseCase;
+  beforeEach(async()=>{
+    await testUtilities.resetParam();
+  });
 
-  // findAll useCase
-  const findAllTodoUseCase = UseCaseServiceImpl.getUseCases().findAllToDoUseCase;
-
-  beforeEach(()=>{
-    // Suppression des Todos
-    TodoGenerator.ClearAllTodos();
-
-    // Ajout de 2 Todos
-    TodoGenerator.CreateTodos();
+  afterEach(async()=>{
+    await testUtilities.resetParam();
   });
 
   // Suppression de une Todo
@@ -30,12 +27,12 @@ describe('DeleteOneTodo useCase', ()=>{
       const deleteTodo: DeleteTodoSchema = new DeleteTodoEntity('1');
       
       // Suppression d'une Todo
-      const todo: TodoEntity = await deleteTodoUseCase.execute(deleteTodo);
+      const todo: TodoEntity = await UseCaseServiceImpl.getUseCases().deleteOneTodoUseCase.execute(deleteTodo);
 
       // Récupération des todos
-      const todos: Array<TodoEntity> = await findAllTodoUseCase.execute();
+      const todos: Array<TodoEntity> = await UseCaseServiceImpl.getUseCases().findAllToDoUseCase.execute();
 
-      expect(todo.id).toBe("1");
+      expect(todo.id.toString()).toBe("1");
       expect(todos.length).toBe(1);      
     } catch (error) {
       expect(error).toBeFalsy()
@@ -49,10 +46,11 @@ describe('DeleteOneTodo useCase', ()=>{
       const deleteTodo: DeleteTodoSchema = new DeleteTodoEntity('5');
       
       // Suppression d'une Todo
-      const todo: TodoEntity = await deleteTodoUseCase.execute(deleteTodo);
+      const todo: TodoEntity = await UseCaseServiceImpl.getUseCases().deleteOneTodoUseCase.execute(deleteTodo);
 
       // Récupération des todos
-      const todos: Array<TodoEntity> = await findAllTodoUseCase.execute();
+      const todos: Array<TodoEntity> = await UseCaseServiceImpl.getUseCases().findAllToDoUseCase.execute();
+
 
       expect(todo).toBeFalsy();
       expect(todos.length).toBe(2);      

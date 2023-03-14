@@ -24,4 +24,15 @@ export class ServerServiceImpl {
     }
     return ServerServiceImpl.server;
   }
+
+  /**
+   * Renvoie le server
+   * @returns {any}
+   */
+  static getServer(): any {
+    if(typeof ServerServiceImpl.server === 'undefined') {
+      throw new ServerException('Server not configure');
+    }
+    return ServerServiceImpl.server;
+  }
 }

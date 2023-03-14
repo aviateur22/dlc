@@ -6,5 +6,5 @@ export default Joi.object({
   .any(),
   
   status: Joi
-  .any()
+  .boolean()
 });

@@ -1,22 +1,37 @@
 import request from "supertest";
 import { UseCaseServiceImpl } from "../../domain/services/UseCaseServiceImpl";
 import { ServerSource } from "../../infra/helpers/server/ServerSource";
-import { ServerServiceImpl } from "../../infra/services/server/ServerServiceImpl";
-import { BeforeTest } from "./utilities/BeforeTest";
+import { TestUtilities } from "../utilities/TestUtilities";
+
+// Selection Server Express
+const testUtilities = new TestUtilities();
+
+// Selection des services pour les tests
+const serviceSelect = testUtilities.selectService();
+
 describe('UpdateTodo', ()=>{
 
   // Server
-  const app = ServerServiceImpl.setServer(ServerSource.express);
+  const app = testUtilities.getBackend();
 
+  // Configuration App pour Jest
+  const jestApp = testUtilities.getTestApp(app, serviceSelect);
   let path = '/api/v1/todo/2'
 
   beforeEach(async()=>{
-    await BeforeTest.resetParameter();
-  })
+    await testUtilities.resetParam();
+  });
+
+  afterEach(async()=>{
+    await testUtilities.resetParam();
+  });
  
   // Update Todo
   it('should update a Todo', async()=>{
-    const res = await request(app)
+    if(serviceSelect === ServerSource.fastify) {
+      await app.ready();
+    }
+    const res = await request(jestApp)
     .patch(path)    
     .send({     
       title: 'mon titre mis a jour',
@@ -25,21 +40,25 @@ describe('UpdateTodo', ()=>{
     })
 
     // Récupération des Todos
-    const todos = await UseCaseServiceImpl.getUseCases().findAllToDoUseCase.execute();
+    const findTodo = await UseCaseServiceImpl.getUseCases().findOneTodoUseCase.execute({
+      id: '2'
+    });
     
     expect(res.body).toHaveProperty('todo');
-    expect(res.body.todo.id).toBe('2')
+    expect(res.body.todo.id.toString()).toBe('2')
     expect(res.body.todo.title).toBe('mon titre mis a jour');
     expect(res.body.todo.description).toBe('ma description mis a jour');
 
     // Todos
-    expect(todos.length).toBe(2);
-    expect(todos[1].title).toBe('mon titre mis a jour');
+    expect(findTodo.title).toBe('mon titre mis a jour');
   });
 
   // Mise a jour todo avec description vide
   it('Should update a Todo with an empty description', async()=>{
-    const res = await request(app)
+    if(serviceSelect === ServerSource.fastify) {
+      await app.ready();
+    }
+    const res = await request(jestApp)
     .patch(path)    
     .send({
       title: 'mon titre mis a jour',
@@ -48,23 +67,27 @@ describe('UpdateTodo', ()=>{
     })
 
     // Récupération des Todos
-    const todos = await UseCaseServiceImpl.getUseCases().findAllToDoUseCase.execute();
+    const findTodo = await UseCaseServiceImpl.getUseCases().findOneTodoUseCase.execute({
+      id: '2'
+    });
     
     expect(res.body).toHaveProperty('todo');
-    expect(res.body.todo.id).toBe('2')
+    expect(res.body.todo.id.toString()).toBe('2')
     expect(res.body.todo.title).toBe('mon titre mis a jour');
     expect(res.body.todo.description).toBe('');
 
     // Todos
-    expect(todos.length).toBe(2);
-    expect(todos[1].title).toBe('mon titre mis a jour');
+    expect(findTodo.title).toBe('mon titre mis a jour');
 
   });
 
   // Todo absente d ela base de données
   it('Should throw TodoNotfindException because Todo does not exist', async()=>{
+    if(serviceSelect === ServerSource.fastify) {
+      await app.ready();
+    }
     path = '/api/v1/todo/5'
-    const res = await request(app)
+    const res = await request(jestApp)
     .patch(path)    
     .send({
       title: 'mon titre mis a jour',
@@ -78,7 +101,10 @@ describe('UpdateTodo', ()=>{
 
   // Todo - titre manuqant
   it('Should throw ValidationException because Title is missing', async()=>{
-    const res = await request(app)
+    if(serviceSelect === ServerSource.fastify) {
+      await app.ready();
+    }
+    const res = await request(jestApp)
     .patch(path)    
     .send({
       title: '',
@@ -93,7 +119,7 @@ describe('UpdateTodo', ()=>{
 
   // Todo - status manquant
   it('Should throw ValidationException because status is missing', async()=>{
-    const res = await request(app)
+    const res = await request(jestApp)
     .patch(path)    
     .send({     
       title: 'mon noveau titre',

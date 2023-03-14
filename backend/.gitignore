@@ -1,4 +1,11 @@
-node_modules
-**.env
-**.conf
+# Node Module
+/node_modules
+
+# Sqitch
+.env
+/sqitch.conf
+
+# Dossier javascript
 dist
+
+# Logger

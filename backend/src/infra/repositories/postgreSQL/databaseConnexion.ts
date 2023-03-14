@@ -1,4 +1,6 @@
 import { Pool } from 'pg';
+import * as dotenv from "dotenv";
+dotenv.config();
 
 const config: any = {};
 
@@ -10,8 +12,8 @@ if(process.env.NODE_ENV === 'production') {
         rejectUnauthorized: false,
      }
  } else {
-     console.log( `database.js - ENV: DEV - DATABASE: ${process.env.DATABASE_URL}`)
-     config.connectionString = process.env.DATABASE_URL;       
+     console.log( `database.js - ENV: DEV - DATABASE: ${process.env.DATABASE_URL_DEV}`)
+     config.connectionString = process.env.DATABASE_URL_DEV;       
  };
 
 const pool = new Pool(config);

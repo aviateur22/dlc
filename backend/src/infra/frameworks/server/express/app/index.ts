@@ -3,7 +3,7 @@ import cors from 'cors';
 import router from './routers';
 import error from './middlewares/error';
 import notFound from './middlewares/notfound';
-import corsOptions from "../../../../helpers/cors/corsOptions";
+import corsOptions from './helpers/corsOptions';
 
 
 const app = express();

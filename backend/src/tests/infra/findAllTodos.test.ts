@@ -1,22 +1,39 @@
 import request from 'supertest';
-import { ServerServiceImpl } from '../../infra/services/server/ServerServiceImpl';
+import { TodoGenerator } from '../utilities/TodoGenerator';
+import { TestUtilities } from '../utilities/TestUtilities';
 import { ServerSource } from '../../infra/helpers/server/ServerSource';
-import { TodoGenerator } from '../domain/utilities/TodoGenerator';
-import { BeforeTest } from './utilities/BeforeTest';
+
+// Selection Server Express
+const testUtilities = new TestUtilities();
+
+// Selection des services pour les tests
+const serviceSelect: number = testUtilities.selectService();
 
 describe('findAlltodos', ()=>{
-  // Selection Server Express
-  const app = ServerServiceImpl.setServer(ServerSource.express);
+  // Jest app
+  const app = testUtilities.getBackend();
+
+  // Configuration App pour Jest
+  const jestApp = testUtilities.getTestApp(app, serviceSelect);
 
   // Path
   const path: string = '/api/v1/todo/find-all-todos';
 
-  beforeAll(async()=>{
-    await BeforeTest.resetParameter();
+  beforeEach(async()=>{
+    await testUtilities.resetParam();
   });
 
-  it('Should find all the todos avail', async()=>{    
-    const res = await request(app)
+  afterEach(async()=>{
+    await testUtilities.resetParam();
+  });
+
+  it('Should find all the todos avail', async()=>{  
+    
+    if(serviceSelect === ServerSource.fastify) {
+      await app.ready();
+    }
+
+    const res = await request(jestApp)
     .get(path)
 
     expect(res.body).toHaveProperty('todos');
@@ -26,10 +43,15 @@ describe('findAlltodos', ()=>{
   });
 
   it('Should find no todos', async()=>{
+    
+    if(serviceSelect === ServerSource.fastify) {
+      await app.ready();
+    }
+    
     // Clear tous les todos
     await TodoGenerator.ClearAllTodos();
-    
-    const res = await request(app)
+
+    const res = await request(jestApp)
     .get(path)
 
     expect(res.body).toHaveProperty('todos');

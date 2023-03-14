@@ -7,8 +7,8 @@ export default Joi.object({
       .pattern(/^\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/)
       .required()
       .messages({
-          'string.empty': 'email mandatory',
-          'string.pattern.base': 'incorrect email format',
-          'any.required': 'email mandatory'
+        'string.empty': 'email mandatory',
+        'string.pattern.base': 'incorrect email format',
+        'any.required': 'email mandatory'
     })
 });

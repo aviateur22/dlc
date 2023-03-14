@@ -13,14 +13,11 @@ class CheckToggleTodoUseCase extends TodoUseCase {
    * @returns {TodoEntity}
    */
   async execute(todo: CheckToggleTodoSchema): Promise<TodoEntity> {
-    console.log(todo.status);
     // Recherche todo
     await this.useCases.findOneTodoUseCase.execute(todo);
 
     // Mise a jour status
     const checkToggleTodo = await this.repositories.checkToggleItem(todo);
-
-    console.log(checkToggleTodo.status);
 
     // renvoie la Todo mis a jour
     return TodoEntityMapper.getTodoEntity(checkToggleTodo);

@@ -1,23 +1,18 @@
 import { UpdateTodoEntity } from "../../domain/entities/todo/UpdateTodoEntity";
 import { UseCaseServiceImpl } from "../../domain/services/UseCaseServiceImpl";
 import { ValidationException } from "../../exceptions/ValidationException";
-import { SelectServices } from "./utilities/SelectServices";
-import { TodoGenerator } from "./utilities/TodoGenerator";
+import { TestUtilities } from "../utilities/TestUtilities";
+
+// Selection Server Express
+const testUtilities = new TestUtilities();
+
+// Selection des services pour les tests
+testUtilities.selectService();
 
 describe('Update todo UseCase', ()=>{
-  //Selection du repository
-  SelectServices.SelectRepositoriesSource();
-
-  // Instance UpdateTodo
-  const updateTodoUseCase = UseCaseServiceImpl.getUseCases().updateTodoUseCase;
-
-  // Reset des repositories
+  
   beforeEach(async()=>{
-    // Clear tous les todos
-    await TodoGenerator.ClearAllTodos();
-
-    // Ajout de todos
-    await TodoGenerator.CreateTodos();
+    await testUtilities.resetParam();
   });
 
   // Mise a jour d'une todo
@@ -33,9 +28,9 @@ describe('Update todo UseCase', ()=>{
       );
 
       // Mise à jour de la todo
-      const todo = await updateTodoUseCase.execute(updateTodo);
+      const todo = await UseCaseServiceImpl.getUseCases().updateTodoUseCase.execute(updateTodo);
       
-      expect(todo.id).toBe(updateTodo.id);
+      expect(todo.id.toString()).toBe(updateTodo.id.toString());
       expect(todo.status).toBe(updateTodo.status);
       expect(todo.title).toBe(updateTodo.title);
       expect(todo.description).toBe(updateTodo.description);
@@ -58,7 +53,7 @@ describe('Update todo UseCase', ()=>{
       );
 
       // Mise à jour de la todo
-      const todo = await updateTodoUseCase.execute(updateTodo);
+      const todo = await UseCaseServiceImpl.getUseCases().updateTodoUseCase.execute(updateTodo);
       expect(todo).toBeFalsy();
     } catch (error) {      
       expect(error).toBeInstanceOf(ValidationException);
@@ -78,8 +73,8 @@ describe('Update todo UseCase', ()=>{
       );
 
       // Mise à jour de la todo
-      const todo = await updateTodoUseCase.execute(updateTodo);
-      expect(todo.id).toBe(updateTodo.id);
+      const todo = await UseCaseServiceImpl.getUseCases().updateTodoUseCase.execute(updateTodo);
+      expect(todo.id.toString()).toBe(updateTodo.id.toString());
       expect(todo.status).toBe(updateTodo.status);
       expect(todo.title).toBe(updateTodo.title);
       expect(todo.description).toBe(updateTodo.description);

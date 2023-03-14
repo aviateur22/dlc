@@ -21,9 +21,11 @@ export class ServerSelection {
       break;
 
       // Fastfiy
-      case ServerSource.fastify: break;
-        default: throw new ServerException('Server not configure');
+      case ServerSource.fastify:
+        return this.loadFastify();
       break;
+
+      default: throw new ServerException('Server not configure');
     }
   }
 

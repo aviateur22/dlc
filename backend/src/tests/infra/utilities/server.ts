@@ -6,7 +6,7 @@ import { ServerServiceImpl } from '../../../infra/services/server/ServerServiceI
 /**
  * Class pour test uniatire
  */
-class Server {
+export class Server {
 
   // Port
   protected port: string; 
@@ -17,19 +17,38 @@ class Server {
 
   /**
    * Démarrage du server
+   * @param {number} selectService
    */
-  async startServer(): Promise<void> {
+  async startServer(selectService: number): Promise<void> {
     // Selection du server
-    const app = ServerServiceImpl.setServer(ServerSource.express);
+    const app = ServerServiceImpl.getServer();
+    
+    switch(selectService) {
+      case ServerSource.express:
+        // Chargement du server
+        //const server = http.createServer(app);       
 
-    // Chargement du server
-    const server = http.createServer(app);       
+        http.createServer(app).listen(this.port, () => {  
+          console.log(`http://localhost:${this.port}`);
+        });
+      break;
 
-    server.listen(this.port, () => {  
-      console.log(`http://localhost:${this.port}`);
-    });
+      case ServerSource.fastify: 
+        await app.listen({ port: this.port})
+        console.log(`server listening on ${app.server.address().port}`)
+      break;
+      
+      default: 
+      break;
+    }
+
+    // // Chargement du server
+    // const server = http.createServer(app);       
+
+    // server.listen(this.port, () => {  
+    //   console.log(`http://localhost:${this.port}`);
+    // });
 
   }
 }
-export { Server }
 

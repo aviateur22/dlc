@@ -1,28 +1,28 @@
 import { TodoEntity } from "../../domain/entities/todo/TodoEntity";
 import { UseCaseServiceImpl } from "../../domain/services/UseCaseServiceImpl";
-import { SelectServices } from "./utilities/SelectServices";
-import { TodoGenerator } from "./utilities/TodoGenerator";
+import { TestUtilities } from "../utilities/TestUtilities";
+import { TodoGenerator } from "../utilities/TodoGenerator";
 
-describe('UseCase: getAllTodos', () => {  
-  //Selection du repository
-  SelectServices.SelectRepositoriesSource();
+// Selection Server Express
+const testUtilities = new TestUtilities();
 
-  // Instance GetAllTodoUseCase
-  const findAllToDoUseCase = UseCaseServiceImpl.getUseCases().findAllToDoUseCase;
+// Selection des services pour les tests
+testUtilities.selectService();
 
-  // Reset de la base de données
+describe('UseCase: getAllTodos', () => { 
+
   beforeEach(async()=>{
-    // Clear tous les todos
-    await TodoGenerator.ClearAllTodos();
+    await testUtilities.resetParam();
+  });  
 
-    // Add 2 todos
-    await TodoGenerator.CreateTodos();    
+  afterEach(async()=>{
+    await testUtilities.resetParam();
   });
-
+  
   it('Should find 2 todos', async() => {
     try {      
       // Recupération des Todos
-      const todos = await findAllToDoUseCase.execute();
+      const todos = await UseCaseServiceImpl.getUseCases().findAllToDoUseCase.execute();
 
       expect(todos.length).toBe(2);
       expect(todos[0]).toBeInstanceOf(TodoEntity);
@@ -38,7 +38,7 @@ describe('UseCase: getAllTodos', () => {
       await TodoGenerator.ClearAllTodos();
 
       // Recupération des Todos
-      const todos = await findAllToDoUseCase.execute();
+      const todos = await UseCaseServiceImpl.getUseCases().findAllToDoUseCase.execute();
 
       expect(todos.length).toBe(0);
     } catch (error) {

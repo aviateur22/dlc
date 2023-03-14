@@ -1,77 +1,249 @@
-{"name":"todoApp","hostname":"UTILISA-LJOD9AV","pid":13588,"level":50,"msg":"title is mandatory","time":"2023-03-03T08:53:46.975Z","v":0}
-{"name":"todoApp","hostname":"UTILISA-LJOD9AV","pid":13588,"level":50,"msg":"status is mandatory","time":"2023-03-03T09:00:49.734Z","v":0}
-{"name":"todoApp","hostname":"UTILISA-LJOD9AV","pid":13588,"level":50,"msg":"\"id\" is not allowed","time":"2023-03-03T09:06:57.862Z","v":0}
-{"name":"todoApp","hostname":"UTILISA-LJOD9AV","pid":19708,"level":50,"msg":"title is mandatory","time":"2023-03-03T09:35:30.295Z","v":0}
-{"name":"todoApp","hostname":"UTILISA-LJOD9AV","pid":19708,"level":50,"msg":"title is mandatory","time":"2023-03-03T09:35:44.074Z","v":0}
-{"name":"todoApp","hostname":"UTILISA-LJOD9AV","pid":19708,"level":50,"msg":"title is mandatory","time":"2023-03-03T10:26:13.030Z","v":0}
-{"name":"todoApp","hostname":"UTILISA-LJOD9AV","pid":19708,"level":50,"msg":"title is mandatory","time":"2023-03-03T10:26:14.184Z","v":0}
-{"name":"todoApp","hostname":"UTILISA-LJOD9AV","pid":19708,"level":50,"msg":"todo not find","time":"2023-03-03T11:53:15.006Z","v":0}
-{"name":"todoApp","hostname":"UTILISA-LJOD9AV","pid":19708,"level":50,"msg":"todo not find","time":"2023-03-03T11:55:32.843Z","v":0}
-{"name":"todoApp","hostname":"UTILISA-LJOD9AV","pid":19708,"level":50,"msg":"todo not find","time":"2023-03-03T11:55:38.568Z","v":0}
-{"name":"todoApp","hostname":"UTILISA-LJOD9AV","pid":19708,"level":50,"msg":"Cannot set properties of undefined (setting 'title')","time":"2023-03-03T11:57:04.267Z","v":0}
-{"name":"todoApp","hostname":"UTILISA-LJOD9AV","pid":19708,"level":50,"msg":"Cannot set properties of undefined (setting 'title')","time":"2023-03-03T11:57:38.990Z","v":0}
-{"name":"todoApp","hostname":"UTILISA-LJOD9AV","pid":19708,"level":50,"msg":"Cannot set properties of undefined (setting 'title')","time":"2023-03-03T11:57:45.422Z","v":0}
-{"name":"todoApp","hostname":"UTILISA-LJOD9AV","pid":19708,"level":50,"msg":"Cannot set properties of undefined (setting 'title')","time":"2023-03-03T11:58:04.562Z","v":0}
-{"name":"todoApp","hostname":"UTILISA-LJOD9AV","pid":19708,"level":50,"msg":"Cannot set properties of undefined (setting 'title')","time":"2023-03-03T11:58:22.092Z","v":0}
-{"name":"todoApp","hostname":"UTILISA-LJOD9AV","pid":19708,"level":50,"msg":"Cannot set properties of undefined (setting 'title')","time":"2023-03-03T11:59:54.366Z","v":0}
-{"name":"todoApp","hostname":"UTILISA-LJOD9AV","pid":19708,"level":50,"msg":"Cannot set properties of undefined (setting 'title')","time":"2023-03-03T12:00:13.887Z","v":0}
-{"name":"todoApp","hostname":"UTILISA-LJOD9AV","pid":19708,"level":50,"msg":"Cannot set properties of undefined (setting 'title')","time":"2023-03-03T12:00:21.110Z","v":0}
-{"name":"todoApp","hostname":"UTILISA-LJOD9AV","pid":19708,"level":50,"msg":"Cannot set properties of undefined (setting 'status')","time":"2023-03-03T12:01:28.463Z","v":0}
-{"name":"todoApp","hostname":"UTILISA-LJOD9AV","pid":19748,"level":50,"msg":"Cannot set properties of undefined (setting 'status')","time":"2023-03-03T12:46:19.494Z","v":0}
-{"name":"todoApp","hostname":"UTILISA-LJOD9AV","pid":20244,"level":50,"msg":"Cannot read properties of undefined (reading 'id')","time":"2023-03-03T12:48:04.801Z","v":0}
-{"name":"todoApp","hostname":"UTILISA-LJOD9AV","pid":20244,"level":50,"msg":"Cannot read properties of undefined (reading 'id')","time":"2023-03-03T12:48:16.774Z","v":0}
-{"name":"todoApp","hostname":"UTILISA-LJOD9AV","pid":20244,"level":50,"msg":"Cannot read properties of undefined (reading 'id')","time":"2023-03-03T12:48:20.203Z","v":0}
-{"name":"todoApp","hostname":"UTILISA-LJOD9AV","pid":20244,"level":50,"msg":"Cannot read properties of undefined (reading 'id')","time":"2023-03-03T12:48:22.961Z","v":0}
-{"name":"todoApp","hostname":"UTILISA-LJOD9AV","pid":20244,"level":50,"msg":"Cannot read properties of undefined (reading 'id')","time":"2023-03-03T12:48:24.320Z","v":0}
-{"name":"todoApp","hostname":"UTILISA-LJOD9AV","pid":20244,"level":50,"msg":"Cannot read properties of undefined (reading 'id')","time":"2023-03-03T12:48:29.676Z","v":0}
-{"name":"todoApp","hostname":"UTILISA-LJOD9AV","pid":20244,"level":50,"msg":"Cannot read properties of undefined (reading 'id')","time":"2023-03-03T12:48:30.648Z","v":0}
-{"name":"todoApp","hostname":"UTILISA-LJOD9AV","pid":20244,"level":50,"msg":"Cannot read properties of undefined (reading 'id')","time":"2023-03-03T12:48:31.693Z","v":0}
-{"name":"todoApp","hostname":"UTILISA-LJOD9AV","pid":20244,"level":50,"msg":"Cannot read properties of undefined (reading 'id')","time":"2023-03-03T12:48:32.486Z","v":0}
-{"name":"todoApp","hostname":"UTILISA-LJOD9AV","pid":20244,"level":50,"msg":"Cannot read properties of undefined (reading 'id')","time":"2023-03-03T12:48:33.270Z","v":0}
-{"name":"todoApp","hostname":"UTILISA-LJOD9AV","pid":20244,"level":50,"msg":"Cannot read properties of undefined (reading 'id')","time":"2023-03-03T12:48:33.681Z","v":0}
-{"name":"todoApp","hostname":"UTILISA-LJOD9AV","pid":20244,"level":50,"msg":"Cannot read properties of undefined (reading 'id')","time":"2023-03-03T12:50:17.088Z","v":0}
-{"name":"todoApp","hostname":"UTILISA-LJOD9AV","pid":20244,"level":50,"msg":"Cannot read properties of undefined (reading 'id')","time":"2023-03-03T12:50:18.284Z","v":0}
-{"name":"todoApp","hostname":"UTILISA-LJOD9AV","pid":20244,"level":50,"msg":"Cannot read properties of undefined (reading 'id')","time":"2023-03-03T12:50:19.630Z","v":0}
-{"name":"todoApp","hostname":"UTILISA-LJOD9AV","pid":20244,"level":50,"msg":"Cannot read properties of undefined (reading 'id')","time":"2023-03-03T12:50:20.807Z","v":0}
-{"name":"todoApp","hostname":"UTILISA-LJOD9AV","pid":7412,"level":50,"msg":"title is mandatory","time":"2023-03-03T12:50:56.401Z","v":0}
-{"name":"todoApp","hostname":"UTILISA-LJOD9AV","pid":7412,"level":50,"msg":"Cannot read properties of undefined (reading 'id')","time":"2023-03-03T12:51:16.657Z","v":0}
-{"name":"todoApp","hostname":"UTILISA-LJOD9AV","pid":18932,"level":50,"msg":"Cannot read properties of undefined (reading 'id')","time":"2023-03-03T12:53:12.983Z","v":0}
-{"name":"todoApp","hostname":"UTILISA-LJOD9AV","pid":18932,"level":50,"msg":"Cannot read properties of undefined (reading 'id')","time":"2023-03-03T12:53:13.830Z","v":0}
-{"name":"todoApp","hostname":"UTILISA-LJOD9AV","pid":18932,"level":50,"msg":"Cannot read properties of undefined (reading 'id')","time":"2023-03-03T12:53:14.835Z","v":0}
-{"name":"todoApp","hostname":"UTILISA-LJOD9AV","pid":7992,"level":50,"msg":"Cannot read properties of undefined (reading 'id')","time":"2023-03-03T12:55:31.289Z","v":0}
-{"name":"todoApp","hostname":"UTILISA-LJOD9AV","pid":7992,"level":50,"msg":"Cannot read properties of undefined (reading 'id')","time":"2023-03-03T12:55:31.830Z","v":0}
-{"name":"todoApp","hostname":"UTILISA-LJOD9AV","pid":18324,"level":50,"msg":"title is mandatory","time":"2023-03-03T12:58:54.137Z","v":0}
-{"name":"todoApp","hostname":"UTILISA-LJOD9AV","pid":18324,"level":50,"msg":"title is mandatory","time":"2023-03-03T14:31:44.402Z","v":0}
-{"name":"todoApp","hostname":"UTILISA-LJOD9AV","pid":18324,"level":50,"msg":"title is mandatory","time":"2023-03-03T14:37:03.885Z","v":0}
-{"name":"todoApp","hostname":"UTILISA-LJOD9AV","pid":18324,"level":50,"msg":"title is mandatory","time":"2023-03-03T14:37:09.746Z","v":0}
-{"name":"todoApp","hostname":"UTILISA-LJOD9AV","pid":18324,"level":50,"msg":"title is mandatory","time":"2023-03-03T14:48:41.770Z","v":0}
-{"name":"todoApp","hostname":"UTILISA-LJOD9AV","pid":18324,"level":50,"msg":"title is mandatory","time":"2023-03-03T14:48:43.205Z","v":0}
-{"name":"todoApp","hostname":"UTILISA-LJOD9AV","pid":18324,"level":50,"msg":"title is mandatory","time":"2023-03-03T14:48:43.428Z","v":0}
-{"name":"todoApp","hostname":"UTILISA-LJOD9AV","pid":18324,"level":50,"msg":"title is mandatory","time":"2023-03-03T14:48:43.605Z","v":0}
-{"name":"todoApp","hostname":"UTILISA-LJOD9AV","pid":18324,"level":50,"msg":"title is mandatory","time":"2023-03-03T14:49:01.988Z","v":0}
-{"name":"todoApp","hostname":"UTILISA-LJOD9AV","pid":18324,"level":50,"msg":"title is mandatory","time":"2023-03-03T14:49:14.371Z","v":0}
-{"name":"todoApp","hostname":"UTILISA-LJOD9AV","pid":18324,"level":50,"msg":"title is mandatory","time":"2023-03-03T14:49:25.468Z","v":0}
-{"name":"todoApp","hostname":"UTILISA-LJOD9AV","pid":18324,"level":50,"msg":"title is mandatory","time":"2023-03-03T14:50:17.685Z","v":0}
-{"name":"todoApp","hostname":"UTILISA-LJOD9AV","pid":18324,"level":50,"msg":"title is mandatory","time":"2023-03-03T14:50:47.673Z","v":0}
-{"name":"todoApp","hostname":"UTILISA-LJOD9AV","pid":18324,"level":50,"msg":"title is mandatory","time":"2023-03-03T14:51:14.038Z","v":0}
-{"name":"todoApp","hostname":"UTILISA-LJOD9AV","pid":7752,"level":50,"msg":"\"status\" must be a boolean","time":"2023-03-05T12:36:04.258Z","v":0}
-{"name":"todoApp","hostname":"UTILISA-LJOD9AV","pid":7752,"level":50,"msg":"\"status\" must be a boolean","time":"2023-03-05T12:36:08.262Z","v":0}
-{"name":"todoApp","hostname":"UTILISA-LJOD9AV","pid":7752,"level":50,"msg":"\"status\" must be a boolean","time":"2023-03-05T12:36:08.773Z","v":0}
-{"name":"todoApp","hostname":"UTILISA-LJOD9AV","pid":7752,"level":50,"msg":"\"status\" must be a boolean","time":"2023-03-05T12:36:08.946Z","v":0}
-{"name":"todoApp","hostname":"UTILISA-LJOD9AV","pid":7752,"level":50,"msg":"\"status\" must be a boolean","time":"2023-03-05T12:36:09.081Z","v":0}
-{"name":"todoApp","hostname":"UTILISA-LJOD9AV","pid":7752,"level":50,"msg":"\"status\" must be a boolean","time":"2023-03-05T12:36:09.214Z","v":0}
-{"name":"todoApp","hostname":"UTILISA-LJOD9AV","pid":7752,"level":50,"msg":"\"status\" must be a boolean","time":"2023-03-05T12:36:09.335Z","v":0}
-{"name":"todoApp","hostname":"UTILISA-LJOD9AV","pid":7752,"level":50,"msg":"\"status\" must be a boolean","time":"2023-03-05T12:36:11.230Z","v":0}
-{"name":"todoApp","hostname":"UTILISA-LJOD9AV","pid":7752,"level":50,"msg":"\"status\" must be a boolean","time":"2023-03-05T12:36:14.823Z","v":0}
-{"name":"todoApp","hostname":"UTILISA-LJOD9AV","pid":7752,"level":50,"msg":"\"status\" must be a boolean","time":"2023-03-05T12:36:18.305Z","v":0}
-{"name":"todoApp","hostname":"UTILISA-LJOD9AV","pid":7752,"level":50,"msg":"\"status\" must be a boolean","time":"2023-03-05T12:36:26.757Z","v":0}
-{"name":"todoApp","hostname":"UTILISA-LJOD9AV","pid":7752,"level":50,"msg":"\"status\" must be a boolean","time":"2023-03-05T12:36:31.788Z","v":0}
-{"name":"todoApp","hostname":"UTILISA-LJOD9AV","pid":7752,"level":50,"msg":"\"status\" must be a boolean","time":"2023-03-05T12:36:33.091Z","v":0}
-{"name":"todoApp","hostname":"UTILISA-LJOD9AV","pid":15356,"level":50,"msg":"\"status\" must be a boolean","time":"2023-03-05T12:38:03.257Z","v":0}
-{"name":"todoApp","hostname":"UTILISA-LJOD9AV","pid":21524,"level":50,"msg":"todo not find","time":"2023-03-05T12:41:51.286Z","v":0}
-{"name":"todoApp","hostname":"UTILISA-LJOD9AV","pid":21524,"level":50,"msg":"\"status\" must be a boolean","time":"2023-03-05T12:43:00.227Z","v":0}
-{"name":"todoApp","hostname":"UTILISA-LJOD9AV","pid":21524,"level":50,"msg":"\"status\" must be a boolean","time":"2023-03-05T12:43:31.558Z","v":0}
-{"name":"todoApp","hostname":"UTILISA-LJOD9AV","pid":21524,"level":50,"msg":"\"status\" must be a boolean","time":"2023-03-05T12:43:44.082Z","v":0}
-{"name":"todoApp","hostname":"UTILISA-LJOD9AV","pid":21524,"level":50,"msg":"\"status\" must be a boolean","time":"2023-03-05T12:44:51.144Z","v":0}
-{"name":"todoApp","hostname":"UTILISA-LJOD9AV","pid":21524,"level":50,"msg":"\"status\" must be a boolean","time":"2023-03-05T12:45:25.579Z","v":0}
-{"name":"todoApp","hostname":"UTILISA-LJOD9AV","pid":21524,"level":50,"msg":"\"status\" must be a boolean","time":"2023-03-05T12:45:29.232Z","v":0}
+{"name":"todoApp","hostname":"UTILISA-LJOD9AV","pid":17112,"level":50,"msg":"Error Test","time":"2023-03-11T10:11:43.509Z","v":0}
+{"name":"todoApp","hostname":"UTILISA-LJOD9AV","pid":17112,"level":50,"msg":"managed error","time":"2023-03-11T10:11:43.539Z","v":0}
+{"name":"todoApp","hostname":"UTILISA-LJOD9AV","pid":17112,"level":50,"msg":"incorrect email format","time":"2023-03-11T10:11:43.701Z","v":0}
+{"name":"todoApp","hostname":"UTILISA-LJOD9AV","pid":17112,"level":50,"msg":"todo not find","time":"2023-03-11T10:11:45.019Z","v":0}
+{"name":"todoApp","hostname":"UTILISA-LJOD9AV","pid":17112,"level":50,"msg":"title is mandatory","time":"2023-03-11T10:11:45.068Z","v":0}
+{"name":"todoApp","hostname":"UTILISA-LJOD9AV","pid":17112,"level":50,"msg":"status is mandatory","time":"2023-03-11T10:11:45.112Z","v":0}
+{"name":"todoApp","hostname":"UTILISA-LJOD9AV","pid":17112,"level":50,"msg":"todo not find","time":"2023-03-11T10:11:46.039Z","v":0}
+{"name":"todoApp","hostname":"UTILISA-LJOD9AV","pid":17112,"level":50,"msg":"todo not find","time":"2023-03-11T10:11:47.010Z","v":0}
+{"name":"todoApp","hostname":"UTILISA-LJOD9AV","pid":17112,"level":50,"msg":"title is mandatory","time":"2023-03-11T10:11:48.018Z","v":0}
+{"name":"todoApp","hostname":"UTILISA-LJOD9AV","pid":17112,"level":50,"msg":"todo not find","time":"2023-03-11T10:11:49.893Z","v":0}
+{"name":"todoApp","hostname":"UTILISA-LJOD9AV","pid":17112,"level":50,"msg":"Error Test","time":"2023-03-11T10:12:23.955Z","v":0}
+{"name":"todoApp","hostname":"UTILISA-LJOD9AV","pid":17112,"level":50,"msg":"managed error","time":"2023-03-11T10:12:23.979Z","v":0}
+{"name":"todoApp","hostname":"UTILISA-LJOD9AV","pid":17112,"level":50,"msg":"incorrect email format","time":"2023-03-11T10:12:24.021Z","v":0}
+{"name":"todoApp","hostname":"UTILISA-LJOD9AV","pid":17112,"level":50,"msg":"todo not find","time":"2023-03-11T10:12:24.932Z","v":0}
+{"name":"todoApp","hostname":"UTILISA-LJOD9AV","pid":17112,"level":50,"msg":"title is mandatory","time":"2023-03-11T10:12:24.977Z","v":0}
+{"name":"todoApp","hostname":"UTILISA-LJOD9AV","pid":17112,"level":50,"msg":"status is mandatory","time":"2023-03-11T10:12:25.021Z","v":0}
+{"name":"todoApp","hostname":"UTILISA-LJOD9AV","pid":17112,"level":50,"msg":"title is mandatory","time":"2023-03-11T10:12:26.132Z","v":0}
+{"name":"todoApp","hostname":"UTILISA-LJOD9AV","pid":17112,"level":50,"msg":"todo not find","time":"2023-03-11T10:12:27.770Z","v":0}
+{"name":"todoApp","hostname":"UTILISA-LJOD9AV","pid":13024,"level":50,"msg":"title is mandatory","time":"2023-03-11T17:30:10.839Z","v":0}
+{"name":"todoApp","hostname":"UTILISA-LJOD9AV","pid":13024,"level":50,"msg":"todo not find","time":"2023-03-11T17:30:12.786Z","v":0}
+{"name":"todoApp","hostname":"UTILISA-LJOD9AV","pid":13024,"level":50,"msg":"title is mandatory","time":"2023-03-11T17:30:12.849Z","v":0}
+{"name":"todoApp","hostname":"UTILISA-LJOD9AV","pid":13024,"level":50,"msg":"status is mandatory","time":"2023-03-11T17:30:12.910Z","v":0}
+{"name":"todoApp","hostname":"UTILISA-LJOD9AV","pid":13024,"level":50,"msg":"todo not find","time":"2023-03-11T17:30:14.727Z","v":0}
+{"name":"todoApp","hostname":"UTILISA-LJOD9AV","pid":13024,"level":50,"msg":"todo not find","time":"2023-03-11T17:30:15.633Z","v":0}
+{"name":"todoApp","hostname":"UTILISA-LJOD9AV","pid":13024,"level":50,"msg":"todo not find","time":"2023-03-11T17:30:16.490Z","v":0}
+{"name":"todoApp","hostname":"UTILISA-LJOD9AV","pid":13024,"level":50,"msg":"Error Test","time":"2023-03-11T17:30:17.252Z","v":0}
+{"name":"todoApp","hostname":"UTILISA-LJOD9AV","pid":13024,"level":50,"msg":"managed error","time":"2023-03-11T17:30:17.313Z","v":0}
+{"name":"todoApp","hostname":"UTILISA-LJOD9AV","pid":13024,"level":50,"msg":"incorrect email format","time":"2023-03-11T17:30:17.351Z","v":0}
+{"name":"todoApp","hostname":"UTILISA-LJOD9AV","pid":8624,"level":50,"msg":"title is mandatory","time":"2023-03-11T17:31:41.013Z","v":0}
+{"name":"todoApp","hostname":"UTILISA-LJOD9AV","pid":8624,"level":50,"msg":"todo not find","time":"2023-03-11T17:31:42.736Z","v":0}
+{"name":"todoApp","hostname":"UTILISA-LJOD9AV","pid":8624,"level":50,"msg":"title is mandatory","time":"2023-03-11T17:31:42.786Z","v":0}
+{"name":"todoApp","hostname":"UTILISA-LJOD9AV","pid":8624,"level":50,"msg":"status is mandatory","time":"2023-03-11T17:31:42.835Z","v":0}
+{"name":"todoApp","hostname":"UTILISA-LJOD9AV","pid":8624,"level":50,"msg":"todo not find","time":"2023-03-11T17:31:44.573Z","v":0}
+{"name":"todoApp","hostname":"UTILISA-LJOD9AV","pid":8624,"level":50,"msg":"todo not find","time":"2023-03-11T17:31:45.365Z","v":0}
+{"name":"todoApp","hostname":"UTILISA-LJOD9AV","pid":8624,"level":50,"msg":"Error Test","time":"2023-03-11T17:31:46.736Z","v":0}
+{"name":"todoApp","hostname":"UTILISA-LJOD9AV","pid":8624,"level":50,"msg":"managed error","time":"2023-03-11T17:31:46.752Z","v":0}
+{"name":"todoApp","hostname":"UTILISA-LJOD9AV","pid":8624,"level":50,"msg":"incorrect email format","time":"2023-03-11T17:31:46.782Z","v":0}
+{"name":"todoApp","hostname":"UTILISA-LJOD9AV","pid":8624,"level":50,"msg":"todo not find","time":"2023-03-11T17:31:47.601Z","v":0}
+{"name":"todoApp","hostname":"UTILISA-LJOD9AV","pid":8624,"level":50,"msg":"title is mandatory","time":"2023-03-11T17:35:27.769Z","v":0}
+{"name":"todoApp","hostname":"UTILISA-LJOD9AV","pid":8624,"level":50,"msg":"todo not find","time":"2023-03-11T17:35:28.771Z","v":0}
+{"name":"todoApp","hostname":"UTILISA-LJOD9AV","pid":8624,"level":50,"msg":"title is mandatory","time":"2023-03-11T17:35:28.818Z","v":0}
+{"name":"todoApp","hostname":"UTILISA-LJOD9AV","pid":8624,"level":50,"msg":"status is mandatory","time":"2023-03-11T17:35:28.866Z","v":0}
+{"name":"todoApp","hostname":"UTILISA-LJOD9AV","pid":8624,"level":50,"msg":"todo not find","time":"2023-03-11T17:35:29.767Z","v":0}
+{"name":"todoApp","hostname":"UTILISA-LJOD9AV","pid":8624,"level":50,"msg":"todo not find","time":"2023-03-11T17:35:30.557Z","v":0}
+{"name":"todoApp","hostname":"UTILISA-LJOD9AV","pid":8624,"level":50,"msg":"todo not find","time":"2023-03-11T17:35:33.383Z","v":0}
+{"name":"todoApp","hostname":"UTILISA-LJOD9AV","pid":8624,"level":50,"msg":"Error Test","time":"2023-03-11T17:35:35.527Z","v":0}
+{"name":"todoApp","hostname":"UTILISA-LJOD9AV","pid":8624,"level":50,"msg":"managed error","time":"2023-03-11T17:35:35.542Z","v":0}
+{"name":"todoApp","hostname":"UTILISA-LJOD9AV","pid":8624,"level":50,"msg":"incorrect email format","time":"2023-03-11T17:35:35.580Z","v":0}
+{"name":"todoApp","hostname":"UTILISA-LJOD9AV","pid":8624,"level":50,"msg":"Error Test","time":"2023-03-11T17:35:46.560Z","v":0}
+{"name":"todoApp","hostname":"UTILISA-LJOD9AV","pid":8624,"level":50,"msg":"managed error","time":"2023-03-11T17:35:46.576Z","v":0}
+{"name":"todoApp","hostname":"UTILISA-LJOD9AV","pid":8624,"level":50,"msg":"incorrect email format","time":"2023-03-11T17:35:46.622Z","v":0}
+{"name":"todoApp","hostname":"UTILISA-LJOD9AV","pid":8624,"level":50,"msg":"todo not find","time":"2023-03-11T17:35:47.529Z","v":0}
+{"name":"todoApp","hostname":"UTILISA-LJOD9AV","pid":8624,"level":50,"msg":"title is mandatory","time":"2023-03-11T17:35:47.578Z","v":0}
+{"name":"todoApp","hostname":"UTILISA-LJOD9AV","pid":8624,"level":50,"msg":"status is mandatory","time":"2023-03-11T17:35:47.628Z","v":0}
+{"name":"todoApp","hostname":"UTILISA-LJOD9AV","pid":8624,"level":50,"msg":"todo not find","time":"2023-03-11T17:35:48.421Z","v":0}
+{"name":"todoApp","hostname":"UTILISA-LJOD9AV","pid":8624,"level":50,"msg":"title is mandatory","time":"2023-03-11T17:35:50.488Z","v":0}
+{"name":"todoApp","hostname":"UTILISA-LJOD9AV","pid":8624,"level":50,"msg":"todo not find","time":"2023-03-11T17:35:51.450Z","v":0}
+{"name":"todoApp","hostname":"UTILISA-LJOD9AV","pid":8624,"level":50,"msg":"todo not find","time":"2023-03-11T17:35:53.905Z","v":0}
+{"name":"todoApp","hostname":"UTILISA-LJOD9AV","pid":8624,"level":50,"msg":"Error Test","time":"2023-03-11T17:37:06.926Z","v":0}
+{"name":"todoApp","hostname":"UTILISA-LJOD9AV","pid":8624,"level":50,"msg":"managed error","time":"2023-03-11T17:37:06.952Z","v":0}
+{"name":"todoApp","hostname":"UTILISA-LJOD9AV","pid":8624,"level":50,"msg":"incorrect email format","time":"2023-03-11T17:37:06.991Z","v":0}
+{"name":"todoApp","hostname":"UTILISA-LJOD9AV","pid":8624,"level":50,"msg":"title is mandatory","time":"2023-03-11T17:37:08.248Z","v":0}
+{"name":"todoApp","hostname":"UTILISA-LJOD9AV","pid":8624,"level":50,"msg":"todo not find","time":"2023-03-11T17:37:09.229Z","v":0}
+{"name":"todoApp","hostname":"UTILISA-LJOD9AV","pid":8624,"level":50,"msg":"title is mandatory","time":"2023-03-11T17:37:09.279Z","v":0}
+{"name":"todoApp","hostname":"UTILISA-LJOD9AV","pid":8624,"level":50,"msg":"status is mandatory","time":"2023-03-11T17:37:09.326Z","v":0}
+{"name":"todoApp","hostname":"UTILISA-LJOD9AV","pid":8624,"level":50,"msg":"todo not find","time":"2023-03-11T17:37:10.206Z","v":0}
+{"name":"todoApp","hostname":"UTILISA-LJOD9AV","pid":8624,"level":50,"msg":"todo not find","time":"2023-03-11T17:37:11.807Z","v":0}
+{"name":"todoApp","hostname":"UTILISA-LJOD9AV","pid":8624,"level":50,"msg":"todo not find","time":"2023-03-11T17:37:14.321Z","v":0}
+{"name":"todoApp","hostname":"UTILISA-LJOD9AV","pid":8624,"level":50,"msg":"Error Test","time":"2023-03-11T17:40:50.703Z","v":0}
+{"name":"todoApp","hostname":"UTILISA-LJOD9AV","pid":8624,"level":50,"msg":"managed error","time":"2023-03-11T17:40:50.748Z","v":0}
+{"name":"todoApp","hostname":"UTILISA-LJOD9AV","pid":8624,"level":50,"msg":"incorrect email format","time":"2023-03-11T17:40:50.826Z","v":0}
+{"name":"todoApp","hostname":"UTILISA-LJOD9AV","pid":8624,"level":50,"msg":"title is mandatory","time":"2023-03-11T17:40:51.849Z","v":0}
+{"name":"todoApp","hostname":"UTILISA-LJOD9AV","pid":8624,"level":50,"msg":"todo not find","time":"2023-03-11T17:40:52.700Z","v":0}
+{"name":"todoApp","hostname":"UTILISA-LJOD9AV","pid":8624,"level":50,"msg":"title is mandatory","time":"2023-03-11T17:40:52.748Z","v":0}
+{"name":"todoApp","hostname":"UTILISA-LJOD9AV","pid":8624,"level":50,"msg":"status is mandatory","time":"2023-03-11T17:40:52.795Z","v":0}
+{"name":"todoApp","hostname":"UTILISA-LJOD9AV","pid":8624,"level":50,"msg":"todo not find","time":"2023-03-11T17:40:54.688Z","v":0}
+{"name":"todoApp","hostname":"UTILISA-LJOD9AV","pid":8624,"level":50,"msg":"todo not find","time":"2023-03-11T17:40:56.186Z","v":0}
+{"name":"todoApp","hostname":"UTILISA-LJOD9AV","pid":8624,"level":50,"msg":"todo not find","time":"2023-03-11T17:40:57.681Z","v":0}
+{"name":"todoApp","hostname":"UTILISA-LJOD9AV","pid":8624,"level":50,"msg":"Error Test","time":"2023-03-11T17:45:12.852Z","v":0}
+{"name":"todoApp","hostname":"UTILISA-LJOD9AV","pid":8624,"level":50,"msg":"managed error","time":"2023-03-11T17:45:12.867Z","v":0}
+{"name":"todoApp","hostname":"UTILISA-LJOD9AV","pid":8624,"level":50,"msg":"incorrect email format","time":"2023-03-11T17:45:12.902Z","v":0}
+{"name":"todoApp","hostname":"UTILISA-LJOD9AV","pid":8624,"level":50,"msg":"todo not find","time":"2023-03-11T17:45:14.758Z","v":0}
+{"name":"todoApp","hostname":"UTILISA-LJOD9AV","pid":8624,"level":50,"msg":"todo not find","time":"2023-03-11T17:45:15.727Z","v":0}
+{"name":"todoApp","hostname":"UTILISA-LJOD9AV","pid":8624,"level":50,"msg":"todo not find","time":"2023-03-11T17:45:16.526Z","v":0}
+{"name":"todoApp","hostname":"UTILISA-LJOD9AV","pid":8624,"level":50,"msg":"title is mandatory","time":"2023-03-11T17:45:16.575Z","v":0}
+{"name":"todoApp","hostname":"UTILISA-LJOD9AV","pid":8624,"level":50,"msg":"status is mandatory","time":"2023-03-11T17:45:16.622Z","v":0}
+{"name":"todoApp","hostname":"UTILISA-LJOD9AV","pid":8624,"level":50,"msg":"title is mandatory","time":"2023-03-11T17:45:17.700Z","v":0}
+{"name":"todoApp","hostname":"UTILISA-LJOD9AV","pid":8624,"level":50,"msg":"todo not find","time":"2023-03-11T17:45:18.534Z","v":0}
+{"name":"todoApp","hostname":"UTILISA-LJOD9AV","pid":2992,"level":50,"msg":"Error Test","time":"2023-03-11T17:54:20.164Z","v":0}
+{"name":"todoApp","hostname":"UTILISA-LJOD9AV","pid":2992,"level":50,"msg":"managed error","time":"2023-03-11T17:54:20.217Z","v":0}
+{"name":"todoApp","hostname":"UTILISA-LJOD9AV","pid":2992,"level":50,"msg":"incorrect email format","time":"2023-03-11T17:54:20.262Z","v":0}
+{"name":"todoApp","hostname":"UTILISA-LJOD9AV","pid":2992,"level":50,"msg":"title is mandatory","time":"2023-03-11T17:54:21.141Z","v":0}
+{"name":"todoApp","hostname":"UTILISA-LJOD9AV","pid":2992,"level":50,"msg":"todo not find","time":"2023-03-11T17:54:22.922Z","v":0}
+{"name":"todoApp","hostname":"UTILISA-LJOD9AV","pid":2992,"level":50,"msg":"title is mandatory","time":"2023-03-11T17:54:22.971Z","v":0}
+{"name":"todoApp","hostname":"UTILISA-LJOD9AV","pid":2992,"level":50,"msg":"status is mandatory","time":"2023-03-11T17:54:23.017Z","v":0}
+{"name":"todoApp","hostname":"UTILISA-LJOD9AV","pid":2992,"level":50,"msg":"todo not find","time":"2023-03-11T17:54:23.879Z","v":0}
+{"name":"todoApp","hostname":"UTILISA-LJOD9AV","pid":2992,"level":50,"msg":"todo not find","time":"2023-03-11T17:54:24.707Z","v":0}
+{"name":"todoApp","hostname":"UTILISA-LJOD9AV","pid":2992,"level":50,"msg":"Error Test","time":"2023-03-11T17:55:55.902Z","v":0}
+{"name":"todoApp","hostname":"UTILISA-LJOD9AV","pid":2992,"level":50,"msg":"managed error","time":"2023-03-11T17:55:55.965Z","v":0}
+{"name":"todoApp","hostname":"UTILISA-LJOD9AV","pid":2992,"level":50,"msg":"incorrect email format","time":"2023-03-11T17:55:56.049Z","v":0}
+{"name":"todoApp","hostname":"UTILISA-LJOD9AV","pid":2992,"level":50,"msg":"todo not find","time":"2023-03-11T17:55:57.150Z","v":0}
+{"name":"todoApp","hostname":"UTILISA-LJOD9AV","pid":2992,"level":50,"msg":"title is mandatory","time":"2023-03-11T17:55:57.210Z","v":0}
+{"name":"todoApp","hostname":"UTILISA-LJOD9AV","pid":2992,"level":50,"msg":"status is mandatory","time":"2023-03-11T17:55:57.271Z","v":0}
+{"name":"todoApp","hostname":"UTILISA-LJOD9AV","pid":2992,"level":50,"msg":"title is mandatory","time":"2023-03-11T17:55:58.259Z","v":0}
+{"name":"todoApp","hostname":"UTILISA-LJOD9AV","pid":2992,"level":50,"msg":"todo not find","time":"2023-03-11T17:55:59.200Z","v":0}
+{"name":"todoApp","hostname":"UTILISA-LJOD9AV","pid":2992,"level":50,"msg":"todo not find","time":"2023-03-11T17:56:00.096Z","v":0}
+{"name":"todoApp","hostname":"UTILISA-LJOD9AV","pid":2992,"level":50,"msg":"todo not find","time":"2023-03-11T17:56:06.536Z","v":0}
+{"name":"todoApp","hostname":"UTILISA-LJOD9AV","pid":2992,"level":50,"msg":"Error Test","time":"2023-03-11T17:56:51.236Z","v":0}
+{"name":"todoApp","hostname":"UTILISA-LJOD9AV","pid":2992,"level":50,"msg":"managed error","time":"2023-03-11T17:56:51.261Z","v":0}
+{"name":"todoApp","hostname":"UTILISA-LJOD9AV","pid":2992,"level":50,"msg":"incorrect email format","time":"2023-03-11T17:56:51.342Z","v":0}
+{"name":"todoApp","hostname":"UTILISA-LJOD9AV","pid":2992,"level":50,"msg":"todo not find","time":"2023-03-11T17:56:52.403Z","v":0}
+{"name":"todoApp","hostname":"UTILISA-LJOD9AV","pid":2992,"level":50,"msg":"title is mandatory","time":"2023-03-11T17:56:52.457Z","v":0}
+{"name":"todoApp","hostname":"UTILISA-LJOD9AV","pid":2992,"level":50,"msg":"status is mandatory","time":"2023-03-11T17:56:52.510Z","v":0}
+{"name":"todoApp","hostname":"UTILISA-LJOD9AV","pid":2992,"level":50,"msg":"todo not find","time":"2023-03-11T17:56:53.331Z","v":0}
+{"name":"todoApp","hostname":"UTILISA-LJOD9AV","pid":2992,"level":50,"msg":"title is mandatory","time":"2023-03-11T17:56:54.238Z","v":0}
+{"name":"todoApp","hostname":"UTILISA-LJOD9AV","pid":2992,"level":50,"msg":"todo not find","time":"2023-03-11T17:56:56.093Z","v":0}
+{"name":"todoApp","hostname":"UTILISA-LJOD9AV","pid":2992,"level":50,"msg":"todo not find","time":"2023-03-11T17:56:57.057Z","v":0}
+{"name":"todoApp","hostname":"UTILISA-LJOD9AV","pid":2992,"level":50,"msg":"Error Test","time":"2023-03-11T17:59:25.366Z","v":0}
+{"name":"todoApp","hostname":"UTILISA-LJOD9AV","pid":2992,"level":50,"msg":"managed error","time":"2023-03-11T17:59:25.390Z","v":0}
+{"name":"todoApp","hostname":"UTILISA-LJOD9AV","pid":2992,"level":50,"msg":"incorrect email format","time":"2023-03-11T17:59:25.426Z","v":0}
+{"name":"todoApp","hostname":"UTILISA-LJOD9AV","pid":2992,"level":50,"msg":"title is mandatory","time":"2023-03-11T17:59:26.436Z","v":0}
+{"name":"todoApp","hostname":"UTILISA-LJOD9AV","pid":2992,"level":50,"msg":"todo not find","time":"2023-03-11T17:59:27.302Z","v":0}
+{"name":"todoApp","hostname":"UTILISA-LJOD9AV","pid":2992,"level":50,"msg":"title is mandatory","time":"2023-03-11T17:59:27.346Z","v":0}
+{"name":"todoApp","hostname":"UTILISA-LJOD9AV","pid":2992,"level":50,"msg":"status is mandatory","time":"2023-03-11T17:59:27.391Z","v":0}
+{"name":"todoApp","hostname":"UTILISA-LJOD9AV","pid":2992,"level":50,"msg":"todo not find","time":"2023-03-11T17:59:28.203Z","v":0}
+{"name":"todoApp","hostname":"UTILISA-LJOD9AV","pid":2992,"level":50,"msg":"todo not find","time":"2023-03-11T17:59:29.991Z","v":0}
+{"name":"todoApp","hostname":"UTILISA-LJOD9AV","pid":2992,"level":50,"msg":"todo not find","time":"2023-03-11T17:59:30.777Z","v":0}
+{"name":"todoApp","hostname":"UTILISA-LJOD9AV","pid":17340,"level":50,"msg":"Error Test","time":"2023-03-11T18:03:25.840Z","v":0}
+{"name":"todoApp","hostname":"UTILISA-LJOD9AV","pid":17340,"level":50,"msg":"managed error","time":"2023-03-11T18:03:25.892Z","v":0}
+{"name":"todoApp","hostname":"UTILISA-LJOD9AV","pid":17340,"level":50,"msg":"incorrect email format","time":"2023-03-11T18:03:25.943Z","v":0}
+{"name":"todoApp","hostname":"UTILISA-LJOD9AV","pid":17340,"level":50,"msg":"title is mandatory","time":"2023-03-11T18:03:26.809Z","v":0}
+{"name":"todoApp","hostname":"UTILISA-LJOD9AV","pid":17340,"level":50,"msg":"todo not find","time":"2023-03-11T18:03:27.594Z","v":0}
+{"name":"todoApp","hostname":"UTILISA-LJOD9AV","pid":17340,"level":50,"msg":"todo not find","time":"2023-03-11T18:03:28.378Z","v":0}
+{"name":"todoApp","hostname":"UTILISA-LJOD9AV","pid":17340,"level":50,"msg":"todo not find","time":"2023-03-11T18:03:29.289Z","v":0}
+{"name":"todoApp","hostname":"UTILISA-LJOD9AV","pid":17340,"level":50,"msg":"todo not find","time":"2023-03-11T18:03:30.078Z","v":0}
+{"name":"todoApp","hostname":"UTILISA-LJOD9AV","pid":17340,"level":50,"msg":"title is mandatory","time":"2023-03-11T18:03:30.127Z","v":0}
+{"name":"todoApp","hostname":"UTILISA-LJOD9AV","pid":17340,"level":50,"msg":"status is mandatory","time":"2023-03-11T18:03:30.173Z","v":0}
+{"name":"todoApp","hostname":"UTILISA-LJOD9AV","pid":17340,"level":50,"msg":"Error Test","time":"2023-03-11T18:05:32.489Z","v":0}
+{"name":"todoApp","hostname":"UTILISA-LJOD9AV","pid":17340,"level":50,"msg":"managed error","time":"2023-03-11T18:05:32.544Z","v":0}
+{"name":"todoApp","hostname":"UTILISA-LJOD9AV","pid":17340,"level":50,"msg":"incorrect email format","time":"2023-03-11T18:05:32.623Z","v":0}
+{"name":"todoApp","hostname":"UTILISA-LJOD9AV","pid":17340,"level":50,"msg":"todo not find","time":"2023-03-11T18:05:33.732Z","v":0}
+{"name":"todoApp","hostname":"UTILISA-LJOD9AV","pid":17340,"level":50,"msg":"todo not find","time":"2023-03-11T18:05:34.536Z","v":0}
+{"name":"todoApp","hostname":"UTILISA-LJOD9AV","pid":17340,"level":50,"msg":"title is mandatory","time":"2023-03-11T18:05:34.583Z","v":0}
+{"name":"todoApp","hostname":"UTILISA-LJOD9AV","pid":17340,"level":50,"msg":"status is mandatory","time":"2023-03-11T18:05:34.629Z","v":0}
+{"name":"todoApp","hostname":"UTILISA-LJOD9AV","pid":17340,"level":50,"msg":"title is mandatory","time":"2023-03-11T18:05:35.480Z","v":0}
+{"name":"todoApp","hostname":"UTILISA-LJOD9AV","pid":17340,"level":50,"msg":"todo not find","time":"2023-03-11T18:05:37.022Z","v":0}
+{"name":"todoApp","hostname":"UTILISA-LJOD9AV","pid":17340,"level":50,"msg":"todo not find","time":"2023-03-11T18:05:38.621Z","v":0}
+{"name":"todoApp","hostname":"UTILISA-LJOD9AV","pid":16440,"level":50,"msg":"Error Test","time":"2023-03-11T18:40:50.637Z","v":0}
+{"name":"todoApp","hostname":"UTILISA-LJOD9AV","pid":16440,"level":50,"msg":"managed error","time":"2023-03-11T18:40:50.711Z","v":0}
+{"name":"todoApp","hostname":"UTILISA-LJOD9AV","pid":16440,"level":50,"msg":"incorrect email format","time":"2023-03-11T18:40:50.770Z","v":0}
+{"name":"todoApp","hostname":"UTILISA-LJOD9AV","pid":16440,"level":50,"msg":"todo not find","time":"2023-03-11T18:40:51.834Z","v":0}
+{"name":"todoApp","hostname":"UTILISA-LJOD9AV","pid":16440,"level":50,"msg":"title is mandatory","time":"2023-03-11T18:40:51.887Z","v":0}
+{"name":"todoApp","hostname":"UTILISA-LJOD9AV","pid":16440,"level":50,"msg":"status is mandatory","time":"2023-03-11T18:40:51.939Z","v":0}
+{"name":"todoApp","hostname":"UTILISA-LJOD9AV","pid":16440,"level":50,"msg":"title is mandatory","time":"2023-03-11T18:40:52.815Z","v":0}
+{"name":"todoApp","hostname":"UTILISA-LJOD9AV","pid":16440,"level":50,"msg":"todo not find","time":"2023-03-11T18:40:53.659Z","v":0}
+{"name":"todoApp","hostname":"UTILISA-LJOD9AV","pid":16440,"level":50,"msg":"todo not find","time":"2023-03-11T18:40:54.521Z","v":0}
+{"name":"todoApp","hostname":"UTILISA-LJOD9AV","pid":16440,"level":50,"msg":"todo not find","time":"2023-03-11T18:40:56.069Z","v":0}
+{"name":"todoApp","hostname":"UTILISA-LJOD9AV","pid":16440,"level":50,"msg":"Error Test","time":"2023-03-11T18:41:15.241Z","v":0}
+{"name":"todoApp","hostname":"UTILISA-LJOD9AV","pid":16440,"level":50,"msg":"managed error","time":"2023-03-11T18:41:15.264Z","v":0}
+{"name":"todoApp","hostname":"UTILISA-LJOD9AV","pid":16440,"level":50,"msg":"incorrect email format","time":"2023-03-11T18:41:15.299Z","v":0}
+{"name":"todoApp","hostname":"UTILISA-LJOD9AV","pid":17352,"level":50,"msg":"Error Test","time":"2023-03-11T18:44:41.195Z","v":0}
+{"name":"todoApp","hostname":"UTILISA-LJOD9AV","pid":17352,"level":50,"msg":"managed error","time":"2023-03-11T18:44:41.212Z","v":0}
+{"name":"todoApp","hostname":"UTILISA-LJOD9AV","pid":17352,"level":50,"msg":"incorrect email format","time":"2023-03-11T18:44:41.254Z","v":0}
+{"name":"todoApp","hostname":"UTILISA-LJOD9AV","pid":17352,"level":50,"msg":"todo not find","time":"2023-03-11T18:44:42.308Z","v":0}
+{"name":"todoApp","hostname":"UTILISA-LJOD9AV","pid":17352,"level":50,"msg":"title is mandatory","time":"2023-03-11T18:44:42.357Z","v":0}
+{"name":"todoApp","hostname":"UTILISA-LJOD9AV","pid":17352,"level":50,"msg":"status is mandatory","time":"2023-03-11T18:44:42.403Z","v":0}
+{"name":"todoApp","hostname":"UTILISA-LJOD9AV","pid":17352,"level":50,"msg":"title is mandatory","time":"2023-03-11T18:44:43.438Z","v":0}
+{"name":"todoApp","hostname":"UTILISA-LJOD9AV","pid":17352,"level":50,"msg":"todo not find","time":"2023-03-11T18:44:44.384Z","v":0}
+{"name":"todoApp","hostname":"UTILISA-LJOD9AV","pid":17352,"level":50,"msg":"todo not find","time":"2023-03-11T18:44:46.170Z","v":0}
+{"name":"todoApp","hostname":"UTILISA-LJOD9AV","pid":17352,"level":50,"msg":"todo not find","time":"2023-03-11T18:44:47.004Z","v":0}
+{"name":"todoApp","hostname":"UTILISA-LJOD9AV","pid":18176,"level":50,"msg":"title is mandatory","time":"2023-03-11T19:02:14.336Z","v":0}
+{"name":"todoApp","hostname":"UTILISA-LJOD9AV","pid":18176,"level":50,"msg":"todo not find","time":"2023-03-11T19:02:15.457Z","v":0}
+{"name":"todoApp","hostname":"UTILISA-LJOD9AV","pid":18176,"level":50,"msg":"title is mandatory","time":"2023-03-11T19:02:15.506Z","v":0}
+{"name":"todoApp","hostname":"UTILISA-LJOD9AV","pid":18176,"level":50,"msg":"status is mandatory","time":"2023-03-11T19:02:15.550Z","v":0}
+{"name":"todoApp","hostname":"UTILISA-LJOD9AV","pid":18176,"level":50,"msg":"todo not find","time":"2023-03-11T19:02:17.892Z","v":0}
+{"name":"todoApp","hostname":"UTILISA-LJOD9AV","pid":18176,"level":50,"msg":"todo not find","time":"2023-03-11T19:02:18.644Z","v":0}
+{"name":"todoApp","hostname":"UTILISA-LJOD9AV","pid":18176,"level":50,"msg":"todo not find","time":"2023-03-11T19:02:20.239Z","v":0}
+{"name":"todoApp","hostname":"UTILISA-LJOD9AV","pid":2552,"level":50,"msg":"title is mandatory","time":"2023-03-11T19:04:56.646Z","v":0}
+{"name":"todoApp","hostname":"UTILISA-LJOD9AV","pid":2552,"level":50,"msg":"todo not find","time":"2023-03-11T19:04:57.704Z","v":0}
+{"name":"todoApp","hostname":"UTILISA-LJOD9AV","pid":2552,"level":50,"msg":"title is mandatory","time":"2023-03-11T19:04:57.749Z","v":0}
+{"name":"todoApp","hostname":"UTILISA-LJOD9AV","pid":2552,"level":50,"msg":"status is mandatory","time":"2023-03-11T19:04:57.794Z","v":0}
+{"name":"todoApp","hostname":"UTILISA-LJOD9AV","pid":2552,"level":50,"msg":"todo not find","time":"2023-03-11T19:04:58.749Z","v":0}
+{"name":"todoApp","hostname":"UTILISA-LJOD9AV","pid":2552,"level":50,"msg":"todo not find","time":"2023-03-11T19:04:59.721Z","v":0}
+{"name":"todoApp","hostname":"UTILISA-LJOD9AV","pid":2552,"level":50,"msg":"todo not find","time":"2023-03-11T19:05:00.616Z","v":0}
+{"name":"todoApp","hostname":"UTILISA-LJOD9AV","pid":2552,"level":50,"msg":"Error Test","time":"2023-03-11T19:05:08.037Z","v":0}
+{"name":"todoApp","hostname":"UTILISA-LJOD9AV","pid":2552,"level":50,"msg":"managed error","time":"2023-03-11T19:05:08.052Z","v":0}
+{"name":"todoApp","hostname":"UTILISA-LJOD9AV","pid":2552,"level":50,"msg":"incorrect email format","time":"2023-03-11T19:05:08.080Z","v":0}
+{"name":"todoApp","hostname":"UTILISA-LJOD9AV","pid":14464,"level":50,"msg":"title is mandatory","time":"2023-03-11T19:24:45.471Z","v":0}
+{"name":"todoApp","hostname":"UTILISA-LJOD9AV","pid":14464,"level":50,"msg":"todo not find","time":"2023-03-11T19:24:46.555Z","v":0}
+{"name":"todoApp","hostname":"UTILISA-LJOD9AV","pid":14464,"level":50,"msg":"title is mandatory","time":"2023-03-11T19:24:46.601Z","v":0}
+{"name":"todoApp","hostname":"UTILISA-LJOD9AV","pid":14464,"level":50,"msg":"status is mandatory","time":"2023-03-11T19:24:46.651Z","v":0}
+{"name":"todoApp","hostname":"UTILISA-LJOD9AV","pid":14464,"level":50,"msg":"Error Test","time":"2023-03-11T19:24:47.488Z","v":0}
+{"name":"todoApp","hostname":"UTILISA-LJOD9AV","pid":14464,"level":50,"msg":"managed error","time":"2023-03-11T19:24:47.508Z","v":0}
+{"name":"todoApp","hostname":"UTILISA-LJOD9AV","pid":14464,"level":50,"msg":"incorrect email format","time":"2023-03-11T19:24:47.545Z","v":0}
+{"name":"todoApp","hostname":"UTILISA-LJOD9AV","pid":14464,"level":50,"msg":"todo not find","time":"2023-03-11T19:24:48.518Z","v":0}
+{"name":"todoApp","hostname":"UTILISA-LJOD9AV","pid":14464,"level":50,"msg":"todo not find","time":"2023-03-11T19:24:49.361Z","v":0}
+{"name":"todoApp","hostname":"UTILISA-LJOD9AV","pid":14464,"level":50,"msg":"todo not find","time":"2023-03-11T19:24:50.187Z","v":0}
+{"name":"todoApp","hostname":"UTILISA-LJOD9AV","pid":15824,"level":50,"msg":"title is mandatory","time":"2023-03-11T20:53:55.184Z","v":0}
+{"name":"todoApp","hostname":"UTILISA-LJOD9AV","pid":15824,"level":50,"msg":"todo not find","time":"2023-03-11T20:53:56.198Z","v":0}
+{"name":"todoApp","hostname":"UTILISA-LJOD9AV","pid":15824,"level":50,"msg":"title is mandatory","time":"2023-03-11T20:53:56.243Z","v":0}
+{"name":"todoApp","hostname":"UTILISA-LJOD9AV","pid":15824,"level":50,"msg":"status is mandatory","time":"2023-03-11T20:53:56.291Z","v":0}
+{"name":"todoApp","hostname":"UTILISA-LJOD9AV","pid":15824,"level":50,"msg":"todo not find","time":"2023-03-11T20:53:57.126Z","v":0}
+{"name":"todoApp","hostname":"UTILISA-LJOD9AV","pid":15824,"level":50,"msg":"Error Test","time":"2023-03-11T20:53:57.850Z","v":0}
+{"name":"todoApp","hostname":"UTILISA-LJOD9AV","pid":15824,"level":50,"msg":"managed error","time":"2023-03-11T20:53:57.864Z","v":0}
+{"name":"todoApp","hostname":"UTILISA-LJOD9AV","pid":15824,"level":50,"msg":"incorrect email format","time":"2023-03-11T20:53:57.890Z","v":0}
+{"name":"todoApp","hostname":"UTILISA-LJOD9AV","pid":15824,"level":50,"msg":"todo not find","time":"2023-03-11T20:53:58.669Z","v":0}
+{"name":"todoApp","hostname":"UTILISA-LJOD9AV","pid":15824,"level":50,"msg":"todo not find","time":"2023-03-11T20:54:01.005Z","v":0}
+{"name":"todoApp","hostname":"UTILISA-LJOD9AV","pid":15824,"level":50,"msg":"title is mandatory","time":"2023-03-11T20:54:18.555Z","v":0}
+{"name":"todoApp","hostname":"UTILISA-LJOD9AV","pid":15824,"level":50,"msg":"todo not find","time":"2023-03-11T20:54:21.030Z","v":0}
+{"name":"todoApp","hostname":"UTILISA-LJOD9AV","pid":15824,"level":50,"msg":"title is mandatory","time":"2023-03-11T20:54:21.123Z","v":0}
+{"name":"todoApp","hostname":"UTILISA-LJOD9AV","pid":15824,"level":50,"msg":"status is mandatory","time":"2023-03-11T20:54:21.219Z","v":0}
+{"name":"todoApp","hostname":"UTILISA-LJOD9AV","pid":15824,"level":50,"msg":"todo not find","time":"2023-03-11T20:54:23.472Z","v":0}
+{"name":"todoApp","hostname":"UTILISA-LJOD9AV","pid":15824,"level":50,"msg":"todo not find","time":"2023-03-11T20:54:24.759Z","v":0}
+{"name":"todoApp","hostname":"UTILISA-LJOD9AV","pid":15824,"level":50,"msg":"todo not find","time":"2023-03-11T20:54:26.083Z","v":0}
+{"name":"todoApp","hostname":"UTILISA-LJOD9AV","pid":15824,"level":50,"msg":"Error Test","time":"2023-03-11T20:54:26.855Z","v":0}
+{"name":"todoApp","hostname":"UTILISA-LJOD9AV","pid":15824,"level":50,"msg":"managed error","time":"2023-03-11T20:54:26.872Z","v":0}
+{"name":"todoApp","hostname":"UTILISA-LJOD9AV","pid":15824,"level":50,"msg":"incorrect email format","time":"2023-03-11T20:54:26.910Z","v":0}
+{"name":"todoApp","hostname":"UTILISA-LJOD9AV","pid":14672,"level":50,"msg":"Error Test","time":"2023-03-11T21:58:25.915Z","v":0}
+{"name":"todoApp","hostname":"UTILISA-LJOD9AV","pid":14672,"level":50,"msg":"managed error","time":"2023-03-11T21:58:25.942Z","v":0}
+{"name":"todoApp","hostname":"UTILISA-LJOD9AV","pid":14672,"level":50,"msg":"incorrect email format","time":"2023-03-11T21:58:26.025Z","v":0}
+{"name":"todoApp","hostname":"UTILISA-LJOD9AV","pid":14672,"level":50,"msg":"todo not find","time":"2023-03-11T21:58:26.985Z","v":0}
+{"name":"todoApp","hostname":"UTILISA-LJOD9AV","pid":14672,"level":50,"msg":"title is mandatory","time":"2023-03-11T21:58:27.038Z","v":0}
+{"name":"todoApp","hostname":"UTILISA-LJOD9AV","pid":14672,"level":50,"msg":"status is mandatory","time":"2023-03-11T21:58:27.084Z","v":0}
+{"name":"todoApp","hostname":"UTILISA-LJOD9AV","pid":14672,"level":50,"msg":"title is mandatory","time":"2023-03-11T21:58:28.056Z","v":0}
+{"name":"todoApp","hostname":"UTILISA-LJOD9AV","pid":14672,"level":50,"msg":"todo not find","time":"2023-03-11T21:58:28.953Z","v":0}
+{"name":"todoApp","hostname":"UTILISA-LJOD9AV","pid":14672,"level":50,"msg":"todo not find","time":"2023-03-11T21:58:31.342Z","v":0}
+{"name":"todoApp","hostname":"UTILISA-LJOD9AV","pid":14672,"level":50,"msg":"todo not find","time":"2023-03-11T21:58:32.100Z","v":0}
+{"name":"todoApp","hostname":"UTILISA-LJOD9AV","pid":13180,"level":50,"msg":"Error Test","time":"2023-03-11T21:58:57.093Z","v":0}
+{"name":"todoApp","hostname":"UTILISA-LJOD9AV","pid":13180,"level":50,"msg":"managed error","time":"2023-03-11T21:58:57.110Z","v":0}
+{"name":"todoApp","hostname":"UTILISA-LJOD9AV","pid":13180,"level":50,"msg":"incorrect email format","time":"2023-03-11T21:58:57.152Z","v":0}
+{"name":"todoApp","hostname":"UTILISA-LJOD9AV","pid":13180,"level":50,"msg":"title is mandatory","time":"2023-03-11T21:58:58.228Z","v":0}
+{"name":"todoApp","hostname":"UTILISA-LJOD9AV","pid":13180,"level":50,"msg":"todo not find","time":"2023-03-11T21:58:59.318Z","v":0}
+{"name":"todoApp","hostname":"UTILISA-LJOD9AV","pid":13180,"level":50,"msg":"title is mandatory","time":"2023-03-11T21:58:59.366Z","v":0}
+{"name":"todoApp","hostname":"UTILISA-LJOD9AV","pid":13180,"level":50,"msg":"status is mandatory","time":"2023-03-11T21:58:59.417Z","v":0}
+{"name":"todoApp","hostname":"UTILISA-LJOD9AV","pid":13180,"level":50,"msg":"todo not find","time":"2023-03-11T21:59:00.305Z","v":0}
+{"name":"todoApp","hostname":"UTILISA-LJOD9AV","pid":13180,"level":50,"msg":"todo not find","time":"2023-03-11T21:59:01.251Z","v":0}
+{"name":"todoApp","hostname":"UTILISA-LJOD9AV","pid":13180,"level":50,"msg":"todo not find","time":"2023-03-11T21:59:04.532Z","v":0}
+{"name":"todoApp","hostname":"UTILISA-LJOD9AV","pid":18228,"level":50,"msg":"todo not find","time":"2023-03-11T22:30:35.560Z","v":0}
+{"name":"todoApp","hostname":"UTILISA-LJOD9AV","pid":18228,"level":50,"msg":"title is mandatory","time":"2023-03-11T22:30:35.610Z","v":0}
+{"name":"todoApp","hostname":"UTILISA-LJOD9AV","pid":18228,"level":50,"msg":"status is mandatory","time":"2023-03-11T22:30:35.654Z","v":0}
+{"name":"todoApp","hostname":"UTILISA-LJOD9AV","pid":18228,"level":50,"msg":"title is mandatory","time":"2023-03-11T22:30:36.555Z","v":0}
+{"name":"todoApp","hostname":"UTILISA-LJOD9AV","pid":18228,"level":50,"msg":"Error Test","time":"2023-03-11T22:30:37.378Z","v":0}
+{"name":"todoApp","hostname":"UTILISA-LJOD9AV","pid":18228,"level":50,"msg":"managed error","time":"2023-03-11T22:30:37.400Z","v":0}
+{"name":"todoApp","hostname":"UTILISA-LJOD9AV","pid":18228,"level":50,"msg":"incorrect email format","time":"2023-03-11T22:30:37.447Z","v":0}
+{"name":"todoApp","hostname":"UTILISA-LJOD9AV","pid":18228,"level":50,"msg":"todo not find","time":"2023-03-11T22:30:39.063Z","v":0}
+{"name":"todoApp","hostname":"UTILISA-LJOD9AV","pid":18228,"level":50,"msg":"todo not find","time":"2023-03-11T22:30:39.961Z","v":0}
+{"name":"todoApp","hostname":"UTILISA-LJOD9AV","pid":18228,"level":50,"msg":"todo not find","time":"2023-03-11T22:30:40.745Z","v":0}
+{"name":"todoApp","hostname":"UTILISA-LJOD9AV","pid":7628,"level":50,"msg":"title is mandatory","time":"2023-03-14T17:42:23.658Z","v":0}
+{"name":"todoApp","hostname":"UTILISA-LJOD9AV","pid":7628,"level":50,"msg":"title is mandatory","time":"2023-03-14T17:42:39.572Z","v":0}
