@@ -1,7 +1,7 @@
--- Revert migration_0001:migration_0001 from pg
+-- Revert todo:migration_0001 from pg
 
 BEGIN;
 
-  DROP TABLE "todo";
+DROP TABLE "user";
 
 COMMIT;

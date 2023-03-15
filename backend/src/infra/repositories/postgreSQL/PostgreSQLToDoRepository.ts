@@ -1,6 +1,6 @@
 import { TodoRepositorySchema } from "../../../domain/ports/repositoriesSchemas/TodoRepositorySchema";
 import { TodoModel } from "../../models/TodoModel";
-import client from './databaseConnexion'
+import client from './connexion/databaseConnexion'
 
 /**
  * Base de données PostgreSQL

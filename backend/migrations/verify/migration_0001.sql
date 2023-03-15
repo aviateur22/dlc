@@ -1,8 +1,7 @@
--- Verify migration_0001:migration_0001 on pg
+-- Verify todo:migration_0001 on pg
 
 BEGIN;
 
-INSERT INTO "todo" ("title", "description") VALUES ('test', 'commentaire');
-
+INSERT INTO "user" ("email", "password", "createdAt", "updatedAt") VALUES ('test', 'test', now(), now());
 
 ROLLBACK;

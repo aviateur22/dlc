@@ -6,16 +6,16 @@ import { FindOneTodoUseCase } from "../../useCases/FindOneTodoUseCase";
 import { UpdateTodoUseCase } from "../../useCases/UpdateToDoUseCase";
 
 // UseCase
-import { UserUseCase } from "./UserUseCase";
-import { TodoUseCase } from "./TodoUseCase";
+import { UserUseCase } from "./useCases/UserUseCase";
+import { TodoUseCase } from "./useCases/TodoUseCase";
 
 /**
  * UseCases disponibles dans le domaine
  */
 class UseCases {
 
-  readonly todoUsecase: TodoUseCase;
-  readonly userUsecase: UserUseCase;
+  //readonly todoUsecase: TodoUseCase;
+  readonly userUsecase: UserUseCase = new UserUseCase();
 
   readonly addTodoUseCase: AddTodoUseCase;
   readonly CheckToggleTodoUseCase: CheckToggleTodoUseCase;
@@ -25,8 +25,7 @@ class UseCases {
   readonly deleteOneTodoUseCase: DeleteOneTodoUseCase
 
   constructor() {
-    this.todoUsecase = new TodoUseCase();
-    this.userUsecase = new UserUseCase();
+    //this.todoUsecase = new TodoUseCase();
     this.addTodoUseCase = new AddTodoUseCase(this);
     this.CheckToggleTodoUseCase = new CheckToggleTodoUseCase(this);
     this.updateTodoUseCase = new UpdateTodoUseCase(this);
