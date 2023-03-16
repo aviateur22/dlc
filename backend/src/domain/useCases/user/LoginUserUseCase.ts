@@ -1,9 +1,6 @@
-import userMessages from "../../../exceptions/message/userMessages";
-import { UserNotFindException } from "../../../exceptions/UserNotFindException";
-import { UserValidationException } from "../../../exceptions/UserValidationException";
+import { LoginUserException } from "../../../exceptions/LoginUserException";
 import { LoginUserEntity } from "../../entities/user/LoginUserEntity";
 import { Password } from "../../helpers/security/Password";
-import { UseCaseServiceImpl } from "../../services/UseCaseServiceImpl";
 import { UseCaseModel } from "../UseCaseModel";
 /**
  * Ajout d'un utilisateur
@@ -11,22 +8,26 @@ import { UseCaseModel } from "../UseCaseModel";
 export class LoginUserUseCase extends UseCaseModel {
 
   /**
-   * Ajout d'un utiliteur
-   * @param {Partial<AddUserEntity>} object 
+   * Login user
+   * @param {Partial<AddUserEntity>} loginUser 
    */
   async execute(loginUser: Partial<LoginUserEntity>): Promise<boolean> {
 
     if(!loginUser.email || !loginUser.password) {
-      throw new UserValidationException(userMessages.user.missing);
+      throw new LoginUserException('email or password unvalid');
     }
 
     const findUser = await this.repositories.userRepository.findByEmail({email: loginUser.email});
     if(!findUser) {
-      throw new UserNotFindException('email or password unvalid');
+      throw new LoginUserException('email or password unvalid');
     }
 
     // Hash du mot de passe
     const isPasswordValid = await Password.comparePassword(loginUser.password, findUser.password);
+    
+    if(!isPasswordValid) {
+      throw new LoginUserException('email or password unvalid');
+    }
     
     return isPasswordValid;
   }

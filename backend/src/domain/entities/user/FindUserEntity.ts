@@ -2,9 +2,10 @@ export class FindUserEntity {
   email!: string;
   
   constructor(findUser: Partial<FindUserEntity>) {
-    for(const key of Object.keys(findUser)) {
+    let key: keyof typeof findUser;
+    for(key in findUser) { 
       // @ts-ignore
-      this[key] = object[key]
+      this[key] = findUser[key]
     }
   }
 }

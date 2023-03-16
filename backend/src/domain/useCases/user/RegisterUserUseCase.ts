@@ -24,7 +24,7 @@ export class RegisterUserUseCase extends UseCaseModel {
     const findEmail = await this.repositories.userRepository.findByEmail({email: addUser.email});
     
     if(findEmail) {
-      throw new UserRegisterException('email already exist');
+      throw new UserRegisterException(userMessages.user.emailExist);
     }
 
     // Hash du mot de passe

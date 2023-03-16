@@ -4,10 +4,11 @@ export class UserEntity {
   createdAt!: Date;
   updatedAt!: Date;
 
-  constructor(user: Partial<UserEntity>) {
-    for(const key in Object.keys(user)) {
+  constructor(user: Partial<UserEntity>) {    
+    let key: keyof typeof user;
+    for(key in user) {  
       // @ts-ignore
-      this[key] = Object[key];
+      this[key] = user[key].toString()!
     }
   }
 }

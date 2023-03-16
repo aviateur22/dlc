@@ -8,11 +8,11 @@ export class AddUserEntity {
   readonly updatedAt!: Date;
 
   constructor(email: string, password: string) {
-    const createdAt: Date = new Date();
-
+    const createdAt = new Date();
     this.email = email;
     this.password = password;
+    // Mise a jour date
     this.createdAt = createdAt;
-    this.updatedAt = createdAt
+    this.updatedAt = createdAt;
   }
 }

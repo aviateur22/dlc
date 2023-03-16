@@ -3,9 +3,10 @@ export class LoginUserEntity {
   password!: string;
 
   constructor(loginUser : Partial<LoginUserEntity>) {
-    for(const key of Object.keys(loginUser)) {
+    let key: keyof typeof loginUser;
+    for(key in loginUser) { 
       // @ts-ignore
-      this[key] = object[key]
+      this[key] = loginUser[key]
     }
   }
 }

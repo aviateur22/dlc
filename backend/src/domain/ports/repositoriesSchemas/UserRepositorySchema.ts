@@ -10,8 +10,18 @@ export interface UserRepositorySchema {
   save(user: Partial<AddUserEntity>): Promise<UserModel>;
 
   /**
+   * findAll user
+   */
+  findAll(): Promise<Array<UserModel>>
+
+  /**
    * Recherche par email
    * @param {Partial<FindUserEntity> } user 
    */
   findByEmail(user: Partial<FindUserEntity>): Promise<UserModel|null>;
+
+  /**
+   * Suppression 
+   */
+  deleteAll(): Promise<void>;
 }

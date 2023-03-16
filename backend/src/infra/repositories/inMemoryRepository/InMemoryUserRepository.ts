@@ -8,27 +8,51 @@ import { UserModel } from "../../models/UserModel";
  */
 export class InMemoryUserRepository implements UserRepositorySchema {
 
-  // Liste utilisateur
-  protected users: Array<UserModel> = [];
+   // Liste utilisateur
+   protected users: Array<UserModel> = [];
+   
+  /**
+   * FindAll users
+   * @returns 
+   */
+  async findAll(): Promise<UserModel[]> {
+   return this.users;
+  }
+ 
+  /**
+   * FindByEmail
+   * @param {Partial<FindUserEntity>} user 
+   * @returns {Promise<UserModel|null>}
+   */
+  async findByEmail(findUser: Partial<FindUserEntity>): Promise<UserModel|null> {
+    const findUserInArray = await this.users.find(user=>user.email === findUser.email);
 
-
-  async findByEmail(user: Partial<FindUserEntity>): Promise<UserModel|null> {
-    const findUser = await this.users.find(user=>user.email === user.email);
-
-    if(typeof findUser === 'undefined') {
+    if(typeof findUserInArray === 'undefined') {
       return null;
     }
 
-    return findUser;
+    return findUserInArray;
   }
 
 
+  /**
+   * Save
+   * @param {AddUserEntity} addUser 
+   * @returns {Promise<UserModel>}
+   */
   async save(addUser: AddUserEntity): Promise<UserModel> {
     const id =  this.users.length === 0 ? 1 : Math.max(...this.users.map(user=>Number(user.id))) + 1;
 
     this.users.push({id: id.toString(), ...addUser});
 
     return { id: id.toString(), ...addUser }
+  }
+
+  /**
+   * Suppr.
+   */
+  async deleteAll(): Promise<void> {
+    this.users = [];
   }
 
 }

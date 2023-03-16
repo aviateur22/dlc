@@ -2,6 +2,6 @@
 
 BEGIN;
 
-DROP TABLE "user";
+DROP TABLE IF EXISTS "product_user", "product", "image", "user";
 
 COMMIT;

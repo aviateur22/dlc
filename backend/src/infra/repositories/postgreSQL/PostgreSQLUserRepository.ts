@@ -10,6 +10,14 @@ import client from './connexion/databaseConnexion'
 export class PostgreSQLUserRepository implements UserRepositorySchema {
 
   /**
+   * FindAll users
+   */
+  async findAll(): Promise<UserModel[]> {
+    const users = await client.query('SELECT * FROM "user"');
+    return users.rows;    
+  } 
+
+  /**
    * Recherche user par mail
    * @param {Partial<FindUserEntity>} user 
    * @returns {UserModel}
@@ -39,4 +47,10 @@ export class PostgreSQLUserRepository implements UserRepositorySchema {
     return addUser.rows.shift()
   }
 
+  /**
+   * Supp.
+   */
+  async deleteAll(): Promise<void> {
+    await client.query('TRUNCATE "user" RESTART IDENTITY CASCADE');
+  }
 }

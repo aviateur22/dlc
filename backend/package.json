@@ -9,7 +9,9 @@
   "scripts": {
     "dev": "concurrently -k -n \"Typescript,Node\" -p \"[{name}]\" -c \"blue,green\" \"tsc --watch\" \"nodemon dist/infra/frameworks/index.js\"",
     "test": "jest --watchAll --detectOpenHandles",
-    "start": "node dist/infra/frameworks/index.js"
+    "start": "node dist/infra/frameworks/index.js",
+    "migrateDB": "sqitch deploy dev",
+    "revertDB": "sqitch revert -y dev"
   },
   "keywords": [],
   "author": "cyrille cade",
