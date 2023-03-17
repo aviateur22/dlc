@@ -23,10 +23,11 @@ describe('AddProductUseCase', ()=>{
         ...product
       });
 
-      const products = RepositoryServiceImpl.getRepository().productRepository.findAll();
+      const products = await RepositoryServiceImpl.getRepository().productRepository.findAll();
       
   
       expect(addProduct).toBeTruthy();
+      expect(products.length).toBe(1);
 
     } catch (error) {
       expect(error).toBeFalsy();

@@ -1,3 +1,6 @@
+/**
+ * AddProductEntity
+ */
 export class AddProductEntity {
   readonly imageBase64!: string;
   readonly mimeType!: string;
@@ -17,5 +20,4 @@ export class AddProductEntity {
     this.createdAt = createdAt;
     this.updatedAt = createdAt;
   }
-
 }

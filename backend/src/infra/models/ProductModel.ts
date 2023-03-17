@@ -3,8 +3,8 @@
  */
 export class ProductModel {
   readonly id!: string;
-  readonly userId!: string;
-  readonly imageId!: string
+  readonly imageId!: string;
+  readonly openDate!: Date;
   readonly createdAt!: Date;
   readonly updatedAt!: Date;
 

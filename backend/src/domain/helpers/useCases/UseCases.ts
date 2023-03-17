@@ -7,8 +7,9 @@ import { UpdateTodoUseCase } from "../../useCases/UpdateToDoUseCase";
 
 // UseCase
 import { UserUseCase } from "./useCases/UserUseCase";
-import { TodoUseCase } from "./useCases/TodoUseCase";
 import { ProductUseCase } from "./useCases/ProductUseCase";
+import { ImageUseCase } from "./useCases/ImageUseCase";
+import { ProductUserUseCase } from "./useCases/ProductUserUseCase";
 
 /**
  * UseCases disponibles dans le domaine
@@ -18,7 +19,10 @@ class UseCases {
   //readonly todoUsecase: TodoUseCase;
   readonly userUsecase: UserUseCase = new UserUseCase();
   readonly productUsecase: ProductUseCase = new ProductUseCase();
+  readonly imageUseCase: ImageUseCase = new ImageUseCase();
+  readonly productUserUsecase: ProductUserUseCase = new ProductUserUseCase();
 
+  //Todo: Delete
   readonly addTodoUseCase: AddTodoUseCase;
   readonly CheckToggleTodoUseCase: CheckToggleTodoUseCase;
   readonly updateTodoUseCase: UpdateTodoUseCase;

@@ -1,6 +1,9 @@
 import { AddProductEntity } from "../../../domain/entities/product/AddProductEntity";
+import { ProductImageEntity } from "../../../domain/entities/product/ProductImageEntity";
 import { ProductRepositorySchema } from "../../../domain/ports/repositoriesSchemas/ProductRepositorySchema";
+import { Repositories } from "../../helpers/repositories/Repositories";
 import { ProductModel } from "../../models/ProductModel";
+import { RepositoryServiceImpl } from "../../services/repository/RepositoryServiceImpl";
 import client from "./connexion/databaseConnexion";
 
 /**
@@ -8,12 +11,14 @@ import client from "./connexion/databaseConnexion";
  */
 export class PostgreSQLProductRepository implements ProductRepositorySchema {
 
+  // Acces au repo
+  private repositories: Repositories = RepositoryServiceImpl.getRepository();
+
   /**
    * FindAll product
    */
   async findAll(): Promise<Array<ProductModel>> {
-    const users = await client.query('SELECT * FROM "user"');
-    return users.rows;    
+    throw new Error("Method not implemented.");   
   } 
 
   /**
@@ -29,8 +34,13 @@ export class PostgreSQLProductRepository implements ProductRepositorySchema {
    * @param {AddUserEntity} user 
    * @returns {UserModel}
    */
-  async save(product: AddProductEntity): Promise<ProductModel> {
-    throw new Error('Method not implemented');
+  async save(product: ProductImageEntity): Promise<ProductModel> {
+
+    const addProduct = await client.query('INSERT INTO "product" ("imageId", "openDate", "createdAt", updatedAt") VALUE($1, $2, $3, $4) returuning *', [ 
+      product.imageId, product.openDate, product.createdAt, product.updatedAt
+    ]);
+
+    return addProduct.rows.shift();
   }
 
   /**
