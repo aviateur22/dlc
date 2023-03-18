@@ -3,7 +3,7 @@
  */
 export class AddImageEntity {
   readonly imageBase64!: string;
-  readonly mimType!: string;
+  readonly mimeType!: string;
   readonly createdAt!: Date;
   readonly updatedAt!: Date;
 

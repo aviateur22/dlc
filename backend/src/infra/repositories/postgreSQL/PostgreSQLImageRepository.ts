@@ -1,16 +1,47 @@
 import { AddImageEntity } from "../../../domain/entities/image/AddImageEntity";
 import { ImageRepositorySchema } from "../../../domain/ports/repositoriesSchemas/ImageRepositorySchema";
 import { ImageModel } from "../../models/ImageModel";
+import client from "./connexion/databaseConnexion";
 
-export class PostgreSQLImageRepository implements ImageRepositorySchema {
-  save(product: Partial<AddImageEntity>): Promise<ImageModel> {
-    throw new Error("Method not implemented.");
+export class PostgreSQLImageRepository implements ImageRepositorySchema { 
+
+  /**
+   * Save Image
+   * @param {Partial<AddImageEntity>} image 
+   * @returns {Promise<ImageModel>}
+   */
+  async save(image: Partial<AddImageEntity>): Promise<ImageModel> {
+    const addImage = await client.query('INSERT INTO "image" ("imageBase64", "mimeType", "createdAt", "updatedAt") VALUES ($1, $2, $3, $4) returning *', [ 
+      image.imageBase64, image.mimeType, image.createdAt, image.updatedAt
+    ]);
+
+    return addImage.rows.shift();    
   }
-  findAll(): Promise<ImageModel[]> {
-    throw new Error("Method not implemented.");
+
+  /**
+   * FindAll
+   * @returns {Promise<ImageModel[]>}
+   */
+  async findAll(): Promise<ImageModel[]> {
+    const images = await client.query('SELECT * FROM "image"');
+    return images.rows; 
   }
-  deleteAll(): Promise<void> {
-    throw new Error("Method not implemented.");
+
+  /**
+   * DeleteById
+   * @param id
+   * @returns  {Promise<ImageModel|null>}
+   */
+   async deleteById(id: string): Promise<ImageModel|null> {
+    const delteImage = await client.query('DELETE FROM "image" WHERE id=$1 returning *', [id]);
+    return delteImage.rowCount > 0 ? delteImage.rows.shift() : null;
+  }
+  
+  /**
+   * DeleteAll Image
+   */
+  async deleteAll(): Promise<void> {
+    await client.query('TRUNCATE "image" RESTART IDENTITY CASCADE');
   }
   
 }

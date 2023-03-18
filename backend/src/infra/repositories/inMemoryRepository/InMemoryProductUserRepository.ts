@@ -4,34 +4,67 @@ import { ProductUserByUserModel } from "../../models/productUser/ProductUserByUs
 import { ProductUserModel } from "../../models/productUser/ProductUserModel";
 
 export class InMemoryProductUserRepository implements ProductUserRepositorySchema {
+  
+  private productsUsers: Array<ProductUserModel>=[];
   /**
    * Save
    * @param {Partial<AddProductUserEntity>} productUser 
    */
-  async save(productUser: Partial<AddProductUserEntity>): Promise<ProductUserModel> {
-    throw new Error("Method not implemented.");
+  async save(productUser: AddProductUserEntity): Promise<ProductUserModel> {
+    // Index
+    const index: number = this.productsUsers.length === 0 ? 1 : Math.max(...this.productsUsers.map(x=>Number(x.id))) + 1;
+
+    this.productsUsers.push({id: index.toString(), ...productUser});
+    return {id: index.toString(), ...productUser};
   }
 
   /**
    * findAll
    */
   async findAll(): Promise<ProductUserModel[]> {
-    throw new Error("Method not implemented.");
+    return this.productsUsers;
   }
 
   /**
    * FindyUserId
-   * @param {number} userId 
+   * @param {string} userId 
    */
-  async findByUserId(userId: number): Promise<ProductUserByUserModel> {
+  async findByUserId(userId: string): Promise<ProductUserByUserModel> {
     throw new Error("Method not implemented.");
+  }
+
+  /**
+   * FindByUserIDProductId
+   * @param {string} userId 
+   * @param {string} productId 
+   * @returns {Promise<ProductUserModel>}
+   */
+  async findByUserIdAndProductId(userId: string, productId: string): Promise<Array<ProductUserModel>> {
+    return this.productsUsers.filter(product=>(product.productId === productId && product.userId === userId));
+    
   }
 
   /**
    * DeleteAll
    */
   async deleteAll(): Promise<void> {
-    throw new Error("Method not implemented.");
+    this.productsUsers = [];
   }
-  
+
+  /**
+   * DeleteByProductId
+   */
+  async deleteByProductId(productId: string): Promise<void> {
+    // Recherche de l'index
+    const index: number = this.productsUsers.findIndex(product=> product.id === productId);
+
+    if(index < 0) {
+      return;
+    }
+
+    const findProduct = this.productsUsers.find(product=>product.id === productId);
+
+    // Suppression de la todo
+    this.productsUsers.splice(index, 1);
+  }
 }

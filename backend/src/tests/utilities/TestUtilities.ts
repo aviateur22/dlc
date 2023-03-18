@@ -31,14 +31,19 @@ export class TestUtilities {
    * @returns {number} - Service selectionné
    */
   selectService(): number {
+  
     // Selection Backend
     const selectedService: number = SelectServices.SelectBackend();
 
     // Selection logger
     SelectServices.selectLoggerSource();
-
+    
     // Repositories
     SelectServices.SelectRepositoriesSource();
+
+
+
+
 
     return selectedService;
   }

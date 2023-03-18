@@ -4,7 +4,7 @@ import { AddImageEntity } from "../../entities/image/AddImageEntity";
 export interface ImageRepositorySchema {
   /**
    * Sauvegarde product
-   * @param {Partial<AddProductEntity>} product 
+   * @param {Partial<AddProductEntity>} image 
    */
   save(image: Partial<AddImageEntity>): Promise<ImageModel>;
 
@@ -12,6 +12,12 @@ export interface ImageRepositorySchema {
    * FindAll Image
    */
   findAll(): Promise<Array<ImageModel>>
+
+  /**
+   * DeleteById
+   * @param {number} id
+   */
+  deleteById(id: string): Promise<ImageModel|null>;
 
   /**
    * Suppression 

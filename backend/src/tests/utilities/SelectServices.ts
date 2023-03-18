@@ -28,8 +28,8 @@ class SelectServices {
   /**
    * Selection repo
    */
-  static SelectRepositoriesSource(): void {
-    RepositoryServiceImpl.setRepositories(RepositorySources.postgreSQL);  
+  static SelectRepositoriesSource(): void {    
+    RepositoryServiceImpl.setRepositories(RepositorySources.postgreSQL); 
   }
 
   /**

@@ -1,5 +1,5 @@
-import userMessages from "../../../exceptions/message/userMessages";
-import { UserRegisterException } from "../../../exceptions/UserRegisterException";
+import { EmailFindException } from "../../../exceptions/EmailFindException";
+import { ErrorDatabaseException } from "../../../exceptions/ErrorDatabaseException";
 import { UserValidationException } from "../../../exceptions/UserValidationException";
 import { UserMapper } from "../../dtos/UserMapper";
 import { AddUserEntity } from "../../entities/user/AddUserEntity"
@@ -18,19 +18,24 @@ export class RegisterUserUseCase extends UseCaseModel {
   async execute(addUser: Partial<AddUserEntity>): Promise<UserEntity> {
 
     if(!addUser.email || !addUser.password) {
-      throw new UserValidationException(userMessages.user.missing);
+      throw new UserValidationException('user and password could not be empty');
     }
 
     const findEmail = await this.repositories.userRepository.findByEmail({email: addUser.email});
     
     if(findEmail) {
-      throw new UserRegisterException(userMessages.user.emailExist);
+      throw new EmailFindException('email already exist');
     }
 
     // Hash du mot de passe
     const hashPassword = await Password.hashPassword(addUser.password);
 
     const saveUser = await this.repositories.userRepository.save(new AddUserEntity(addUser.email, hashPassword));
+    
+    if(!saveUser) {
+      throw new ErrorDatabaseException('error database');
+    }
+
     return UserMapper.userEntityMapper(saveUser);
   }
 }

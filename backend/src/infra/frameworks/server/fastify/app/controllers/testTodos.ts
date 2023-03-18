@@ -9,7 +9,6 @@ export default  {
    */
   findAllTodos : async(request: FastifyRequest, reply: FastifyReply)=>{
     const todos = await TodoDataAccess.findAllTodos();
-    console.log(todos)
     reply.send({
       todos
     });
@@ -17,7 +16,6 @@ export default  {
 
   saveOneTodo: async(request: FastifyRequest, reply: FastifyReply)=>{
     //const { name, description } = request.body;
-    console.log(request.body);
     reply.send({
       
     });

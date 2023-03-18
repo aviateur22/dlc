@@ -18,10 +18,22 @@ export interface ProductUserRepositorySchema {
   /**
    * FindByUserId
    */
-  findByUserId(userId: number): Promise<ProductUserByUserModel>;
+  findByUserId(userId: string): Promise<ProductUserByUserModel>;
+
+  /**
+   * FindByUserAndProductId
+   * @param {string} userId 
+   * @param {string} productId 
+   */
+  findByUserIdAndProductId(userId: string, productId: string): Promise<Array<ProductUserModel>>;
 
   /**
    * DeleteAll
    */
-  deleteAll(): Promise<void>
+  deleteAll(): Promise<void>;
+
+  /**
+   * DeleteBYProductId
+   */
+  deleteByProductId(productId: string): Promise<void>
 }

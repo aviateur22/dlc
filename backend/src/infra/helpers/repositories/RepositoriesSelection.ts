@@ -3,6 +3,7 @@ import { ProductRepositorySchema } from "../../../domain/ports/repositoriesSchem
 import { ProductUserRepositorySchema } from "../../../domain/ports/repositoriesSchemas/ProductUserRepositorySchema";
 import { TodoRepositorySchema } from "../../../domain/ports/repositoriesSchemas/TodoRepositorySchema";
 import { UserRepositorySchema } from "../../../domain/ports/repositoriesSchemas/UserRepositorySchema";
+import { InMemoryImagerepository } from "../../repositories/inMemoryRepository/InMemoryImageRepository";
 import { InMemoryProductRepository } from "../../repositories/inMemoryRepository/InMemoryProductRepository";
 import { InMemoryProductUserRepository } from "../../repositories/inMemoryRepository/InMemoryProductUserRepository";
 import { InMemoryToDoRepository } from "../../repositories/inMemoryRepository/InMemoryToDoRepository";
@@ -22,7 +23,7 @@ class RepositoriesSelection {
    * @param { number } repositorySource 
    * @returns { Repositories }
    */
-  getRepositories(repositorySource: number): Repositories {
+  getRepositories(repositorySource: number): Repositories {    
     switch (repositorySource) {
       case RepositorySources.inMemory:
         return this.sourceInMemory();
@@ -44,7 +45,7 @@ class RepositoriesSelection {
     const inMemoryToDoRepository: TodoRepositorySchema = new InMemoryToDoRepository();
     const inMemoryUserRepository: UserRepositorySchema = new InMemoryUserRepository();
     const inMemoryProductRepository: ProductRepositorySchema = new InMemoryProductRepository();
-    const inMemoryImageRepository: ImageRepositorySchema = new InMemoryProductRepository();
+    const inMemoryImageRepository: ImageRepositorySchema = new InMemoryImagerepository();
     const inMemoryProductUserRepository: ProductUserRepositorySchema = new InMemoryProductUserRepository;
     
     return new Repositories(
@@ -60,10 +61,10 @@ class RepositoriesSelection {
    * Repository PostgreSQL
    * @returns { Repositories }
    */
-  private sourcePostgreSQL(): Repositories {
+  private sourcePostgreSQL(): Repositories {    
     const postgreSQLItemRepository: TodoRepositorySchema = new PostgreSQLToDoRepository();
     const postgreSQLUserRepository: UserRepositorySchema = new PostgreSQLUserRepository();
-    const postgreSQLProductRepository: ProductRepositorySchema = new PostgreSQLProductRepository();
+    const postgreSQLProductRepository: ProductRepositorySchema = new PostgreSQLProductRepository();    
     const postgreSQLImageRepository: ImageRepositorySchema = new PostgreSQLImageRepository();
     const postgreSQLProductUserRepository: ProductUserRepositorySchema = new PostgreSQLProductUserRepository();
     

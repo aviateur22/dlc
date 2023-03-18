@@ -1,4 +1,5 @@
 import { AddProductException } from "../../../exceptions/AddProductException";
+import { ErrorDatabaseException } from "../../../exceptions/ErrorDatabaseException";
 import { AddProductEntity } from "../../entities/product/AddProductEntity";
 import { ProductEntity } from "../../entities/product/ProductEntity";
 import { ProductImageEntity } from "../../entities/product/ProductImageEntity";
@@ -13,16 +14,12 @@ export class AddProductUseCase extends UseCaseModel {
     if(!addProduct.imageBase64 || !addProduct.mimeType) {
       throw new AddProductException('');
     }
-
+   
     // Ajout de l'image
     const addImage = await UseCaseServiceImpl.getUseCases().imageUseCase.addImageUseCase.execute({
       imageBase64: addProduct.imageBase64,
-      mimType: addProduct.mimeType
-    });
-    
-    if(!addImage) {
-      throw new AddProductException('');
-    }
+      mimeType: addProduct.mimeType
+    });  
 
     const productImage = new ProductImageEntity({
       imageId: addImage.id,
@@ -33,7 +30,7 @@ export class AddProductUseCase extends UseCaseModel {
     const product = await this.repositories.productRepository.save(productImage);
 
     if(!product) {
-      throw new AddProductException('');
+      throw new ErrorDatabaseException('error database');
     }
 
     const productUser = new ProductUserEntity({
@@ -48,6 +45,7 @@ export class AddProductUseCase extends UseCaseModel {
       id: product.id,
       openDate: product.openDate,
       imageId: product.imageId,
+      userId: addProduct.userId,
       createdAt: product.createdAt,
       updatedAt: product.updatedAt
     });
