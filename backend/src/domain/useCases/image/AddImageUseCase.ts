@@ -1,7 +1,7 @@
 import { ErrorDatabaseException } from "../../../exceptions/ErrorDatabaseException";
 import { ImageMapper } from "../../dtos/ImageMapper";
 import { AddImageEntity } from "../../entities/image/AddImageEntity";
-import { ImageEntity } from "../../entities/image/ImageEntity";
+import { ImageIdEntity } from "../../entities/image/ImageIdEntity";
 import { UseCaseModel } from "../UseCaseModel";
 
 /**
@@ -13,7 +13,7 @@ export class AddImageUseCase extends UseCaseModel {
    * AddImage
    * @param {Partial<AddImageEntity>} addImage 
    */
-  async execute(addImage: Partial<AddImageEntity>): Promise<ImageEntity> {
+  async execute(addImage: Partial<AddImageEntity>): Promise<ImageIdEntity> {
     // Ajout du produit
     const image = await this.repositories.imageRepository.save(new AddImageEntity({...addImage}));
    
@@ -21,6 +21,6 @@ export class AddImageUseCase extends UseCaseModel {
       throw new ErrorDatabaseException('error database');
     }
 
-    return ImageMapper.getImageEntity({...image});
+    return ImageMapper.getImageWithIdEntity({...image});
   }
 }

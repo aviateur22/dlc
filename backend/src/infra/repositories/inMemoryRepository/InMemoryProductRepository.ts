@@ -1,8 +1,9 @@
-import { AddProductEntity } from "../../../domain/entities/product/AddProductEntity";
 import { DeleteProductEntity } from "../../../domain/entities/product/DeleteProductEntity";
 import { ProductImageEntity } from "../../../domain/entities/product/ProductImageEntity";
+import { SearchProductEntity } from "../../../domain/entities/product/SearchProductEntity";
 import { ProductRepositorySchema } from "../../../domain/ports/repositoriesSchemas/ProductRepositorySchema";
-import { ProductModel } from "../../models/ProductModel";
+import { ProductModel } from "../../models/product/ProductModel";
+import { ProductWithImageModel } from "../../models/product/ProductWithImageModel";
 import { RepositoryServiceImpl } from "../../services/repository/RepositoryServiceImpl";
 /**
  * User repo PostgreSQL
@@ -13,18 +14,44 @@ export class InMemoryProductRepository implements ProductRepositorySchema {
 
   /**
    * FindProduct by user
-   * @param userId 
+   * @param {string} userId
+   * @returns Promise<ProductModel[]>
    */
-  findByUserId(userId: string): Promise<ProductModel[]> {
-    throw new Error("Method not implemented.");
+  async findByUserId(userId: string): Promise<ProductWithImageModel[]> {
+
+    // Données productUser By UserId
+    const productUserByUserIdList = await RepositoryServiceImpl.getRepository().productUserRepository.findByUserId(userId);
+    const productIdList = productUserByUserIdList.map(item=>item.productId);
+
+    // Données images
+    const images = await RepositoryServiceImpl.getRepository().imageRepository.findAll();
+
+    const productWithImage: Array<ProductWithImageModel> = this.products.map(product=>{
+      const imageData = images.find(image=>(image.id === product.imageId));
+ 
+        if(typeof imageData === 'undefined') {
+          throw new Error('');
+        }
+
+        return new ProductWithImageModel({
+          id: product.id,
+          imageBase64: imageData.mimeType,
+          mimeType: imageData.mimeType,
+          openDate: product.openDate,
+          createdAt: product.createdAt,
+          updatedAt: product.updatedAt
+        });
+    }).filter(product=>productIdList.includes(product.id));
+    
+    return productWithImage;
   }
 
   /**
    * FindProductById
    * @param {string} productId 
    */
-  async findById(productId: string): Promise<ProductModel|null> {
-    const findProduct = this.products.find(product=>(product.id === productId)); 
+  async findById(searchProduct: SearchProductEntity): Promise<ProductModel|null> {
+    const findProduct = this.products.find(product=>(product.id === searchProduct.productId));
 
     if(typeof findProduct === 'undefined') {
       return null;

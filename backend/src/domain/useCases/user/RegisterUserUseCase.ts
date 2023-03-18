@@ -21,7 +21,7 @@ export class RegisterUserUseCase extends UseCaseModel {
       throw new UserValidationException('user and password could not be empty');
     }
 
-    const findEmail = await this.repositories.userRepository.findByEmail({email: addUser.email});
+    const findEmail = await this.repositories.userRepository.findByEmail(addUser.email);
     
     if(findEmail) {
       throw new EmailFindException('email already exist');
@@ -36,6 +36,6 @@ export class RegisterUserUseCase extends UseCaseModel {
       throw new ErrorDatabaseException('error database');
     }
 
-    return UserMapper.userEntityMapper(saveUser);
+    return UserMapper.getUserEntity(saveUser);
   }
 }

@@ -22,7 +22,7 @@ export class DeleteProductUseCase extends UseCaseModel {
     }
 
     // Verification existence Produit
-    const findProduct = await UseCaseServiceImpl.getUseCases().productUsecase.findProductUseCase.execute(product.productId);
+    const findProduct = await UseCaseServiceImpl.getUseCases().productUsecase.findProductUseCase.execute({userId: product.userId, productId: product.productId});
 
     if(!findProduct) {
       throw new ProductNotFindException('product not find');;

@@ -1,8 +1,20 @@
+import { AddProductEntity } from "../../domain/entities/product/AddProductEntity";
 import { UseCaseServiceImpl } from "../../domain/services/UseCaseServiceImpl";
 import { RepositoryServiceImpl } from "../../infra/services/repository/RepositoryServiceImpl";
 import imageData from "./imageData.json";
 
 export class ProductGenerator {
+
+  // Product a ajouter
+  private static product =  {
+    userId: '1',
+    openDate: new Date(),
+    imageBase64: imageData.image.base64,
+    mimeType: imageData.image.mimeType
+  }
+
+  private static productEntity: AddProductEntity;
+
   /**
    * Supp. product
    */
@@ -14,16 +26,24 @@ export class ProductGenerator {
    * Create Pro.
    */
   static async createProduct(): Promise<void> {
-    
-    const product =  {
-      userId: '1',
-      openDate: new Date(),
-      imageBase64: imageData.image.base64,
-      mimeType: imageData.image.mimeType
-    }
-
+    ProductGenerator.createAddProductEntity();
     const addProduct = await UseCaseServiceImpl.getUseCases().productUsecase.addProductUseCase.execute({
-      ...product
-    });
+      ...ProductGenerator.product
+    });    
+  }
+
+  /**
+   * Création d'un AddProductEntity
+   */
+  private static createAddProductEntity(): void {
+    ProductGenerator.productEntity = new AddProductEntity(ProductGenerator.product);
+  }
+
+  /**
+   * Récupération d'un AddProductEntity
+   * @returns {AddProductEntity}
+   */
+  static getAddProductEntity(): AddProductEntity {
+    return ProductGenerator.productEntity
   }
 }

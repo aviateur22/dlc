@@ -1,7 +1,7 @@
 /**
  * ImageEntity
  */
-export class ImageEntity {
+export class ImageIdEntity {
   id!: string;
 
   constructor(id: string) {

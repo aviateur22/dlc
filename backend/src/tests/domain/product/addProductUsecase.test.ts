@@ -5,6 +5,7 @@ import { ProductGenerator } from "../../utilities/ProductGenerator";
 import { ProductUserGenerator } from "../../utilities/ProductUserGenerator";
 import { TestUtilities } from "../../utilities/TestUtilities";
 import imageData from "../../utilities/imageData.json"
+import { UserGenerator } from "../../utilities/UserGenerator";
 
 describe('AddProductUseCase', ()=>{
   // Selection Server Express
@@ -14,6 +15,7 @@ describe('AddProductUseCase', ()=>{
   testUtilities.selectService();
 
   beforeEach(async()=>{
+    await UserGenerator.resteUser();
     await ProductGenerator.deleteProduct();
     await ImageGenerator.deleteImage();
     await ProductUserGenerator.deleteProductUser();

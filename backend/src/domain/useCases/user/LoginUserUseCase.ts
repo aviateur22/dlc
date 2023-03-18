@@ -17,7 +17,7 @@ export class LoginUserUseCase extends UseCaseModel {
       throw new LoginUserException('email or password unvalid');
     }
 
-    const findUser = await this.repositories.userRepository.findByEmail({email: loginUser.email});
+    const findUser = await this.repositories.userRepository.findByEmail(loginUser.email);
     if(!findUser) {
       throw new LoginUserException('email or password unvalid');
     }

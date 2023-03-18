@@ -6,12 +6,12 @@ import { UseCaseModel } from "../UseCaseModel";
 export class FindUserUseCase extends UseCaseModel {
   async execute(findUser: Partial<FindUserEntity>): Promise<UserEntity|null> {
 
-    const user = await this.repositories.userRepository.findByEmail(findUser);
+    const user = await this.repositories.userRepository.findByEmail(findUser.email!);
 
     if(!user) {
       return null
     }
 
-    return UserMapper.userEntityMapper(user);
+    return UserMapper.getUserEntity(user);
   }
 }

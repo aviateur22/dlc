@@ -21,11 +21,26 @@ export class InMemoryUserRepository implements UserRepositorySchema {
  
   /**
    * FindByEmail
-   * @param {Partial<FindUserEntity>} user 
+   * @param {string} userEmail 
    * @returns {Promise<UserModel|null>}
    */
-  async findByEmail(findUser: Partial<FindUserEntity>): Promise<UserModel|null> {
-    const findUserInArray = await this.users.find(user=>user.email === findUser.email);
+  async findByEmail(userEmail: string): Promise<UserModel|null> {
+    const findUserInArray = await this.users.find(user=>user.email === userEmail);
+
+    if(typeof findUserInArray === 'undefined') {
+      return null;
+    }
+
+    return findUserInArray;
+  }
+
+  /**
+   * findById
+   * @param {string} userId 
+   * @returns {Promise<UserModel|null>}
+   */
+  async findById(userId: string): Promise<UserModel | null> {
+    const findUserInArray = await this.users.find(user=>user.id === userId);
 
     if(typeof findUserInArray === 'undefined') {
       return null;

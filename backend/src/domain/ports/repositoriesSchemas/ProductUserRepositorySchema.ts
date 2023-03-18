@@ -18,7 +18,7 @@ export interface ProductUserRepositorySchema {
   /**
    * FindByUserId
    */
-  findByUserId(userId: string): Promise<ProductUserByUserModel>;
+  findByUserId(userId: string): Promise<Array<ProductUserModel>>;
 
   /**
    * FindByUserAndProductId

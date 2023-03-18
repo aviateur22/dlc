@@ -27,9 +27,10 @@ export class InMemoryProductUserRepository implements ProductUserRepositorySchem
 
   /**
    * FindyUserId
-   * @param {string} userId 
+   * @param {string} userId
+   * @returns {Promise<Array<ProductUserModel>>}
    */
-  async findByUserId(userId: string): Promise<ProductUserByUserModel> {
+  async findByUserId(userId: string): Promise<Array<ProductUserModel>> {
     throw new Error("Method not implemented.");
   }
 

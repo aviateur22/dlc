@@ -1,5 +1,6 @@
 import { AddProductException } from "../../../exceptions/AddProductException";
 import { ErrorDatabaseException } from "../../../exceptions/ErrorDatabaseException";
+import { ProductMapper } from "../../dtos/ProductMapper";
 import { AddProductEntity } from "../../entities/product/AddProductEntity";
 import { ProductEntity } from "../../entities/product/ProductEntity";
 import { ProductImageEntity } from "../../entities/product/ProductImageEntity";
@@ -41,7 +42,7 @@ export class AddProductUseCase extends UseCaseModel {
     // Ajout du ProduitUser
     UseCaseServiceImpl.getUseCases().productUserUsecase.addProductUserUseCase.execute(productUser);
 
-    return new ProductEntity({
+    return ProductMapper.getProductEntity({
       id: product.id,
       openDate: product.openDate,
       imageId: product.imageId,

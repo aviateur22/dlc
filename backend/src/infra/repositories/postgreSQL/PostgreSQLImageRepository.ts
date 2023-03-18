@@ -11,10 +11,10 @@ export class PostgreSQLImageRepository implements ImageRepositorySchema {
    * @returns {Promise<ImageModel>}
    */
   async save(image: Partial<AddImageEntity>): Promise<ImageModel> {
-    const addImage = await client.query('INSERT INTO "image" ("imageBase64", "mimeType", "createdAt", "updatedAt") VALUES ($1, $2, $3, $4) returning *', [ 
+    const addImage = await client.query('INSERT INTO "image" ("image_base64", "mime_type", "created_at", "updated_at") VALUES ($1, $2, $3, $4) returning *', [ 
       image.imageBase64, image.mimeType, image.createdAt, image.updatedAt
-    ]);
-
+    ])
+    
     return addImage.rows.shift();    
   }
 
@@ -24,7 +24,7 @@ export class PostgreSQLImageRepository implements ImageRepositorySchema {
    */
   async findAll(): Promise<ImageModel[]> {
     const images = await client.query('SELECT * FROM "image"');
-    return images.rows; 
+    return images.rows;
   }
 
   /**

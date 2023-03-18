@@ -1,7 +1,8 @@
-import { ProductModel } from "../../../infra/models/ProductModel";
+import { ProductModel } from "../../../infra/models/product/ProductModel";
+import { ProductWithImageModel } from "../../../infra/models/product/ProductWithImageModel";
 import { AddProductEntity } from "../../entities/product/AddProductEntity";
 import { DeleteProductEntity } from "../../entities/product/DeleteProductEntity";
-import { ProductEntity } from "../../entities/product/ProductEntity";
+import { SearchProductEntity } from "../../entities/product/SearchProductEntity";
 
 export interface ProductRepositorySchema {
   /**
@@ -14,13 +15,13 @@ export interface ProductRepositorySchema {
    * Find products by User
    * @param {string} userId
    */
-   findByUserId(userId: string): Promise<Array<ProductModel>>;
+   findByUserId(userId: string): Promise<Array<ProductWithImageModel>>;
 
    /**
     * FindProductById
     * @param {string} productId 
     */
-   findById(productId: string): Promise<ProductModel|null>
+   findById(searchProduct: SearchProductEntity): Promise<ProductModel|null>
 
    /**
     * DeleteByProductId

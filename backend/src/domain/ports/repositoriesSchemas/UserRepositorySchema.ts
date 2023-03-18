@@ -16,9 +16,15 @@ export interface UserRepositorySchema {
 
   /**
    * Recherche par email
-   * @param {Partial<FindUserEntity> } user 
+   * @param { string} userEmail 
    */
-  findByEmail(user: Partial<FindUserEntity>): Promise<UserModel|null>;
+  findByEmail(userEmail: string): Promise<UserModel|null>;
+
+  /**
+   * Recherche par id
+   * @param {string} userId 
+   */
+  findById(userId: string): Promise<UserModel|null>;
 
   /**
    * Suppression 

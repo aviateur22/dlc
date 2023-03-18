@@ -1,13 +1,23 @@
 import { ImageModel } from "../../infra/models/ImageModel";
-import { ImageEntity } from "../entities/image/ImageEntity";
+import { ImageBase64Entity } from "../entities/image/ImageBase64Entity";
+import { ImageIdEntity } from "../entities/image/ImageIdEntity";
 
 export class ImageMapper {
   /**
-   * Mapper TodoModel vers  TodoEntity
+   * Mapper vers ImageId
    * @param { ImageModel } image 
-   * @returns { ImageEntity }
+   * @returns { ImageIdEntity }
    */
-  static getImageEntity(image: ImageModel): ImageEntity {
-    return new ImageEntity(image.id);
+  static getImageWithIdEntity(image: ImageModel): ImageIdEntity {
+    return new ImageIdEntity(image.id);
+  }
+
+  /**
+   * Mapper ImageBase64
+   * @param {ImageModel} image 
+   * @returns { ImageBase64Identity}
+   */
+  static getFullImageEntity(image: ImageModel): ImageBase64Entity {
+    return new ImageBase64Entity({...image});
   }
 }

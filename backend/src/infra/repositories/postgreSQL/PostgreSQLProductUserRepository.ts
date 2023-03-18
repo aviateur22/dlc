@@ -1,6 +1,5 @@
 import { AddProductUserEntity } from "../../../domain/entities/productUser/AddProductUserEntity";
 import { ProductUserRepositorySchema } from "../../../domain/ports/repositoriesSchemas/ProductUserRepositorySchema";
-import { ProductUserByUserModel } from "../../models/productUser/ProductUserByUserModel";
 import { ProductUserModel } from "../../models/productUser/ProductUserModel";
 import client from "./connexion/databaseConnexion";
 
@@ -12,7 +11,7 @@ export class PostgreSQLProductUserRepository implements ProductUserRepositorySch
    */
   async save(productUser: Partial<AddProductUserEntity>): Promise<ProductUserModel> {
 
-    const addProductUser = await client.query('INSERT INTO "product_user" ("userId", "productId", "createdAt", "updatedAt") VALUES ($1, $2, $3, $4) returning *', [ 
+    const addProductUser = await client.query('INSERT INTO "product_user" ("user_id", "product_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) returning *', [ 
       productUser.userId, productUser.productId, productUser.createdAt, productUser.updatedAt
     ]);
 
@@ -21,10 +20,15 @@ export class PostgreSQLProductUserRepository implements ProductUserRepositorySch
 
   /**
    * FindByUserId
-   * @param {string} userId 
+   * @param {string} userId
+   * @returns {Promise<Array<ProductUserModel>>}
    */
-  findByUserId(userId: string): Promise<ProductUserByUserModel> {
-    throw new Error("Method not implemented.");
+  async findByUserId(userId: string): Promise<Array<ProductUserModel>> {
+    const productUserByUserId = await client.query('SELECT * FROM "product_user" WHERE "user_id"=$1',[
+      userId
+    ]);
+
+    return productUserByUserId.rows;
   }
 
   /**
@@ -33,7 +37,7 @@ export class PostgreSQLProductUserRepository implements ProductUserRepositorySch
    * @param {string} productId 
    */
   async findByUserIdAndProductId(userId: string, productId: string): Promise<Array<ProductUserModel>> {
-    const products = await client.query('SELECT * FROM "product_user" WHERE "userId"=$1 AND "productId"=$2 LIMIT 1', [
+    const products = await client.query('SELECT * FROM "product_user" WHERE "user_id"=$1 AND "product_id"=$2 LIMIT 1', [
       userId, productId
     ]);
     return products.rows;
