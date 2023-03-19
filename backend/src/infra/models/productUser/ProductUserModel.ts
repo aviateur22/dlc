@@ -1,9 +1,9 @@
 export class ProductUserModel {
-  id!: string;
-  userId!: string;
-  productId!: string;
-  createdAt!: Date;
-  updatedAt!: Date;
+  readonly id!: string;
+  readonly userId!: string;
+  readonly productId!: string;
+  readonly createdAt!: Date;
+  readonly updatedAt!: Date;
 
   constructor(addProductUser: Partial<ProductUserModel>) {
     let key: keyof typeof addProductUser;

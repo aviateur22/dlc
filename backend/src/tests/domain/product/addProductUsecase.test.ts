@@ -6,6 +6,7 @@ import { ProductUserGenerator } from "../../utilities/ProductUserGenerator";
 import { TestUtilities } from "../../utilities/TestUtilities";
 import imageData from "../../utilities/imageData.json"
 import { UserGenerator } from "../../utilities/UserGenerator";
+import { AddProductException } from "../../../exceptions/AddProductException";
 
 describe('AddProductUseCase', ()=>{
   // Selection Server Express
@@ -64,4 +65,27 @@ describe('AddProductUseCase', ()=>{
       expect(error).toBeFalsy();
     }    
   });
+
+  it('Should throw AddProductException because image is missing', async()=>{
+    try {
+      const product =  {
+        userId: '1',
+        openDate: new Date(),
+        imageBase64: '',
+        mimeType: ''
+      }
+  
+      const addProduct = await UseCaseServiceImpl.getUseCases().productUsecase.addProductUseCase.execute({
+        ...product
+      });
+
+      expect(addProduct).toBeFalsy();
+
+    } catch (error) {
+      expect(error).toBeInstanceOf(AddProductException);
+    }
+  });
+
+
+
 });

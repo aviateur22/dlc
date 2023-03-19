@@ -4,16 +4,17 @@ import { UserHomePageEntity } from "../../entities/user/UserHomePageEntity";
 import { UseCaseModel } from "../UseCaseModel";
 
 /**
- * HomePageUseCase
+ * ProductsUser Usecase
  */
-export class UserHomePageUseCase extends UseCaseModel {
+export class FindProductsOfUserUseCase extends UseCaseModel {
 
   async execute(userId: string): Promise<UserHomePageEntity> {
+
     // Vérification existence user
     const findUser = await this.repositories.userRepository.findById(userId);
 
     if(!findUser) {
-      throw new UserNotFindException('')
+      throw new UserNotFindException('user does not exist')
     }
 
     // Recherche Product utilisateur

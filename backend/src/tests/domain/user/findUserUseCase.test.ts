@@ -13,12 +13,12 @@ describe('finUserUseCase', ()=>{
     await UserGenerator.resteUser();
   });
     
-  it('Should find a user by mail', async()=>{
+  it('Should find a user byId', async()=>{
     try {
-      const email: string = 'aviateur22@hotmail.fr';
+      const userId: string = '1';
 
-      const findUser = await UseCaseServiceImpl.getUseCases().userUsecase.findUserUseCase.execute({ email });
-      console.log(findUser);
+      const findUser = await UseCaseServiceImpl.getUseCases().userUsecase.findUserUseCase.execute(userId);
+  
       expect(findUser).toBeTruthy();
       
       expect(findUser).toEqual(expect.objectContaining({
@@ -33,22 +33,22 @@ describe('finUserUseCase', ()=>{
     }  
   });
 
-  // it('Should throw UserNotFindException because user is not register', async()=>{
-  //   try {
-  //     const email: string = 'aviateur22@hotmail.fr';
-  //     const findUser = await UseCaseServiceImpl.getUseCases().userUsecase.findUserUseCase.execute({ email });
+  it('Should throw UserNotFindException', async()=>{
+    try {
+      const userId: string = '1';
+      const findUser = await UseCaseServiceImpl.getUseCases().userUsecase.findUserUseCase.execute(userId);
   
-  //     expect(findUser).toBeTruthy();
-  //     console.log(findUser);
-  //     expect(findUser).toEqual(expect.objectContaining({
-  //       id: '1',
-  //       email: 'aviateur22@hotmail.fr',
-  //       createdAt: findUser!.createdAt,
-  //       updatedAt: findUser!.updatedAt
+      expect(findUser).toBeTruthy();
+      console.log(findUser);
+      expect(findUser).toEqual(expect.objectContaining({
+        id: '1',
+        email: 'aviateur22@hotmail.fr',
+        createdAt: findUser!.createdAt,
+        updatedAt: findUser!.updatedAt
 
-  //     }))
-  //   } catch (error) {
-  //     expect(error).toBeFalsy();
-  //   }  
-  // });
+      }))
+    } catch (error) {
+      expect(error).toBeFalsy();
+    }  
+  });
 })

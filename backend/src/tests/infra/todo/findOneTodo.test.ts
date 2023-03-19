@@ -1,6 +1,7 @@
 import request from 'supertest';
-import { ServerSource } from '../../infra/helpers/server/ServerSource';
-import { TestUtilities } from "../utilities/TestUtilities";
+import { ServerSource } from '../../../infra/helpers/server/ServerSource';
+import { TestUtilities } from '../../utilities/TestUtilities';
+
 
 // Selection Server Express
 const testUtilities = new TestUtilities();

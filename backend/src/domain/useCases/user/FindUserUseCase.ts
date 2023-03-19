@@ -4,9 +4,15 @@ import { UserEntity } from "../../entities/user/UserEntity";
 import { UseCaseModel } from "../UseCaseModel";
 
 export class FindUserUseCase extends UseCaseModel {
-  async execute(findUser: Partial<FindUserEntity>): Promise<UserEntity|null> {
 
-    const user = await this.repositories.userRepository.findByEmail(findUser.email!);
+  /**
+   * Recherche User par son id
+   * @param {string} userId 
+   * @returns {Promise<UserEntity|null>}
+   */
+  async execute(userId: string): Promise<UserEntity|null> {
+
+    const user = await this.repositories.userRepository.findById(userId);
 
     if(!user) {
       return null

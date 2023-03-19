@@ -42,13 +42,6 @@ export class AddProductUseCase extends UseCaseModel {
     // Ajout du ProduitUser
     UseCaseServiceImpl.getUseCases().productUserUsecase.addProductUserUseCase.execute(productUser);
 
-    return ProductMapper.getProductEntity({
-      id: product.id,
-      openDate: product.openDate,
-      imageId: product.imageId,
-      userId: addProduct.userId,
-      createdAt: product.createdAt,
-      updatedAt: product.updatedAt
-    });
+    return ProductMapper.getProductEntity({...product});
   }
 }

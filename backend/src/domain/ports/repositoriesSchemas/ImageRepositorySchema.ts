@@ -6,7 +6,7 @@ export interface ImageRepositorySchema {
    * Sauvegarde product
    * @param {Partial<AddProductEntity>} image 
    */
-  save(image: Partial<AddImageEntity>): Promise<ImageModel>;
+  save(image: Partial<AddImageEntity>): Promise<ImageModel|null>;
 
   /**
    * FindAll Image

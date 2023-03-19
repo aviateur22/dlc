@@ -1,7 +1,7 @@
 import request from 'supertest';
-import { UseCaseServiceImpl } from "../../domain/services/UseCaseServiceImpl";
-import { ServerSource } from '../../infra/helpers/server/ServerSource';
-import { TestUtilities } from "../utilities/TestUtilities";
+import { UseCaseServiceImpl } from "../../../domain/services/UseCaseServiceImpl";
+import { ServerSource } from '../../../infra/helpers/server/ServerSource';
+import { TestUtilities } from "../../utilities/TestUtilities";
 
 // Selection Server Express
 const testUtilities = new TestUtilities();
@@ -47,7 +47,7 @@ describe('AddTodo',()=>{
     });
 
     // Récupération des Todos
-    const todos = await UseCaseServiceImpl.getUseCases().findAllToDoUseCase.execute();
+    const todos = await UseCaseServiceImpl.getUseCases().todoUseCase.findAllToDoUseCase.execute();
 
     expect(res.body).toHaveProperty('todo');
     expect(res.statusCode).toBe(201);
@@ -70,7 +70,7 @@ describe('AddTodo',()=>{
     })
 
     // Récupération des Todos
-    const todos = await UseCaseServiceImpl.getUseCases().findAllToDoUseCase.execute();
+    const todos = await UseCaseServiceImpl.getUseCases().todoUseCase.findAllToDoUseCase.execute();
 
     expect(todos.length).toBe(3);
     expect(res.statusCode).toBe(201);
@@ -95,7 +95,7 @@ describe('AddTodo',()=>{
     });
 
     // Récupération des Todos
-    const todos = await UseCaseServiceImpl.getUseCases().findAllToDoUseCase.execute();
+    const todos = await UseCaseServiceImpl.getUseCases().todoUseCase.findAllToDoUseCase.execute();
 
     expect(res.body).toHaveProperty('errorMessage');
     expect(res.body.errorMessage).toBe('title is mandatory');
@@ -117,7 +117,7 @@ describe('AddTodo',()=>{
     });
 
     // Récupération des Todos
-    const todos = await UseCaseServiceImpl.getUseCases().findAllToDoUseCase.execute();
+    const todos = await UseCaseServiceImpl.getUseCases().todoUseCase.findAllToDoUseCase.execute();
 
     expect(res.body).toHaveProperty('todo');
     expect(res.statusCode).toBe(201);

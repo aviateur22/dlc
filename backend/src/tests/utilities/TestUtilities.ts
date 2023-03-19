@@ -95,7 +95,7 @@ export class TestUtilities {
   async createTodos(): Promise<void> {
 
     for(const todo of this.todos) {
-      const addTodo = await UseCaseServiceImpl.getUseCases().addTodoUseCase.execute(todo);
+      const addTodo = await UseCaseServiceImpl.getUseCases().todoUseCase.addTodoUseCase.execute(todo);
     }
   }
 
@@ -110,7 +110,7 @@ export class TestUtilities {
    * Renvoi les Todo
    */
   async findAllTodos(): Promise<Array<TodoEntity>> {
-    const findAllTodos =  await UseCaseServiceImpl.getUseCases().findAllToDoUseCase.execute();
+    const findAllTodos =  await UseCaseServiceImpl.getUseCases().todoUseCase.findAllToDoUseCase.execute();
     return findAllTodos;
   }
 }

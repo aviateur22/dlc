@@ -1,7 +1,8 @@
-import { DeleteTodoException } from "../../exceptions/DeleteTodoException";
-import { TodoModel } from "../../infra/models/TodoModel";
-import { TodoEntityMapper } from "../dtos/TodoMapper";
-import { TodoEntity } from "../entities/todo/TodoEntity";
+import { DeleteTodoException } from "../../../exceptions/DeleteTodoException";
+import { TodoModel } from "../../../infra/models/TodoModel";
+import { TodoEntityMapper } from "../../dtos/TodoMapper";
+import { TodoEntity } from "../../entities/todo/TodoEntity";
+import { UseCaseServiceImpl } from "../../services/UseCaseServiceImpl";
 import { TodoUseCase } from "./TodoUseCase";
 
 /**
@@ -17,7 +18,7 @@ class DeleteOneTodoUseCase extends TodoUseCase {
   async execute(deleteTodo: DeleteTodoSchema):Promise<TodoEntity> {
 
     // Vérification existance de la Todo
-    const findTodo = await this.useCases.findOneTodoUseCase.execute(deleteTodo);
+    const findTodo = await UseCaseServiceImpl.getUseCases().todoUseCase.findOneTodoUseCase.execute(deleteTodo);
 
     // Suppresion de la Todo
     const successDelete = await this.repositories.deleteOne(deleteTodo);

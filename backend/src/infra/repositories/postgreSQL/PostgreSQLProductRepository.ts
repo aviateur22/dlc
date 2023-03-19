@@ -2,6 +2,7 @@ import { DeleteProductEntity } from "../../../domain/entities/product/DeleteProd
 import { ProductImageEntity } from "../../../domain/entities/product/ProductImageEntity";
 import { SearchProductEntity } from "../../../domain/entities/product/SearchProductEntity";
 import { ProductRepositorySchema } from "../../../domain/ports/repositoriesSchemas/ProductRepositorySchema";
+import { ProductModelMapper } from "../../dto/ProductModelMapper";
 import { ProductModel } from "../../models/product/ProductModel";
 import { ProductWithImageModel } from "../../models/product/ProductWithImageModel";
 import { RepositoryServiceImpl } from "../../services/repository/RepositoryServiceImpl";
@@ -16,8 +17,10 @@ export class PostgreSQLProductRepository implements ProductRepositorySchema {
    * @returns {Array<ProductModel>}
    */
   async findAll(): Promise<Array<ProductModel>> {
-    const products = await client.query('SELECT * FROM "product"');
-    return products.rows;   
+    const products = await client.query('SELECT * FROM "product"').then(result=>{
+      return ProductModelMapper.getProductsModel(result.rows);
+    });
+    return products;   
   } 
 
   /**
@@ -35,9 +38,11 @@ export class PostgreSQLProductRepository implements ProductRepositorySchema {
     JOIN "image" ON product.image_id = image.id
     WHERE product.id = ANY($1)`, [
      productUserIdList
-    ]);
+    ]).then(result=>{
+      return ProductModelMapper.getProductWithImageModel(result.rows);
+    })
     
-    return products.rows;
+    return products;
 
   }
 
@@ -48,9 +53,16 @@ export class PostgreSQLProductRepository implements ProductRepositorySchema {
   async findById(searchProduct: SearchProductEntity): Promise<ProductModel|null> {
     const findProduct = await client.query('SELECT * FROM "product" WHERE "id"=$1', [ 
       searchProduct.productId
-    ]);
+    ]).then(result=>{
+      // Pas de données
+      if(result.rowCount === 0) {
+        return null;
+      }
 
-    return findProduct.rowCount > 0 ? findProduct.rows.shift() : null;
+      return ProductModelMapper.getProductModel(result.rows.shift());
+    });
+
+    return findProduct;
   }
   
   /**
@@ -58,12 +70,19 @@ export class PostgreSQLProductRepository implements ProductRepositorySchema {
    * @param {AddUserEntity} user 
    * @returns {UserModel}
    */
-  async save(product: ProductImageEntity): Promise<ProductModel> {
+  async save(product: ProductImageEntity): Promise<ProductModel|null> {
     const addProduct = await client.query('INSERT INTO "product" ("image_id", "open_date", "created_at", "updated_at") VALUES ($1, $2, $3, $4) returning *', [ 
       product.imageId, product.openDate, product.createdAt, product.updatedAt
-    ]);
+    ]).then(result=>{
+      // Pas de données
+      if(result.rowCount === 0) {
+        return null;
+      }
 
-    return addProduct.rows.shift();
+      return ProductModelMapper.getProductModel(result.rows.shift());
+    });
+
+    return addProduct;
   }
 
   /**
@@ -74,8 +93,15 @@ export class PostgreSQLProductRepository implements ProductRepositorySchema {
   async deleteById(product: DeleteProductEntity): Promise<ProductModel|null> {
     const deleteProduct = await client.query('DELETE FROM "product" WHERE id = $1 returning *',[
       product.productId
-    ]);
-    return deleteProduct.rowCount > 0 ? deleteProduct.rows.shift() : null;
+    ]).then(result=>{
+      // Pas de données
+      if(result.rowCount === 0) {
+        return null;
+      }
+
+      return ProductModelMapper.getProductModel(result.rows.shift());
+    });
+    return deleteProduct;
   }
 
   /**

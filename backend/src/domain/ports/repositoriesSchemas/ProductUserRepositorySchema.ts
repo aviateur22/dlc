@@ -8,7 +8,7 @@ export interface ProductUserRepositorySchema {
    * Ajout 
    * @param productUser 
    */
-  save(productUser: Partial<AddProductUserEntity>): Promise<ProductUserModel>;
+  save(productUser: Partial<AddProductUserEntity>): Promise<ProductUserModel|null>;
 
   /**
    * FindAll

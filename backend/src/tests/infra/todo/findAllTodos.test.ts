@@ -1,7 +1,7 @@
 import request from 'supertest';
-import { TodoGenerator } from '../utilities/TodoGenerator';
-import { TestUtilities } from '../utilities/TestUtilities';
-import { ServerSource } from '../../infra/helpers/server/ServerSource';
+import { ServerSource } from '../../../infra/helpers/server/ServerSource';
+import { TestUtilities } from '../../utilities/TestUtilities';
+import { TodoGenerator } from '../../utilities/TodoGenerator';
 
 // Selection Server Express
 const testUtilities = new TestUtilities();

@@ -1,5 +1,5 @@
-import { TodoEntityMapper } from "../dtos/TodoMapper";
-import { TodoEntity } from "../entities/todo/TodoEntity";
+import { TodoEntityMapper } from "../../dtos/TodoMapper";
+import { TodoEntity } from "../../entities/todo/TodoEntity";
 import { TodoUseCase } from "./TodoUseCase";
 
 /**

@@ -1,7 +1,7 @@
-import { CheckToggleTodoEntity } from "../../domain/entities/todo/CheckToggleTodoEntity";
-import { UseCaseServiceImpl } from "../../domain/services/UseCaseServiceImpl";
-import { TodoNotFindException } from "../../exceptions/TodoNotFindException";
-import { TestUtilities } from "../utilities/TestUtilities";
+import { CheckToggleTodoEntity } from "../../../domain/entities/todo/CheckToggleTodoEntity";
+import { UseCaseServiceImpl } from "../../../domain/services/UseCaseServiceImpl";
+import { TodoNotFindException } from "../../../exceptions/TodoNotFindException";
+import { TestUtilities } from "../../utilities/TestUtilities";
 
 // Selection Server Express
 const testUtilities = new TestUtilities();
@@ -21,10 +21,10 @@ describe('UseCase: getAllTodos', () => {
       const checkToggleTodo = new CheckToggleTodoEntity('1', true);
 
       // Check todo
-      const todo = await UseCaseServiceImpl.getUseCases().CheckToggleTodoUseCase.execute(checkToggleTodo);
+      const todo = await UseCaseServiceImpl.getUseCases().todoUseCase.CheckToggleTodoUseCase.execute(checkToggleTodo);
 
       // Récupération todo modifié
-      const findTodo = await UseCaseServiceImpl.getUseCases().findOneTodoUseCase.execute(checkToggleTodo);
+      const findTodo = await UseCaseServiceImpl.getUseCases().todoUseCase.findOneTodoUseCase.execute(checkToggleTodo);
 
       expect(todo.status).toBeTruthy();
       expect(findTodo.id.toString()).toBe(checkToggleTodo.id.toString());
@@ -40,10 +40,10 @@ describe('UseCase: getAllTodos', () => {
       const checkToggleTodo = new CheckToggleTodoEntity('1', false);
 
       // Uncheck todo
-      const todo = await UseCaseServiceImpl.getUseCases().CheckToggleTodoUseCase.execute(checkToggleTodo);
+      const todo = await UseCaseServiceImpl.getUseCases().todoUseCase.CheckToggleTodoUseCase.execute(checkToggleTodo);
 
       // Récupération todo modifié
-      const findTodo = await UseCaseServiceImpl.getUseCases().findOneTodoUseCase.execute(checkToggleTodo);
+      const findTodo = await UseCaseServiceImpl.getUseCases().todoUseCase.findOneTodoUseCase.execute(checkToggleTodo);
 
       expect(todo.status).toBeFalsy();
       expect(findTodo.id.toString()).toBe(checkToggleTodo.id.toString());
@@ -59,7 +59,7 @@ describe('UseCase: getAllTodos', () => {
       const checkToggleTodo = new CheckToggleTodoEntity('3', true);
 
       // Check todo
-      const todo = await UseCaseServiceImpl.getUseCases().CheckToggleTodoUseCase.execute(checkToggleTodo);
+      const todo = await UseCaseServiceImpl.getUseCases().todoUseCase.CheckToggleTodoUseCase.execute(checkToggleTodo);
 
       expect(todo).toBeFalsy();
       

@@ -1,7 +1,7 @@
-import { UpdateTodoEntity } from "../../domain/entities/todo/UpdateTodoEntity";
-import { UseCaseServiceImpl } from "../../domain/services/UseCaseServiceImpl";
-import { ValidationException } from "../../exceptions/ValidationException";
-import { TestUtilities } from "../utilities/TestUtilities";
+import { UpdateTodoEntity } from "../../../domain/entities/todo/UpdateTodoEntity";
+import { UseCaseServiceImpl } from "../../../domain/services/UseCaseServiceImpl";
+import { ValidationException } from "../../../exceptions/ValidationException";
+import { TestUtilities } from "../../utilities/TestUtilities";
 
 // Selection Server Express
 const testUtilities = new TestUtilities();
@@ -28,7 +28,7 @@ describe('Update todo UseCase', ()=>{
       );
 
       // Mise à jour de la todo
-      const todo = await UseCaseServiceImpl.getUseCases().updateTodoUseCase.execute(updateTodo);
+      const todo = await UseCaseServiceImpl.getUseCases().todoUseCase.updateTodoUseCase.execute(updateTodo);
       
       expect(todo.id.toString()).toBe(updateTodo.id.toString());
       expect(todo.status).toBe(updateTodo.status);
@@ -53,7 +53,7 @@ describe('Update todo UseCase', ()=>{
       );
 
       // Mise à jour de la todo
-      const todo = await UseCaseServiceImpl.getUseCases().updateTodoUseCase.execute(updateTodo);
+      const todo = await UseCaseServiceImpl.getUseCases().todoUseCase.updateTodoUseCase.execute(updateTodo);
       expect(todo).toBeFalsy();
     } catch (error) {      
       expect(error).toBeInstanceOf(ValidationException);
@@ -73,7 +73,7 @@ describe('Update todo UseCase', ()=>{
       );
 
       // Mise à jour de la todo
-      const todo = await UseCaseServiceImpl.getUseCases().updateTodoUseCase.execute(updateTodo);
+      const todo = await UseCaseServiceImpl.getUseCases().todoUseCase.updateTodoUseCase.execute(updateTodo);
       expect(todo.id.toString()).toBe(updateTodo.id.toString());
       expect(todo.status).toBe(updateTodo.status);
       expect(todo.title).toBe(updateTodo.title);

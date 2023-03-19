@@ -6,6 +6,7 @@ export class UserEntity {
 
   constructor(user: Partial<UserEntity>) {    
     let key: keyof typeof user;
+    
     for(key in user) {  
       // @ts-ignore
       this[key] = user[key].toString()!

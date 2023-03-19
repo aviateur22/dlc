@@ -30,7 +30,7 @@ export class InMemoryImagerepository implements ImageRepositorySchema {
    * Save Image
    * @param {Partial<AddImageEntity>} image 
    */
-  async save(image: AddImageEntity): Promise<ImageModel> {    
+  async save(image: AddImageEntity): Promise<ImageModel|null> {    
     // Index
     const index: number = this.images.length === 0 ? 1 : Math.max(...this.images.map(x=>Number(x.id))) + 1;
 

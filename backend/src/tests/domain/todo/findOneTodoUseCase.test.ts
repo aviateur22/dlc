@@ -1,7 +1,7 @@
-import { FindTodoEntity } from "../../domain/entities/todo/FindTodoEntity";
-import { UseCaseServiceImpl } from "../../domain/services/UseCaseServiceImpl";
-import { TodoNotFindException } from "../../exceptions/TodoNotFindException";
-import { TestUtilities } from "../utilities/TestUtilities";
+import { FindTodoEntity } from "../../../domain/entities/todo/FindTodoEntity";
+import { UseCaseServiceImpl } from "../../../domain/services/UseCaseServiceImpl";
+import { TodoNotFindException } from "../../../exceptions/TodoNotFindException";
+import { TestUtilities } from "../../utilities/TestUtilities";
 
 // Selection Server Express
 const testUtilities = new TestUtilities();
@@ -20,7 +20,7 @@ describe('Find one TodoUseCase', ()=>{
 
     try {
       const findTodoEntity: FindOneTodoSchema = new FindTodoEntity('1');
-      const findTodo = await UseCaseServiceImpl.getUseCases().findOneTodoUseCase.execute(findTodoEntity);  
+      const findTodo = await UseCaseServiceImpl.getUseCases().todoUseCase.findOneTodoUseCase.execute(findTodoEntity);  
       expect(findTodo.id.toString()).toBe('1'); 
 
     } catch (error) {
@@ -32,7 +32,7 @@ describe('Find one TodoUseCase', ()=>{
   it('Should throw TodoNotFindException because Todo not exist', async()=>{
     try {
       const findTodoEntity: FindOneTodoSchema = new FindTodoEntity('3');
-      const findTodo = await UseCaseServiceImpl.getUseCases().findOneTodoUseCase.execute(findTodoEntity);  
+      const findTodo = await UseCaseServiceImpl.getUseCases().todoUseCase.findOneTodoUseCase.execute(findTodoEntity);  
       expect(findTodo).toBeFalsy();
     } catch (error) {     
       expect(error).toBeInstanceOf(TodoNotFindException)

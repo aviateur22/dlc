@@ -1,4 +1,5 @@
 import { LoginUserException } from "../../../exceptions/LoginUserException";
+import { UserNotFindException } from "../../../exceptions/UserNotFindException";
 import { LoginUserEntity } from "../../entities/user/LoginUserEntity";
 import { Password } from "../../helpers/security/Password";
 import { UseCaseModel } from "../UseCaseModel";

@@ -1,7 +1,7 @@
 import request from 'supertest';
-import { UseCaseServiceImpl } from "../../domain/services/UseCaseServiceImpl";
-import { ServerSource } from '../../infra/helpers/server/ServerSource';
-import { TestUtilities } from '../utilities/TestUtilities';
+import { UseCaseServiceImpl } from '../../../domain/services/UseCaseServiceImpl';
+import { ServerSource } from '../../../infra/helpers/server/ServerSource';
+import { TestUtilities } from '../../utilities/TestUtilities';
 
 // Selection Server Express
 const testUtilities = new TestUtilities();
@@ -41,7 +41,7 @@ describe('ToggleCheck Todo', ()=>{
     });
     
     // Récupération des Todos
-    const findTodo = await UseCaseServiceImpl.getUseCases().findOneTodoUseCase.execute({
+    const findTodo = await UseCaseServiceImpl.getUseCases().todoUseCase.findOneTodoUseCase.execute({
       id: "1"
     });
 
@@ -66,7 +66,7 @@ describe('ToggleCheck Todo', ()=>{
     });
        
     // Récupération des Todos
-    const findTodo = await UseCaseServiceImpl.getUseCases().findOneTodoUseCase.execute({
+    const findTodo = await UseCaseServiceImpl.getUseCases().todoUseCase.findOneTodoUseCase.execute({
       id: "1"
     });
     expect(res.body).toHaveProperty('todo');

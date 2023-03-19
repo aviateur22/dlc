@@ -53,7 +53,7 @@ class TodoGenerator {
    * Renvoi les Todo
    */
   static async findAllTodos(): Promise<Array<TodoEntity>> {
-    const findAllTodos =  await UseCaseServiceImpl.getUseCases().findAllToDoUseCase.execute();
+    const findAllTodos =  await UseCaseServiceImpl.getUseCases().todoUseCase.findAllToDoUseCase.execute();
     return findAllTodos;
   }
 }

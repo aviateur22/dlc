@@ -1,9 +1,9 @@
-import { AddTodoEntity } from "../../domain/entities/todo/AddTodoEntity";
-import { TodoEntity } from "../../domain/entities/todo/TodoEntity";
-import { UseCaseServiceImpl } from "../../domain/services/UseCaseServiceImpl";
-import { ValidationException } from "../../exceptions/ValidationException";
-import { TestUtilities } from "../utilities/TestUtilities";
-import { TodoGenerator } from "../utilities/TodoGenerator";
+import { AddTodoEntity } from "../../../domain/entities/todo/AddTodoEntity";
+import { TodoEntity } from "../../../domain/entities/todo/TodoEntity";
+import { UseCaseServiceImpl } from "../../../domain/services/UseCaseServiceImpl";
+import { ValidationException } from "../../../exceptions/ValidationException";
+import { TestUtilities } from "../../utilities/TestUtilities";
+import { TodoGenerator } from "../../utilities/TodoGenerator";
 
 // Selection Server Express
 const testUtilities = new TestUtilities();
@@ -20,7 +20,7 @@ describe('UseCase: addItem', ()=>{
   // Ajout d'un todo avec un titre et une description
   it('Should add one todo', async()=>{
     try {
-      const addTodo = await UseCaseServiceImpl.getUseCases().addTodoUseCase.execute({
+      const addTodo = await UseCaseServiceImpl.getUseCases().todoUseCase.addTodoUseCase.execute({
         title: 'Mon Titre',
         description: 'Ma description',
         status: false
@@ -43,7 +43,7 @@ describe('UseCase: addItem', ()=>{
       const addTodoEntity = new AddTodoEntity('', 'Ma description');
 
       // Ajout de la todo
-      await UseCaseServiceImpl.getUseCases().addTodoUseCase.execute(addTodoEntity);
+      await UseCaseServiceImpl.getUseCases().todoUseCase.addTodoUseCase.execute(addTodoEntity);
   
       const todos = await TodoGenerator.findAllTodos();
       expect(todos.length).toBe(0);      
@@ -59,7 +59,7 @@ describe('UseCase: addItem', ()=>{
       const addTodoEntity = new AddTodoEntity('Mon titre', '');
 
       // Ajout de la todo
-      const addTodo = await UseCaseServiceImpl.getUseCases().addTodoUseCase.execute(addTodoEntity);
+      const addTodo = await UseCaseServiceImpl.getUseCases().todoUseCase.addTodoUseCase.execute(addTodoEntity);
   
       const todos = await TodoGenerator.findAllTodos();
 

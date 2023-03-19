@@ -7,7 +7,7 @@ export interface UserRepositorySchema {
    * Sauvegarde utilisateur
    * @param {Partial<AddUserEntity>} user 
    */
-  save(user: Partial<AddUserEntity>): Promise<UserModel>;
+  save(user: Partial<AddUserEntity>): Promise<UserModel|null>;
 
   /**
    * findAll user

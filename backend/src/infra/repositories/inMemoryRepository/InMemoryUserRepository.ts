@@ -55,7 +55,7 @@ export class InMemoryUserRepository implements UserRepositorySchema {
    * @param {AddUserEntity} addUser 
    * @returns {Promise<UserModel>}
    */
-  async save(addUser: AddUserEntity): Promise<UserModel> {
+  async save(addUser: AddUserEntity): Promise<UserModel|null> {
     const id =  this.users.length === 0 ? 1 : Math.max(...this.users.map(user=>Number(user.id))) + 1;
 
     this.users.push({id: id.toString(), ...addUser});

@@ -10,7 +10,7 @@ export class InMemoryProductUserRepository implements ProductUserRepositorySchem
    * Save
    * @param {Partial<AddProductUserEntity>} productUser 
    */
-  async save(productUser: AddProductUserEntity): Promise<ProductUserModel> {
+  async save(productUser: AddProductUserEntity): Promise<ProductUserModel|null> {
     // Index
     const index: number = this.productsUsers.length === 0 ? 1 : Math.max(...this.productsUsers.map(x=>Number(x.id))) + 1;
 
@@ -31,7 +31,7 @@ export class InMemoryProductUserRepository implements ProductUserRepositorySchem
    * @returns {Promise<Array<ProductUserModel>>}
    */
   async findByUserId(userId: string): Promise<Array<ProductUserModel>> {
-    throw new Error("Method not implemented.");
+    return this.productsUsers.filter(product=>product.userId === userId);
   }
 
   /**

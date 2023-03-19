@@ -1,8 +1,8 @@
-import { DeleteTodoEntity } from "../../domain/entities/todo/DeleteTodoEntity";
-import { TodoEntity } from "../../domain/entities/todo/TodoEntity";
-import { UseCaseServiceImpl } from "../../domain/services/UseCaseServiceImpl";
-import { TodoNotFindException } from "../../exceptions/TodoNotFindException";
-import { TestUtilities } from "../utilities/TestUtilities";
+import { DeleteTodoEntity } from "../../../domain/entities/todo/DeleteTodoEntity";
+import { TodoEntity } from "../../../domain/entities/todo/TodoEntity";
+import { UseCaseServiceImpl } from "../../../domain/services/UseCaseServiceImpl";
+import { TodoNotFindException } from "../../../exceptions/TodoNotFindException";
+import { TestUtilities } from "../../utilities/TestUtilities";
 
 // Selection Server Express
 const testUtilities = new TestUtilities();
@@ -27,10 +27,10 @@ describe('DeleteOneTodo useCase', ()=>{
       const deleteTodo: DeleteTodoSchema = new DeleteTodoEntity('1');
       
       // Suppression d'une Todo
-      const todo: TodoEntity = await UseCaseServiceImpl.getUseCases().deleteOneTodoUseCase.execute(deleteTodo);
+      const todo: TodoEntity = await UseCaseServiceImpl.getUseCases().todoUseCase.deleteOneTodoUseCase.execute(deleteTodo);
 
       // Récupération des todos
-      const todos: Array<TodoEntity> = await UseCaseServiceImpl.getUseCases().findAllToDoUseCase.execute();
+      const todos: Array<TodoEntity> = await UseCaseServiceImpl.getUseCases().todoUseCase.findAllToDoUseCase.execute();
 
       expect(todo.id.toString()).toBe("1");
       expect(todos.length).toBe(1);      
@@ -46,10 +46,10 @@ describe('DeleteOneTodo useCase', ()=>{
       const deleteTodo: DeleteTodoSchema = new DeleteTodoEntity('5');
       
       // Suppression d'une Todo
-      const todo: TodoEntity = await UseCaseServiceImpl.getUseCases().deleteOneTodoUseCase.execute(deleteTodo);
+      const todo: TodoEntity = await UseCaseServiceImpl.getUseCases().todoUseCase.deleteOneTodoUseCase.execute(deleteTodo);
 
       // Récupération des todos
-      const todos: Array<TodoEntity> = await UseCaseServiceImpl.getUseCases().findAllToDoUseCase.execute();
+      const todos: Array<TodoEntity> = await UseCaseServiceImpl.getUseCases().todoUseCase.findAllToDoUseCase.execute();
 
 
       expect(todo).toBeFalsy();

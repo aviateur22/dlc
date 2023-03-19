@@ -1,5 +1,6 @@
 import { AddProductUserEntity } from "../../../domain/entities/productUser/AddProductUserEntity";
 import { ProductUserRepositorySchema } from "../../../domain/ports/repositoriesSchemas/ProductUserRepositorySchema";
+import { ProductUserModelMapper } from "../../dto/ProductUserModelMapper";
 import { ProductUserModel } from "../../models/productUser/ProductUserModel";
 import client from "./connexion/databaseConnexion";
 
@@ -9,13 +10,21 @@ export class PostgreSQLProductUserRepository implements ProductUserRepositorySch
    * Save
    * @param {Partial<AddProductUserEntity>} productUser 
    */
-  async save(productUser: Partial<AddProductUserEntity>): Promise<ProductUserModel> {
+  async save(productUser: Partial<AddProductUserEntity>): Promise<ProductUserModel|null> {
 
     const addProductUser = await client.query('INSERT INTO "product_user" ("user_id", "product_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) returning *', [ 
       productUser.userId, productUser.productId, productUser.createdAt, productUser.updatedAt
-    ]);
+    ]).then(result=>{
+      
+      // Erreur save
+      if(result.rowCount === 0) {
+        return null;
+      }
 
-    return addProductUser.rows.shift();
+      return ProductUserModelMapper.getProductUserModel(result.rows.shift());
+    });
+
+    return addProductUser;
   }
 
   /**
@@ -26,9 +35,11 @@ export class PostgreSQLProductUserRepository implements ProductUserRepositorySch
   async findByUserId(userId: string): Promise<Array<ProductUserModel>> {
     const productUserByUserId = await client.query('SELECT * FROM "product_user" WHERE "user_id"=$1',[
       userId
-    ]);
+    ]).then(result => {
+      return ProductUserModelMapper.getProductsUsersModel(result.rows);
+    });
 
-    return productUserByUserId.rows;
+    return productUserByUserId;
   }
 
   /**
@@ -39,17 +50,21 @@ export class PostgreSQLProductUserRepository implements ProductUserRepositorySch
   async findByUserIdAndProductId(userId: string, productId: string): Promise<Array<ProductUserModel>> {
     const products = await client.query('SELECT * FROM "product_user" WHERE "user_id"=$1 AND "product_id"=$2 LIMIT 1', [
       userId, productId
-    ]);
-    return products.rows;
+    ]).then(result => {
+      return ProductUserModelMapper.getProductsUsersModel(result.rows);
+    });
+    return products;
   }
 
   /**
    * FindAll
    * @returns {Promise<ProductUserModel[]>}
    */
-  async findAll(): Promise<ProductUserModel[]> {
-    const products = await client.query('SELECT * FROM "product_user"');
-    return products.rows;
+  async findAll(): Promise<Array<ProductUserModel>> {
+    const products = await client.query('SELECT * FROM "product_user"').then(result => {
+      return ProductUserModelMapper.getProductsUsersModel(result.rows);
+    });
+    return products;
   }
 
   /**

@@ -8,7 +8,7 @@ export class ProductGenerator {
   // Product a ajouter
   private static product =  {
     userId: '1',
-    openDate: new Date(),
+    openDate: new Date('1980-12-20'),
     imageBase64: imageData.image.base64,
     mimeType: imageData.image.mimeType
   }

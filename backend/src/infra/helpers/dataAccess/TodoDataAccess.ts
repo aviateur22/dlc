@@ -1,11 +1,11 @@
 import { TodoEntity } from '../../../domain/entities/todo/TodoEntity';
 import { UseCaseServiceImpl } from '../../../domain/services/UseCaseServiceImpl';
-import { AddTodoUseCase } from '../../../domain/useCases/AddToDoUseCase';
-import { CheckToggleTodoUseCase } from '../../../domain/useCases/CheckToggleTodoUseCase';
-import { DeleteOneTodoUseCase } from '../../../domain/useCases/DeleteOneTodoUseCase';
-import { FindAllToDoUseCase } from '../../../domain/useCases/FindAllToDoUseCase';
-import { FindOneTodoUseCase } from '../../../domain/useCases/FindOneTodoUseCase';
-import { UpdateTodoUseCase } from '../../../domain/useCases/UpdateToDoUseCase';
+import { AddTodoUseCase } from '../../../domain/useCases/todo/AddToDoUseCase';
+import { CheckToggleTodoUseCase } from '../../../domain/useCases/todo/CheckToggleTodoUseCase';
+import { DeleteOneTodoUseCase } from '../../../domain/useCases/todo/DeleteOneTodoUseCase';
+import { FindAllToDoUseCase } from '../../../domain/useCases/todo/FindAllToDoUseCase';
+import { FindOneTodoUseCase } from '../../../domain/useCases/todo/FindOneTodoUseCase';
+import { UpdateTodoUseCase } from '../../../domain/useCases/todo/UpdateToDoUseCase';
 import { ValidationException } from '../../../exceptions/ValidationException';
 
 export class TodoDataAccess {
@@ -16,7 +16,7 @@ export class TodoDataAccess {
    */
   static async findAllTodos(): Promise<Array<TodoEntity>> {
     // UseCase
-    const findAllTodosUseCase: FindAllToDoUseCase = UseCaseServiceImpl.getUseCases().findAllToDoUseCase;  
+    const findAllTodosUseCase: FindAllToDoUseCase = UseCaseServiceImpl.getUseCases().todoUseCase.findAllToDoUseCase;  
     const todos = await findAllTodosUseCase.execute();
     return todos;
   }
@@ -46,7 +46,7 @@ export class TodoDataAccess {
     }
     
     // UseCase
-    const addTodoUseCase: AddTodoUseCase = UseCaseServiceImpl.getUseCases().addTodoUseCase;   
+    const addTodoUseCase: AddTodoUseCase = UseCaseServiceImpl.getUseCases().todoUseCase.addTodoUseCase;   
     const addTodo: TodoEntity = await addTodoUseCase.execute(todo);
     return addTodo;
   }
@@ -94,7 +94,7 @@ export class TodoDataAccess {
     }
 
     // UseCase
-    const updateTodoUseCase: UpdateTodoUseCase = UseCaseServiceImpl.getUseCases().updateTodoUseCase;   
+    const updateTodoUseCase: UpdateTodoUseCase = UseCaseServiceImpl.getUseCases().todoUseCase.updateTodoUseCase;   
     const updateTodo: TodoEntity = await updateTodoUseCase.execute(todo);
     return updateTodo;
   }
@@ -115,7 +115,7 @@ export class TodoDataAccess {
     };
 
     // UseCase
-    const findOneTodoUseCase: FindOneTodoUseCase = UseCaseServiceImpl.getUseCases().findOneTodoUseCase;   
+    const findOneTodoUseCase: FindOneTodoUseCase = UseCaseServiceImpl.getUseCases().todoUseCase.findOneTodoUseCase;   
     const findTodo: TodoEntity = await findOneTodoUseCase.execute(todo);
     return findTodo;
   }
@@ -135,7 +135,7 @@ export class TodoDataAccess {
     };
 
     // UseCase
-    const deleteOneTodoUseCase: DeleteOneTodoUseCase = UseCaseServiceImpl.getUseCases().deleteOneTodoUseCase;   
+    const deleteOneTodoUseCase: DeleteOneTodoUseCase = UseCaseServiceImpl.getUseCases().todoUseCase.deleteOneTodoUseCase;   
     const deleteTodo: TodoEntity = await deleteOneTodoUseCase.execute(todo);
     return deleteTodo;
   }
@@ -161,7 +161,7 @@ export class TodoDataAccess {
     }
 
     // UseCase
-    const dcheckToggleOneTodoUseCase: CheckToggleTodoUseCase = UseCaseServiceImpl.getUseCases().CheckToggleTodoUseCase;   
+    const dcheckToggleOneTodoUseCase: CheckToggleTodoUseCase = UseCaseServiceImpl.getUseCases().todoUseCase.CheckToggleTodoUseCase;   
     const checkTodo: TodoEntity = await dcheckToggleOneTodoUseCase.execute(todo);
     return checkTodo;
   }

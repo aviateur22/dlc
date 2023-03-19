@@ -1,6 +1,7 @@
-import { TodoModel } from "../../infra/models/TodoModel";
-import { TodoEntityMapper } from "../dtos/TodoMapper";
-import { TodoEntity } from "../entities/todo/TodoEntity";
+import { TodoModel } from "../../../infra/models/TodoModel";
+import { TodoEntityMapper } from "../../dtos/TodoMapper";
+import { TodoEntity } from "../../entities/todo/TodoEntity";
+import { UseCaseServiceImpl } from "../../services/UseCaseServiceImpl";
 import { TodoUseCase } from "./TodoUseCase";
 
 /**
@@ -16,7 +17,7 @@ class UpdateTodoUseCase extends TodoUseCase {
   async execute(updateTodo: UpdateTodoSchema): Promise<TodoEntity> {
 
     // Recherche existance todo
-    await this.useCases.findOneTodoUseCase.execute(updateTodo);
+    await await UseCaseServiceImpl.getUseCases().todoUseCase.findOneTodoUseCase.execute(updateTodo);
     
     // Mise a jour de données
     const todo = await this.repositories.updateOne(updateTodo);

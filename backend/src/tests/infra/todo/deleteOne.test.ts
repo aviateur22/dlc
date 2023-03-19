@@ -1,7 +1,7 @@
 import request from 'supertest';
-import { UseCaseServiceImpl } from "../../domain/services/UseCaseServiceImpl";
-import { ServerSource } from '../../infra/helpers/server/ServerSource';
-import { TestUtilities } from '../utilities/TestUtilities';
+import { UseCaseServiceImpl } from '../../../domain/services/UseCaseServiceImpl';
+import { ServerSource } from '../../../infra/helpers/server/ServerSource';
+import { TestUtilities } from '../../utilities/TestUtilities';
 //import { BeforeTest } from '../utilities/BeforeTest';
 
 // Selection Server Express
@@ -41,7 +41,7 @@ describe('DeleteOne Todo', ()=>{
     .delete(path)
 
     // Récupération des Todos
-    const todos = await UseCaseServiceImpl.getUseCases().findAllToDoUseCase.execute();
+    const todos = await UseCaseServiceImpl.getUseCases().todoUseCase.findAllToDoUseCase.execute();
     
     expect(res.statusCode).toBe(200);
     expect(res.body).toHaveProperty('todo');
@@ -63,7 +63,7 @@ describe('DeleteOne Todo', ()=>{
     .delete(path);
 
     // Récupération des Todos
-    const todos = await UseCaseServiceImpl.getUseCases().findAllToDoUseCase.execute();
+    const todos = await UseCaseServiceImpl.getUseCases().todoUseCase.findAllToDoUseCase.execute();
 
     expect(res.statusCode).toBe(400);
     expect(res.body).toHaveProperty('errorMessage');

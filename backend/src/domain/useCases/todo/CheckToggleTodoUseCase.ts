@@ -1,5 +1,6 @@
-import { TodoEntityMapper } from "../dtos/TodoMapper";
-import { TodoEntity } from "../entities/todo/TodoEntity";
+import { TodoEntityMapper } from "../../dtos/TodoMapper";
+import { TodoEntity } from "../../entities/todo/TodoEntity";
+import { UseCaseServiceImpl } from "../../services/UseCaseServiceImpl";
 import { TodoUseCase } from "./TodoUseCase";
 
 /**
@@ -14,7 +15,7 @@ class CheckToggleTodoUseCase extends TodoUseCase {
    */
   async execute(todo: CheckToggleTodoSchema): Promise<TodoEntity> {
     // Recherche todo
-    await this.useCases.findOneTodoUseCase.execute(todo);
+    await UseCaseServiceImpl.getUseCases().todoUseCase.findOneTodoUseCase.execute(todo);
 
     // Mise a jour status
     const checkToggleTodo = await this.repositories.checkToggleItem(todo);

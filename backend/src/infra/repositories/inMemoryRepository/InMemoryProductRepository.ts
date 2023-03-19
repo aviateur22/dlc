@@ -35,7 +35,7 @@ export class InMemoryProductRepository implements ProductRepositorySchema {
 
         return new ProductWithImageModel({
           id: product.id,
-          imageBase64: imageData.mimeType,
+          imageBase64: imageData.imageBase64,
           mimeType: imageData.mimeType,
           openDate: product.openDate,
           createdAt: product.createdAt,
@@ -72,7 +72,7 @@ export class InMemoryProductRepository implements ProductRepositorySchema {
    * @param {ProductImageEntity} product 
    * @returns {ProductModel}
    */
-  async save(product: ProductImageEntity): Promise<ProductModel> {
+  async save(product: ProductImageEntity): Promise<ProductModel|null> {
     // Index
     const index: number = this.products.length === 0 ? 1 : Math.max(...this.products.map(x=>Number(x.id))) + 1;
 

@@ -1,6 +1,6 @@
 import request from 'supertest';
-import { Server } from './utilities/server';
-import { TestUtilities } from '../utilities/TestUtilities';
+import { TestUtilities } from '../../utilities/TestUtilities';
+import { Server } from '../utilities/server';
 
 // Selection Server Express
 const testUtilities = new TestUtilities();

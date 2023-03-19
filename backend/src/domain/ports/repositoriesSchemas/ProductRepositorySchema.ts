@@ -9,7 +9,7 @@ export interface ProductRepositorySchema {
    * Sauvegarde product
    * @param {Partial<AddProductEntity>} product 
    */
-  save(product: Partial<AddProductEntity>): Promise<ProductModel>;
+  save(product: Partial<AddProductEntity>): Promise<ProductModel|null>;
 
   /**
    * Find products by User

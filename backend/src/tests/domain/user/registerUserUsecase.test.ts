@@ -21,20 +21,15 @@ describe('AddUserUsecase', ()=>{
   it('Should add a new user', async()=> {
     try {
       const {email, password} = {email: 'd', password: 'd'};
+
       const user = await UseCaseServiceImpl.getUseCases().userUsecase.registerUserUseCase.execute({ email, password });
      
       const users = await RepositoryServiceImpl.getRepository().userRepository.findAll();
-      const addUserInArray = users.map(user=>{
-        return {
-          id: user.id.toString(),          
-          ...{email: user.email, password: user.password, createdAt: user.createdAt, updatedAt: user.updatedAt}
-        }
-      })[users.length-1];
       
       expect(user).toBeInstanceOf(UserEntity);
       expect(users.length).toBe(3);
       
-      expect(addUserInArray).toEqual(expect.objectContaining({
+      expect(users[users.length - 1]).toEqual(expect.objectContaining({
           id: "3",
           email: "d"
         })
@@ -54,7 +49,5 @@ describe('AddUserUsecase', ()=>{
       expect(error).toHaveProperty('message');
       expect(error.message).toBe(userMessages.user.emailExist);
     }
-
-
   })
 })

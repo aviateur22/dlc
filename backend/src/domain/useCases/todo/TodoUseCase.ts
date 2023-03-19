@@ -1,6 +1,6 @@
-import { RepositoryServiceImpl } from "../../infra/services/repository/RepositoryServiceImpl";
-import { UseCases } from "../helpers/useCases/UseCases";
-import { TodoRepositorySchema } from "../ports/repositoriesSchemas/TodoRepositorySchema";
+import { RepositoryServiceImpl } from "../../../infra/services/repository/RepositoryServiceImpl";
+import { UseCases } from "../../helpers/useCases/UseCases";
+import { TodoRepositorySchema } from "../../ports/repositoriesSchemas/TodoRepositorySchema";
 
 /**
  * UseCaseModel  ayant l'acces au repositories
