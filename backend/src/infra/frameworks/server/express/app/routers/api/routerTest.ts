@@ -3,7 +3,7 @@ import { ErrorTestException } from "../../../../../../../exceptions/ErrorTestExc
 import multer from 'multer';
 import controllerHandler from "../../helpers/controllerHandler";
 import validation from '../../middlewares/validations/bodyValidation';
-import schemaTest from '../../middlewares/validations/schemas/schemaTest'
+import schemaTest from "../../middlewares/validations/schemas/todo/schemaTest";
 
 const router = express.Router();
 const multerEngine = multer().none()

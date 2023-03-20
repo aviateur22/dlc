@@ -1,26 +1,38 @@
-import { AddProductException } from "../../../exceptions/AddProductException";
 import { ErrorDatabaseException } from "../../../exceptions/ErrorDatabaseException";
+import { ImageSizeException } from "../../../exceptions/ImageSizeException";
+import { EncodeBase64 } from "../../../infra/helpers/security/EncodeBase64";
 import { ProductMapper } from "../../dtos/ProductMapper";
+import { AddImageEntity } from "../../entities/image/AddImageEntity";
 import { AddProductEntity } from "../../entities/product/AddProductEntity";
 import { ProductEntity } from "../../entities/product/ProductEntity";
 import { ProductImageEntity } from "../../entities/product/ProductImageEntity";
+import { AddProductUserEntity } from "../../entities/productUser/AddProductUserEntity";
 import { ProductUserEntity } from "../../entities/productUser/ProductUserEntity";
-import { UseCaseServiceImpl } from "../../services/UseCaseServiceImpl";
 import { UseCaseModel } from "../UseCaseModel";
 
 export class AddProductUseCase extends UseCaseModel {
   
   async execute(addProduct: Partial<AddProductEntity>): Promise<ProductEntity> {
+    
+    let addProductE: AddProductEntity = new AddProductEntity(addProduct);
 
-    if(!addProduct.imageBase64 || !addProduct.mimeType) {
-      throw new AddProductException('');
+    if(addProductE.image.size > 5000000) {
+      throw new ImageSizeException('maximum image size of 5Mo');
     }
-   
-    // Ajout de l'image
-    const addImage = await UseCaseServiceImpl.getUseCases().imageUseCase.addImageUseCase.execute({
-      imageBase64: addProduct.imageBase64,
-      mimeType: addProduct.mimeType
-    });  
+    
+    // Convertion image en base64
+    const imageBase64: string = EncodeBase64.encodeStringToBase64(addProduct.image.data);
+    const mimeType: string = addProduct.image.mimetype;
+
+    // Ajout de l'image    
+    const addImage = await this.repositories.imageRepository.save(new AddImageEntity({
+      imageBase64,
+      mimeType
+    }));
+
+    if(!addImage) {
+      throw new ErrorDatabaseException('error database');
+    }
 
     const productImage = new ProductImageEntity({
       imageId: addImage.id,
@@ -29,7 +41,7 @@ export class AddProductUseCase extends UseCaseModel {
 
     // Ajout du produit
     const product = await this.repositories.productRepository.save(productImage);
-
+  
     if(!product) {
       throw new ErrorDatabaseException('error database');
     }
@@ -40,8 +52,12 @@ export class AddProductUseCase extends UseCaseModel {
     });
 
     // Ajout du ProduitUser
-    UseCaseServiceImpl.getUseCases().productUserUsecase.addProductUserUseCase.execute(productUser);
+    const addProductUser = await this.repositories.productUserRepository.save(new AddProductUserEntity({...productUser}));
 
-    return ProductMapper.getProductEntity({...product});
+    if(!addProductUser) {
+      throw new ErrorDatabaseException('error database');
+    }
+
+    return ProductMapper.getProductEntity({userId: addProduct.userId, ...product});
   }
 }
