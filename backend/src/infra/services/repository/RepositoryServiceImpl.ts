@@ -16,11 +16,11 @@ class RepositoryServiceImpl {
    * Selection repositories
    * @returns { void }
    */
-  static setRepositories(selectRepositorySource: number): void {
-    
+  static setRepositories(selectRepositorySource: number): void {    
     if(typeof RepositoryServiceImpl.repositories === 'undefined') {
       const repositoriesSelection = new RepositoriesSelection();
       RepositoryServiceImpl.repositories = repositoriesSelection.getRepositories(selectRepositorySource);
+           
     }
   }
 

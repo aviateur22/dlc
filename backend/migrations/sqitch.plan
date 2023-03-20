@@ -1,0 +1,5 @@
+%syntax-version=1.0.0
+%project=todo
+
+
+migration_0001 2023-03-15T14:11:09Z cyrille cadé <aviateur22@hotmail.fr> # create table

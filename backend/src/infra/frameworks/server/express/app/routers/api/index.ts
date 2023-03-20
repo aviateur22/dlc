@@ -1,8 +1,9 @@
 import express from "express";
-import todo from './todo'
+import dlc from './dlc'
+
 const router = express.Router();
 
 // router Todos
-router.use('/todo', todo);
+router.use('/dlc', dlc);
 
 export default router;

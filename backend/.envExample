@@ -9,4 +9,4 @@ CORS_ORIGIN_DEV = http://localhost:4200,https://aviateur22.github.io
 CORS_ORIGIN_PROD = http://localhost:4200,https://aviateur22.github.io
 
 #DATABASE
-DATABASE_URL = postgresql://admin:admin@localhost:5433/test
+DATABASE_URL = postgresql://login:password@server:port/databaseName

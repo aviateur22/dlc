@@ -19,3 +19,29 @@ class AddTodoEntity implements AddTodoSchema {
 
 }
 export { AddTodoEntity }
+
+// /**
+//  * AddTodo Entité pour ajout d'un nouveau todo
+//  */
+// class AddTodoEntity implements AddTodoSchema {
+//   readonly title!: string;
+//   readonly description!: string;
+//   readonly status: boolean=false;
+
+//   constructor(object : Partial<AddTodoEntity>) {
+//    for(const key of Object.keys(object)) {
+//     // @ts-ignore
+//     this[key] = object[key]
+//    }
+//   }
+
+// }
+// export { AddTodoEntity }
+
+// mapper (data: object): EntityMapper<T> {
+//   const useMapping = this.mapping.default
+//   for (const key of Object.keys(useMapping)) {
+//     this.data[key as keyof T] = data[useMapping[key as keyof object]]
+//   }
+//   return this
+// }

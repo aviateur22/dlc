@@ -1,15 +1,15 @@
-{"name":"todoApp","hostname":"UTILISA-LJOD9AV","pid":17356,"level":50,"msg":"title is mandatory","time":"2023-03-02T15:46:11.690Z","v":0}
-{"name":"todoApp","hostname":"UTILISA-LJOD9AV","pid":17356,"level":50,"msg":"title is mandatory","time":"2023-03-02T15:56:32.514Z","v":0}
-{"name":"todoApp","hostname":"UTILISA-LJOD9AV","pid":17356,"level":50,"msg":"title is mandatory","time":"2023-03-02T17:49:38.842Z","v":0}
-{"name":"todoApp","hostname":"UTILISA-LJOD9AV","pid":17356,"level":50,"msg":"title is mandatory","time":"2023-03-02T17:51:04.578Z","v":0}
-{"name":"todoApp","hostname":"UTILISA-LJOD9AV","pid":17356,"level":50,"msg":"title is mandatory","time":"2023-03-02T17:51:18.896Z","v":0}
-{"name":"todoApp","hostname":"UTILISA-LJOD9AV","pid":17356,"level":50,"msg":"title is mandatory","time":"2023-03-02T17:51:22.783Z","v":0}
-{"name":"todoApp","hostname":"UTILISA-LJOD9AV","pid":17356,"level":50,"msg":"title is mandatory","time":"2023-03-02T18:12:52.445Z","v":0}
-{"name":"todoApp","hostname":"UTILISA-LJOD9AV","pid":17356,"level":50,"msg":"\"id\" is not allowed","time":"2023-03-02T18:13:46.737Z","v":0}
-{"name":"todoApp","hostname":"UTILISA-LJOD9AV","pid":17356,"level":50,"msg":"Unexpected token t in JSON at position 0","time":"2023-03-02T18:17:17.409Z","v":0}
-{"name":"todoApp","hostname":"UTILISA-LJOD9AV","pid":17356,"level":50,"msg":"Unexpected token t in JSON at position 0","time":"2023-03-02T18:19:20.409Z","v":0}
-{"name":"todoApp","hostname":"UTILISA-LJOD9AV","pid":4980,"level":50,"msg":"Unexpected token t in JSON at position 0","time":"2023-03-02T18:21:00.509Z","v":0}
-{"name":"todoApp","hostname":"UTILISA-LJOD9AV","pid":4980,"level":50,"msg":"title is mandatory","time":"2023-03-02T18:21:46.034Z","v":0}
-{"name":"todoApp","hostname":"UTILISA-LJOD9AV","pid":4980,"level":50,"msg":"title is mandatory","time":"2023-03-02T18:56:30.391Z","v":0}
-{"name":"todoApp","hostname":"UTILISA-LJOD9AV","pid":4980,"level":50,"msg":"todo not find","time":"2023-03-02T19:29:00.868Z","v":0}
-{"name":"todoApp","hostname":"UTILISA-LJOD9AV","pid":4980,"level":50,"msg":"todo not find","time":"2023-03-02T19:29:34.187Z","v":0}
+{"name":"todoApp","hostname":"UTILISA-LJOD9AV","pid":7344,"level":50,"msg":"Error Test","time":"2023-03-19T21:04:48.603Z","v":0}
+{"name":"todoApp","hostname":"UTILISA-LJOD9AV","pid":7344,"level":50,"msg":"managed error","time":"2023-03-19T21:04:48.662Z","v":0}
+{"name":"todoApp","hostname":"UTILISA-LJOD9AV","pid":7344,"level":50,"msg":"incorrect email format","time":"2023-03-19T21:04:49.008Z","v":0}
+{"name":"todoApp","hostname":"UTILISA-LJOD9AV","pid":7344,"level":50,"msg":"Error Test","time":"2023-03-19T21:12:36.276Z","v":0}
+{"name":"todoApp","hostname":"UTILISA-LJOD9AV","pid":7344,"level":50,"msg":"managed error","time":"2023-03-19T21:12:36.323Z","v":0}
+{"name":"todoApp","hostname":"UTILISA-LJOD9AV","pid":7344,"level":50,"msg":"incorrect email format","time":"2023-03-19T21:12:36.408Z","v":0}
+{"name":"todoApp","hostname":"UTILISA-LJOD9AV","pid":14036,"level":50,"msg":"Error Test","time":"2023-03-19T21:13:31.700Z","v":0}
+{"name":"todoApp","hostname":"UTILISA-LJOD9AV","pid":14036,"level":50,"msg":"managed error","time":"2023-03-19T21:13:31.766Z","v":0}
+{"name":"todoApp","hostname":"UTILISA-LJOD9AV","pid":14036,"level":50,"msg":"incorrect email format","time":"2023-03-19T21:13:31.848Z","v":0}
+{"name":"todoApp","hostname":"UTILISA-LJOD9AV","pid":14036,"level":50,"msg":"Error Test","time":"2023-03-19T21:25:57.397Z","v":0}
+{"name":"todoApp","hostname":"UTILISA-LJOD9AV","pid":14036,"level":50,"msg":"managed error","time":"2023-03-19T21:25:57.445Z","v":0}
+{"name":"todoApp","hostname":"UTILISA-LJOD9AV","pid":14036,"level":50,"msg":"incorrect email format","time":"2023-03-19T21:25:57.585Z","v":0}
+{"name":"todoApp","hostname":"UTILISA-LJOD9AV","pid":12808,"level":50,"msg":"Error Test","time":"2023-03-19T21:26:57.879Z","v":0}
+{"name":"todoApp","hostname":"UTILISA-LJOD9AV","pid":12808,"level":50,"msg":"managed error","time":"2023-03-19T21:26:57.918Z","v":0}
+{"name":"todoApp","hostname":"UTILISA-LJOD9AV","pid":12808,"level":50,"msg":"incorrect email format","time":"2023-03-19T21:26:58.013Z","v":0}

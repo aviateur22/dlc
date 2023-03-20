@@ -1,5 +1,7 @@
 import { NextFunction, Request, Response } from "express";
+import { ErrorDatabaseException } from "../../../../../../exceptions/ErrorDatabaseException";
 import { ErrorTestException } from "../../../../../../exceptions/ErrorTestException";
+import { ImageSizeException } from "../../../../../../exceptions/ImageSizeException";
 import { LoggerException } from "../../../../../../exceptions/LoggerException";
 import { RepositoryException } from "../../../../../../exceptions/RepositoryException";
 import { TodoNotFindException } from "../../../../../../exceptions/TodoNotFindException";
@@ -20,13 +22,16 @@ export default(err: any, req: Request, res: Response, next: NextFunction)=>{
         switch(err.constructor) {
             case ValidationException:
             case TodoNotFindException:
+            case ImageSizeException:
             case ErrorTestException: 
                 return res.status(400).json({
                     errorMessage: err.message
                 }); 
             break;
+            
             case LoggerException:
-            case RepositoryException: 
+            case RepositoryException:
+            case ErrorDatabaseException:
                 return res.status(500).json({
                     errorMessage: err.message
                 });
