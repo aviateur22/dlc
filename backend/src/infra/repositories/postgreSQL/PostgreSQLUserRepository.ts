@@ -73,8 +73,8 @@ export class PostgreSQLUserRepository implements UserRepositorySchema {
    * @returns {UserModel}
    */
   async save(user: AddUserEntity): Promise<UserModel|null> {
-    const addUser = await client.query(`INSERT INTO "user" ("email", "password", "created_at", "updated_at") VALUES ($1, $2, $3, $4) returning *`, [
-      user.email, user.password, user.createdAt, user.updatedAt
+    const addUser = await client.query(`INSERT INTO "user" ("email", "password", "role", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) returning *`, [
+      user.email, user.password, user.role, user.createdAt, user.updatedAt
     ]).then(result=>{
 
       // Pas de données
@@ -86,9 +86,7 @@ export class PostgreSQLUserRepository implements UserRepositorySchema {
       const data = result.rows.shift();
       return UserModelMapper.getUserModel(data);
     });
-
     return addUser;
-
   }
 
 

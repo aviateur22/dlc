@@ -1,6 +1,8 @@
 import { LoginUserException } from "../../../exceptions/LoginUserException";
 import { UserNotFindException } from "../../../exceptions/UserNotFindException";
+import { UserMapper } from "../../dtos/UserMapper";
 import { LoginUserEntity } from "../../entities/user/LoginUserEntity";
+import { UserEntity } from "../../entities/user/UserEntity";
 import { Password } from "../../helpers/security/Password";
 import { UseCaseModel } from "../UseCaseModel";
 /**
@@ -12,7 +14,7 @@ export class LoginUserUseCase extends UseCaseModel {
    * Login user
    * @param {Partial<AddUserEntity>} loginUser 
    */
-  async execute(loginUser: Partial<LoginUserEntity>): Promise<boolean> {
+  async execute(loginUser: Partial<LoginUserEntity>): Promise<UserEntity> {
 
     if(!loginUser.email || !loginUser.password) {
       throw new LoginUserException('email or password unvalid');
@@ -30,6 +32,6 @@ export class LoginUserUseCase extends UseCaseModel {
       throw new LoginUserException('email or password unvalid');
     }
     
-    return isPasswordValid;
+    return UserMapper.getUserEntity(findUser);
   }
 }

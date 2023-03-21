@@ -1,5 +1,6 @@
 import { AddUserEntity } from "../../domain/entities/user/AddUserEntity";
 import { Password } from "../../domain/helpers/security/Password";
+import { UserRole } from "../../domain/helpers/userRole";
 import { UserModel } from "../../infra/models/UserModel";
 import { RepositoryServiceImpl } from "../../infra/services/repository/RepositoryServiceImpl";
 
@@ -11,12 +12,14 @@ export class UserGenerator {
     {
       email: 'aviateur22@hotmail.fr',
       password: 'd',
+      role: UserRole.user,
       createdAt: new Date(),
       updatedAt: new Date()
     },
     {     
       email: 'helixia22@hotmail.fr',
       password: 'd',
+      role: UserRole.user,
       createdAt: new Date(),
       updatedAt: new Date()
     }
@@ -38,6 +41,7 @@ export class UserGenerator {
       const hashPassword = await Password.hashPassword(user.password);
       await RepositoryServiceImpl.getRepository().userRepository.save({
         email: user.email,
+        role: user.role,
         password: hashPassword,
         createdAt: user.createdAt,
         updatedAt: user.updatedAt

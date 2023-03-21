@@ -1,5 +1,5 @@
-import { JwtInfomration } from "./JwtData";
-import { jsonWebtoken } from 'jsonwebtoken';
+import { JwtInfomration } from "./JwtInfomration";
+import jsonWebtoken  from 'jsonwebtoken';
 
 export class TokenJwt {    
   constructor(private jwtInfomration: JwtInfomration){

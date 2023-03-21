@@ -28,8 +28,7 @@ describe('ProductsUserUseCase', ()=>{
 
     // Ajout d'un product
     await UseCaseServiceImpl.getUseCases().productUsecase.addProductUseCase.execute({
-      imageBase64: imageData.image.base64,
-      mimeType: imageData.image.mimeType,
+      image: '',
       openDate: new Date(),
       userId: '2'
     });
