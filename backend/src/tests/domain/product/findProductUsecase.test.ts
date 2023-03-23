@@ -1,3 +1,4 @@
+import messages from "../../../domain/messages/messages";
 import { UseCaseServiceImpl } from "../../../domain/services/UseCaseServiceImpl";
 import { ProductNotFindException } from "../../../exceptions/ProductNotFindException";
 import { ImageGenerator } from "../../utilities/ImageGenerator";
@@ -21,7 +22,7 @@ describe('FindProductUseCase', ()=>{
     await ProductGenerator.createProduct();
   });
   
-  it('Should find the product', async ()=>{
+  it('Should find all products of a user', async ()=>{
     const { productId, userId } = {
       productId: '1',
       userId: '1'
@@ -56,8 +57,26 @@ describe('FindProductUseCase', ()=>{
 
       const product = await UseCaseServiceImpl.getUseCases().productUsecase.findProductUseCase.execute({ userId, productId});
       expect(product).toBeFalsy();
-    } catch (error) {
+    } catch (error: any) {
       expect(error).toBeInstanceOf(ProductNotFindException);
+      expect(error.message).toBe(messages.message.productNotFind);
+    }
+  });
+
+  it('Should throw ProductNotFindException because product does not belong to user', async ()=>{
+    try {     
+      const { productId, userId } = {
+        productId: '1',
+        userId: '2'
+      }
+
+      const product = await UseCaseServiceImpl.getUseCases().productUsecase.findProductUseCase.execute({ userId, productId});
+      expect(product).toBeFalsy();
+    } catch (error: any) {
+      console.log(error.message)
+      expect(error).toBeInstanceOf(ProductNotFindException);
+      expect(error.message).toBe(messages.message.productNotToUser);
     }
   })
 });
+

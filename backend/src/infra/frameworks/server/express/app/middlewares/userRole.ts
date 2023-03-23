@@ -1,11 +1,13 @@
 import { NextFunction, Response } from "express";
 import { UserRole } from "../../../../../../domain/helpers/userRole";
+import messages from "../../../../../../domain/messages/messages";
+import { ForbiddenException } from "../../../../../../exceptions/ForbiddenException";
 import { ReqCookie } from "../interfaces/ReqCookie";
 
 const userRole = {
     
   /**
-  * 
+  * Vérification si privilege User
   * @param {ReqCookie} req 
   * @param {Response} res 
   * @param {NextFunction} next 
@@ -17,7 +19,7 @@ const userRole = {
   },
     
   /**
-   * 
+   * Verification si privilège Admin
    * @param {ReqCookie} req 
    * @param {Response} res 
    * @param {NextFunction} next 
@@ -34,21 +36,9 @@ const userRole = {
    * @param {UserRole} userRole 
    */
   controllCookies:(req: ReqCookie, userRole: number) => {
-    /** Pas de données en provenance du JWT */
-    if(!req.payload){
-      throw ({ message: 'données manquant pour confirmer les privilèges', statusCode:'400' });
-    }
-
-    /** Pas de données sur le role utilisateur */
-    if(!req.payload.data.role){
-      throw ({ message: 'données manquant pour confirmer les privilèges', statusCode:'400' });
-    }
-
-    if(req.payload.data.role < userRole){
-      throw ({message: 'vous n\'êtes pas autorisé a executer cette action', statusCode:'403'});
-    }
-
-    console.log("ii")
+    if(!req.payload || !req.payload.data.roleId || req.payload.data.roleId < userRole){
+      throw new ForbiddenException(messages.message.forbiddenAction);
+    }   
   }
 }
 

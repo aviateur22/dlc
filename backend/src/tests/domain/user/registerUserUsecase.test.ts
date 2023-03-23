@@ -2,9 +2,9 @@ import { UseCaseServiceImpl } from "../../../domain/services/UseCaseServiceImpl"
 import { UserEntity } from "../../../domain/entities/user/UserEntity"
 import { TestUtilities } from "../../utilities/TestUtilities";
 import { UserGenerator } from "../../utilities/UserGenerator";
-import userMessages from "../../../exceptions/message/userMessages";
 import { RepositoryServiceImpl } from "../../../infra/services/repository/RepositoryServiceImpl";
 import { EmailFindException } from "../../../exceptions/EmailFindException";
+import messages from "../../../domain/messages/messages";
 
 describe('AddUserUsecase', ()=>{
   
@@ -47,7 +47,7 @@ describe('AddUserUsecase', ()=>{
     } catch (error: any) {
       expect(error).toBeInstanceOf(EmailFindException);
       expect(error).toHaveProperty('message');
-      expect(error.message).toBe(userMessages.user.emailExist);
+      expect(error.message).toBe(messages.message.emailExist);
     }
   })
 })

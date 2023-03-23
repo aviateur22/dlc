@@ -28,7 +28,7 @@ export default {
     });
     console.log(req.files);
     return res.status(201).json({      
-      addProduct: addProduct
+      product: addProduct
     });
   }
 }

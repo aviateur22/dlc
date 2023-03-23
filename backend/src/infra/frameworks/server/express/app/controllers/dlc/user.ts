@@ -1,16 +1,34 @@
 import { Request, Response, NextFunction } from "express";
 import { UseCaseServiceImpl } from "../../../../../../../domain/services/UseCaseServiceImpl";
-import { JwtInfomration } from "../../../../../../helpers/security/jwt/JwtInfomration";
-import { TokenJwt } from "../../../../../../helpers/security/jwt/TokenJwt";
+import { Token } from "../../../../../../helpers/security/csurf/Token";
+import { GenerateJwtToken } from "../../../../../../helpers/security/jwt/GenerateJwtToken";
+import { TokenSchema } from "../../../../../../ports/csurToken/TokenSchema";
 
 export default {
-  register: async(request: Request, response: Response, next: NextFunction)=>{
-    console.log('controller register')
-    response.status(201).json({
-      message: 'Bonjour'
+  /**
+   * Register
+   * @param {Request} req 
+   * @param {Response} res 
+   * @param {NextFunction} next   * 
+   */
+  register: async(req: Request, res: Response, next: NextFunction)=>{
+    const { email, password } = req.body;
+    const userRegister = await UseCaseServiceImpl.getUseCases().userUsecase.registerUserUseCase.execute({
+      email,
+      password
     });
+
+    res.status(201).json({
+      user: userRegister
+    })
   },
 
+  /**
+   * Login
+   * @param {Request} req 
+   * @param {Response} res 
+   * @param {NextFunction} next 
+   */
   login: async(req: Request, res: Response, next: NextFunction) => {
 
     const { email, password } = req.body;
@@ -20,17 +38,23 @@ export default {
       password
     });
 
-    //
-    const jwtInfomration = new JwtInfomration({
+    const token: TokenSchema = await Token.generate();
+
+    const loginJwt = await GenerateJwtToken.getToken({
       expiresIn: '1d',
+      subject: 'login',
       data: {
         userId: userLogin.id,
-        role: userLogin.role
-      }
+        roleId: userLogin.role,
+        token: token.cookieToken
+      }     
     });
 
-    const jwtToken = new TokenJwt(jwtInfomration);
+    res.cookie('authorization', loginJwt, { secure: false, sameSite:'none', httpOnly: true });
+    res.json({
+      user: userLogin,
+      token: token.payloadToken 
+    });
 
-    res.send('isLoginAuth');
   }
 }

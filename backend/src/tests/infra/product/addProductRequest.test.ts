@@ -7,8 +7,10 @@ import { ImageGenerator } from "../../utilities/ImageGenerator";
 import { ProductGenerator } from "../../utilities/ProductGenerator";
 import { ProductUserGenerator } from "../../utilities/ProductUserGenerator";
 import { UserGenerator } from "../../utilities/UserGenerator";
+import messages from "../../../domain/messages/messages";
+import { Token } from "../../../infra/helpers/security/csurf/Token";
 
-describe('AddProductUsecase', ()=>{
+describe('AddProductRequest ', ()=>{
   const imageToDownload = path.join(process.cwd(),'./src/tests/utilities/image.jpg');
   const imageToDownload2 = path.join(process.cwd(),'./src/tests/utilities/image2.png');
 
@@ -39,6 +41,12 @@ describe('AddProductUsecase', ()=>{
   // Configuration App pour Jest
   const jestApp = testUtilities.getTestApp(app, serviceSelect);
 
+  // Récupération cookies
+  let cookies: any;
+
+  let token: string = '';
+ 
+
   beforeEach(async()=>{
     await UserGenerator.resteUser();
     await ProductGenerator.deleteProduct();
@@ -46,7 +54,30 @@ describe('AddProductUsecase', ()=>{
     await ProductUserGenerator.deleteProductUser();
   });
 
-  it('Should upload an image', async()=>{
+  
+
+  it('Should login user to get a cookie', async()=>{
+    const c = await Token.generate();
+    const compare = await Token.compare(c.cookieToken, c.payloadToken);
+
+    if(serviceSelect === ServerSource.fastify) {
+      await app.ready();
+    }
+
+    const res = await request(jestApp)
+    .post('/api/v1/dlc/user/login')
+    .set('content-type', 'application/json')
+    .send({
+      email: "aviateur22@hotmail.fr",
+      password: "d"
+    });
+
+    expect(res.headers['set-cookie'].length).toBe(1);
+    cookies = res.headers['set-cookie'];
+    token = res.body.token
+  })
+
+  it('Should upload a product', async()=>{
 
     if(serviceSelect === ServerSource.fastify) {
       await app.ready();
@@ -54,17 +85,19 @@ describe('AddProductUsecase', ()=>{
 
     const res = await request(jestApp)
     .post('/api/v1/dlc/product')
+    .set('Cookie', cookies)
     .set('content-type', 'application/octet-stream')
     .field('userId', '1')
     .field('openDate',new Date('2023-10-10').toJSON())
+    .field('token', token)
     .attach('image', imageToDownload);
-    console.log(res.body);
-    expect(res.status).toBe(201);
- 
-    expect(res.body).toHaveProperty('addProduct');
-    expect(res.body.addProduct.userId).toBe('1');
-    expect(res.body.addProduct.imageId).toBe('1');
-    expect(res.body.addProduct.openDate).toBe('2023-10-10T00:00:00.000Z');
+
+    expect(res.status).toBe(201); 
+    expect(res.body).toHaveProperty('product');
+    expect(res.body.product.userId).toBe('1');
+    expect(res.body.product.imageId).toBe('1');
+    expect(res.body.product.openDate).toBe('2023-10-10T00:00:00.000Z');
+   
   });
 
   it('Should failed because image is to big', async()=>{
@@ -72,10 +105,10 @@ describe('AddProductUsecase', ()=>{
     if(serviceSelect === ServerSource.fastify) {
       await app.ready();
     }
-    
-    //console.log(imageToDownload)
+
     const res = await request(jestApp)
     .post('/api/v1/dlc/product')
+    .set('Cookie', cookies)
     .field('userId', '1')
     .field('openDate', new Date('2023-10-10').toJSON())
     .set('content-type', 'application/octet-stream')
@@ -83,7 +116,7 @@ describe('AddProductUsecase', ()=>{
     // expect(res.body.message).toBe('message')
     expect(res.status).toBe(400);
     expect(res.body).toHaveProperty('errorMessage');
-    expect(res.body.errorMessage).toBe('maximum image size of 5Mo')
+    expect(res.body.errorMessage).toBe(messages.message.imageSizeExceed)
   });
 
   it('Should failed because image is missing', async()=>{
@@ -96,6 +129,7 @@ describe('AddProductUsecase', ()=>{
     .post('/api/v1/dlc/product')
     .field('userId', '1')
     .field('openDate', new Date('2023-10-10').toJSON())
+    .set('Cookie', cookies)
     .attach('image', '')
     expect(res.status).toBe(400);
     expect(res.body).toHaveProperty('errorMessage');
@@ -111,12 +145,13 @@ describe('AddProductUsecase', ()=>{
 
     const res = await request(jestApp)
     .post('/api/v1/dlc/product')
+    .set('Cookie', cookies)
     .field('userId', '')
     .field('openDate', new Date('2023-10-10').toJSON())
     .attach('image', imageToDownload)
     expect(res.status).toBe(400);
     expect(res.body).toHaveProperty('errorMessage');
-    expect(res.body.errorMessage).toBe('userId missing')
+    expect(res.body.errorMessage).toBe(messages.message.userIdMissing)
 
   });
 
@@ -128,12 +163,13 @@ describe('AddProductUsecase', ()=>{
 
     const res = await request(jestApp)
     .post('/api/v1/dlc/product')
+    .set('Cookie', cookies)
     .field('userId', '2')
     .field('openDate', '')
     .attach('image', imageToDownload)
     expect(res.status).toBe(400);
     expect(res.body).toHaveProperty('errorMessage');
-    expect(res.body.errorMessage).toBe('openDate is missing')
+    expect(res.body.errorMessage).toBe(messages.message.openDateMising)
 
   });
 

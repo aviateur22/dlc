@@ -7,6 +7,8 @@ import { TestUtilities } from "../../utilities/TestUtilities";
 import imageData from "../../utilities/imageData.json"
 import { UserGenerator } from "../../utilities/UserGenerator";
 import { AddProductException } from "../../../exceptions/AddProductException";
+import { ImageSizeException } from "../../../exceptions/ImageSizeException";
+import messages from "../../../domain/messages/messages";
 
 describe('AddProductUseCase', ()=>{
   // Selection Server Express
@@ -27,8 +29,11 @@ describe('AddProductUseCase', ()=>{
       const product =  {
         userId: '1',
         openDate: new Date(),
-        imageBase64: imageData.image.base64,
-        mimeType: imageData.image.mimeType
+        image: {
+          size: 50000,
+          data: imageData.image.base64,
+          mimetype: 'image/jpeg'
+        }        
       }
   
       const addProduct = await UseCaseServiceImpl.getUseCases().productUsecase.addProductUseCase.execute({
@@ -66,13 +71,33 @@ describe('AddProductUseCase', ()=>{
     }    
   });
 
-  it('Should throw AddProductException because image is missing', async()=>{
+  it('Should throw ImageSizeException because image is to big', async()=>{
     try {
       const product =  {
         userId: '1',
         openDate: new Date(),
-        imageBase64: '',
-        mimeType: ''
+        image: {
+          size: 600000,
+          data: imageData.image.base64,
+          mimetype: 'image/jpeg'
+        }        
+      }
+  
+      const addProduct = await UseCaseServiceImpl.getUseCases().productUsecase.addProductUseCase.execute({
+        ...product
+      });
+      expect(addProduct).toBeFalsy;
+    } catch (error: any) {
+      expect(error).toBeInstanceOf(ImageSizeException);
+      expect(error.message).toBe(messages.message.imageSizeExceed)
+    }    
+  })
+
+  it('Should throw AddProductException because image is missing', async()=>{
+    try {
+      const product =  {
+        userId: '1',
+        openDate: new Date()
       }
   
       const addProduct = await UseCaseServiceImpl.getUseCases().productUsecase.addProductUseCase.execute({
@@ -81,11 +106,9 @@ describe('AddProductUseCase', ()=>{
 
       expect(addProduct).toBeFalsy();
 
-    } catch (error) {
+    } catch (error:any) {
       expect(error).toBeInstanceOf(AddProductException);
+      expect(error.message).toBe(messages.message.imageMandatory);
     }
   });
-
-
-
 });

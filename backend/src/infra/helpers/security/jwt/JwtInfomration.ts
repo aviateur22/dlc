@@ -1,7 +1,8 @@
 import {v4 as uuidv4} from 'uuid';
+import jsonWebtoken  from 'jsonwebtoken';
 
 export class JwtInfomration {
-  algorithm: any = 'HS256';
+  algorithm: jsonWebtoken.Algorithm = 'HS256';
   issuer: string = 'dlc';
   subject: string = 'no subject';
   jwtid: string = uuidv4();

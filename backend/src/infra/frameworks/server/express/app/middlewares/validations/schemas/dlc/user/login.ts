@@ -1,5 +1,5 @@
 import Joi from 'joi';
-import messages from '../../../../../../../../../messages/messages'
+import messages from '../../../../../../../../../../domain/messages/messages'
 
 
 export default Joi.object({

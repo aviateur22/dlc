@@ -17,20 +17,12 @@ export class FindProductUseCase extends UseCaseModel {
    */
   async execute(searchProduct: SearchProductEntity): Promise<ProductEntity> {
 
-    // Recherche du produit
-    const findProduct = await this.repositories.productRepository.findById(new SearchProductEntity({...searchProduct}));
+    const product = await this.repositories.productRepository.findById(new SearchProductEntity({...searchProduct}));
 
-    if(!findProduct) {
-      throw new ProductNotFindException(messages.message.productNotFind);
+    if(!product) {
+      throw new ProductNotFindException(messages.message.errorServer);
     }
 
-    // Vérification si produit appartient au user
-    const findProdutByUser = await this.repositories.productUserRepository.findByUserIdAndProductId(searchProduct.userId, searchProduct.productId);
-
-    if(findProdutByUser.length === 0) {
-      throw new ProductNotFindException(messages.message.productNotToUser);
-    }
-
-    return ProductMapper.getProductEntity({ userId: searchProduct.userId , ...findProduct});
+    return ProductMapper.getProductEntity({ userId: searchProduct.userId , ...product});
   }
 }
