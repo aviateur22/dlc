@@ -1,0 +1,35 @@
+import { UserFriendModel } from "../models/userFriend/UserFriendModel";
+
+/**
+ * UserModel Mapper
+ */
+export class UserFriendModelMapper {
+  /**
+   * UserFriendModel
+   * @param friendEmail 
+   * @param data 
+   * @returns {UserFriendModel}
+   */
+  static getUserFriendModel(friendEmail: string, data: any): UserFriendModel {
+    return new UserFriendModel({
+      id: data.id,
+      userId: data.user_id,
+      friendId: data.friend_id,
+      friendEmail: friendEmail,
+      friendName: data.friend_name,
+      createdAt: data.created_at,
+      updatedAt: data.updated_at
+    })
+  }
+
+  /**
+   * UserFriendModel Array
+   * @param {Array<any>} datas 
+   * @returns {Array<UserFriendModel>}
+   */
+  static getUserFriendsModel(datas: Array<any>): Array<UserFriendModel> {
+    return datas.map(data=>{
+      return UserFriendModelMapper.getUserFriendModel(data.friend_email, data);
+    })
+  }
+}

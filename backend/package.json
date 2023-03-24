@@ -11,7 +11,7 @@
     "test": "jest --watchAll --detectOpenHandles",
     "tsc": "tsc",
     "start": "node dist/infra/frameworks/index.js",
-    "migrateDB": "sqitch deploy dev",
+    "migrateDB": "sqitch deploy dev && node dist/data/seeding.js",
     "revertDB": "sqitch revert -y dev",
     "seeding": "node dist/data/seeding.js"
   },

@@ -67,6 +67,28 @@ export class PostgreSQLProductUserRepository implements ProductUserRepositorySch
     return products;
   }
 
+   /**
+   * Suppression de plusieurs relations produit-utilisateur
+   * @param {Array<string>} productIdArray
+   * @param {string} userId
+   */
+  async deleteMultipleProductsByUserId(productIdArray: string[], userId: string): Promise<void> {
+    await client.query('DELETE FROM "product_user" WHERE product_user.product_id=ANY($1) AND "user_id" =$2', [
+      productIdArray, userId
+    ]);
+  }
+
+  /**
+   * Supprssion de plusieurs relation produit-utilisateur
+   * @param {string} productId 
+   * @param {Array<string>} userIdArray
+   */
+  async deleteOneProductForMultipleUsers(productId: string, userIdArray: string[]): Promise<void> {
+    await client.query('DELETE FROM "product_user" WHERE "product_id"=$1 AND product_user.user_id=ANY($2)', [
+      productId, userIdArray
+    ]);
+  }
+
   /**
    * DeleteAll
    */

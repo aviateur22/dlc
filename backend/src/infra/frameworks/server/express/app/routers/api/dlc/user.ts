@@ -19,6 +19,4 @@ router.post('/register',
   controllerHandler(userController.register)
 );
 
-
-
 export default router;

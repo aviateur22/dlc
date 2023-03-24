@@ -28,7 +28,7 @@ export class ProductGenerator {
   /**
    * Create Pro.
    */
-  static async createProduct(): Promise<void> {
+  static async createProduct(): Promise<void> {    
     ProductGenerator.createAddProductEntity();
     const addProduct = await UseCaseServiceImpl.getUseCases().productUsecase.addProductUseCase.execute({
       ...ProductGenerator.product

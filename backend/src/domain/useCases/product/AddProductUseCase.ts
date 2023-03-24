@@ -11,6 +11,7 @@ import { AddProductUserEntity } from "../../entities/productUser/AddProductUserE
 import { ProductUserEntity } from "../../entities/productUser/ProductUserEntity";
 import messages from "../../messages/messages";
 import { UseCaseModel } from "../UseCaseModel";
+import { Friends } from "../utils/Friends";
 
 export class AddProductUseCase extends UseCaseModel {
   
@@ -57,12 +58,15 @@ export class AddProductUseCase extends UseCaseModel {
       userId: addProduct.userId
     });
 
-    // Ajout du ProduitUser
+    // Ajout de la relation produit-user
     const addProductUser = await this.repositories.productUserRepository.save(new AddProductUserEntity({...productUser}));
 
     if(!addProductUser) {
       throw new ErrorDatabaseException('error database');
     }
+
+    // Ajout de la realtion a tous les amis
+    await Friends.addOneProductToAllFriend(addProduct.userId!, product.id);
 
     return ProductMapper.getProductEntity({userId: addProduct.userId, ...product});
   }

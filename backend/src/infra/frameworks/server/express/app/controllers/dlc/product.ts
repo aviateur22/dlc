@@ -1,5 +1,7 @@
 import { Request, Response, NextFunction } from "express";
+import { ProductEntity } from "../../../../../../../domain/entities/product/ProductEntity";
 import { UseCaseServiceImpl } from "../../../../../../../domain/services/UseCaseServiceImpl";
+import user from "./user";
 
 export default {
   
@@ -26,9 +28,48 @@ export default {
       userId,
       openDate
     });
-    console.log(req.files);
+
     return res.status(201).json({      
       product: addProduct
     });
+  },
+
+  /**
+   * Suppr. produit
+   * @param {Request} req 
+   * @param {Response} res 
+   * @param {NextFunction} next 
+   * @returns {Promise<Response>}
+   */
+  deleteProduct: async(req: Request, res: Response, next: NextFunction): Promise<Response<ProductEntity>>=>{
+    const productId = req.params.productId;
+    const { userId } = req.body    
+  
+    // Suppression prodyut
+    const deleteProduct = await UseCaseServiceImpl.getUseCases().productUsecase.deleteProductUseCase.execute({
+     productId,
+     userId
+    });
+    
+    return res.status(200).json({      
+      product: deleteProduct
+    });
+  },
+
+  /**
+   * Produits par user
+   * @param {Request} req 
+   * @param {Response} res 
+   * @param {NextFunction} next 
+   * @returns {Promise<Response>}
+   */
+  getAllProductUserId: async(req: Request, res: Response, next: NextFunction): Promise<Response>=>{
+    const { userId } = req.body;
+    const products = await UseCaseServiceImpl.getUseCases().productUsecase.findProductsOfUserUseCase.execute(userId);
+
+    return res.json({
+      products
+    })
+
   }
 }

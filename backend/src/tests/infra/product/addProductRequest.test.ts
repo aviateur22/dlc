@@ -44,6 +44,7 @@ describe('AddProductRequest ', ()=>{
   // Récupération cookies
   let cookies: any;
 
+  // Token csurf
   let token: string = '';
  
 
@@ -57,9 +58,6 @@ describe('AddProductRequest ', ()=>{
   
 
   it('Should login user to get a cookie', async()=>{
-    const c = await Token.generate();
-    const compare = await Token.compare(c.cookieToken, c.payloadToken);
-
     if(serviceSelect === ServerSource.fastify) {
       await app.ready();
     }
@@ -111,6 +109,7 @@ describe('AddProductRequest ', ()=>{
     .set('Cookie', cookies)
     .field('userId', '1')
     .field('openDate', new Date('2023-10-10').toJSON())
+    .field('token', token)
     .set('content-type', 'application/octet-stream')
     .attach('image', imageToDownload2)
     // expect(res.body.message).toBe('message')

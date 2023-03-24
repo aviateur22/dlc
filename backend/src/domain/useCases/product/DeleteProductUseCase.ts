@@ -33,6 +33,14 @@ export class DeleteProductUseCase extends UseCaseModel {
       throw new ErrorDatabaseException(messages.message.errorServer);
     }
 
+    // Récupération FriendsId
+    const findAllFriendsOfUser = await this.repositories.userFriendRepository.findAllFriendByUserId(product.userId).then(result=>{
+      return result.map(friend=>friend.friendId)
+    });
+
+    // Suppression  des relations friend-produits
+    await this.repositories.productUserRepository.deleteOneProductForMultipleUsers(product.productId, findAllFriendsOfUser);
+
     // Delete Image
     const deleteImage = await this.repositories.imageRepository.deleteById(deleteProduct.imageId);
 

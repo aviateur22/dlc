@@ -7,6 +7,7 @@ export default {
     errorServer: 'désolé il y a une erreur interne au serveur',
     expiredSession: 'la session a expirée',
     userIdMissing: 'id utilisateur manquant',
+    productIdMissing :'id porduit manquant',
     openDateMising: 'date d\'ouverture manquante',
     emailMandatory: 'email obligatoire',
     emailFormatError: 'format email incorrect',
@@ -25,6 +26,7 @@ export default {
     imageMandatory: 'l\'image est obligatpire',
     productNotBelongToUser: 'ce produit n\'est pas en votre possession',
     tokenMissing: 'certaines informations sont manquantes pour la soumission des données',
+    userFriendNotFind: 'aucune relation de trouvée'
 
     
   }

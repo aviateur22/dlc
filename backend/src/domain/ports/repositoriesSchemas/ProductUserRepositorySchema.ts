@@ -28,6 +28,20 @@ export interface ProductUserRepositorySchema {
   findByUserIdAndProductId(userId: string, productId: string): Promise<Array<ProductUserModel>>;
 
   /**
+   * Suppression de plusieurs relations produit-utilisateur
+   * @param {Array<string>} productIdArray
+   * @param {string} userId
+   */
+  deleteMultipleProductsByUserId(productIdArray: Array<string>, userId: string): Promise<void>;
+
+  /**
+   * Supprssion de plusieurs relation produit-utilisateur
+   * @param {string} productId 
+   * @param {Array<string>} userIdArray
+   */
+  deleteOneProductForMultipleUsers(productId: string, userIdArray: Array<string>): Promise<void>;
+
+  /**
    * DeleteAll
    */
   deleteAll(): Promise<void>;

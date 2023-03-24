@@ -5,7 +5,7 @@ import path from 'path';
 export default (async()=>{
   try {
     const filePath = path.join(__dirname,'seeding.sql' );
-    console.log(filePath);
+    
     const queryText = await fileReader.read(filePath);
 
     //excution de la requete sql

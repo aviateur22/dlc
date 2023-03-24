@@ -1,5 +1,4 @@
 import { AddUserEntity } from "../../../domain/entities/user/AddUserEntity";
-import { FindUserEntity } from "../../../domain/entities/user/FindUserEntity";
 import { UserRepositorySchema } from "../../../domain/ports/repositoriesSchemas/UserRepositorySchema";
 import { UserModel } from "../../models/UserModel";
 

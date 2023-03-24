@@ -7,10 +7,12 @@ import fileValidation from '../../../middlewares/validations/fileValidation';
 import bodyValidation from '../../../middlewares/validations/bodyValidation';
 import imageSchema from '../../../middlewares/validations/schemas/dlc/product/image';
 import addProductSchema from '../../../middlewares/validations/schemas/dlc/product/addProduct';
+import productIdSchema from '../../../middlewares/validations/schemas/dlc/product/productId'
 import sanitizer from "../../../middlewares/sanitizer";
 import verifyAuth from "../../../middlewares/verifyAuth";
 import formatCookie from "../../../middlewares/formatCookie";
 import verifyCsurfToken from "../../../middlewares/verifyCsurfToken";
+import paramValidation from "../../../middlewares/validations/paramValidation";
 
 const router = express.Router();
 
@@ -24,6 +26,23 @@ router.post('/',
   controllerHandler(fileValidation(imageSchema)),
   controllerHandler(bodyValidation(addProductSchema)),
   controllerHandler(verifyCsurfToken),
-  controllerHandler(productController.addProduct));
+  controllerHandler(productController.addProduct)
+);
+
+
+router.delete('/:productId',
+  controllerHandler(formatCookie),
+  controllerHandler(verifyAuth),
+  controllerHandler(userRole.user),
+  controllerHandler(paramValidation(productIdSchema)),
+  controllerHandler(productController.deleteProduct)
+);
+
+router.get('/get-all-by-user-id',
+  controllerHandler(formatCookie),
+  controllerHandler(verifyAuth),
+  controllerHandler(userRole.user),
+  controllerHandler(productController.getAllProductUserId)
+);
 
 export default router;

@@ -39,7 +39,7 @@ describe('finUserUseCase', ()=>{
       const findUser = await UseCaseServiceImpl.getUseCases().userUsecase.findUserUseCase.execute(userId);
   
       expect(findUser).toBeTruthy();
-      console.log(findUser);
+      
       expect(findUser).toEqual(expect.objectContaining({
         id: '1',
         email: 'aviateur22@hotmail.fr',

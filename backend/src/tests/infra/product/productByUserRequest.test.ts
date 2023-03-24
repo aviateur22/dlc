@@ -51,41 +51,23 @@ describe('DeleteUseCase', ()=>{
     cookies = res.headers['set-cookie'];
     token = res.body.token
   })
-     
-  it('Should delete a product', async()=>{
+
+  it('Should get all product of a user', async()=>{
     if(serviceSelect === ServerSource.fastify) {
       await app.ready();
     }
 
     const res = await request(jestApp)
-    .delete('/api/v1/dlc/product/1')
+    .get('/api/v1/dlc/product/get-all-by-user-id')
+    .set('content-type', 'application/json')
     .set('Cookie', cookies)
     .send({
-      userId: '1',
-      token
-    })
+      userId: "1",
+    });
+
+    console.log(res.body.products);
+    expect(res.status).toBe(200);
+
     
-    expect(res.status).toBe(200); 
-    expect(res.body).toHaveProperty('product');
-
-  });
-
-  it('Should throw ActionNotAllowedException because product don\'t belong to user', async()=>{
-    if(serviceSelect === ServerSource.fastify) {
-      await app.ready();
-    }
-
-    const res = await request(jestApp)
-    .delete('/api/v1/dlc/product/1')
-    .set('Cookie', cookies)
-    .send({
-      userId: '2',
-      token
-    })
-    
-    expect(res.status).toBe(401);
-    expect(res.body).toHaveProperty('errorMessage');
-    expect(res.body.errorMessage).toBe(messages.message.productNotBelongToUser);
-
-  });
+  })
 });

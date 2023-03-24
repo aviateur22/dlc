@@ -73,7 +73,6 @@ describe('FindProductUseCase', ()=>{
       const product = await UseCaseServiceImpl.getUseCases().productUsecase.findProductUseCase.execute({ userId, productId});
       expect(product).toBeFalsy();
     } catch (error: any) {
-      console.log(error.message)
       expect(error).toBeInstanceOf(ProductNotFindException);
       expect(error.message).toBe(messages.message.productNotToUser);
     }

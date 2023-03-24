@@ -41,6 +41,7 @@ describe('LoginUser', ()=>{
     });
 
     expect(res.headers['set-cookie'].length).toBe(1);
+    expect(res.body).toHaveProperty('token')
     expect(res.status).toBe(200);
   });  
 

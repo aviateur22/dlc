@@ -38,8 +38,8 @@ describe('ProductsUserUseCase', ()=>{
     });
 
     // Récupérarions
-    const userProductsPerson1 = await UseCaseServiceImpl.getUseCases().userUsecase.findProductsOfUserUseCase.execute(userId);
-    const userProductsPerson2 = await UseCaseServiceImpl.getUseCases().userUsecase.findProductsOfUserUseCase.execute("2");
+    const userProductsPerson1 = await UseCaseServiceImpl.getUseCases().productUsecase.findProductsOfUserUseCase.execute(userId);
+    const userProductsPerson2 = await UseCaseServiceImpl.getUseCases().productUsecase.findProductsOfUserUseCase.execute("2");
     expect(userProductsPerson1.userId).toBe('1');
     expect(userProductsPerson1.userEmail).toBe('aviateur22@hotmail.fr')
     expect(userProductsPerson1.products[0]).toBeTruthy();
