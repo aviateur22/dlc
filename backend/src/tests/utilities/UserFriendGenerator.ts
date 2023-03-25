@@ -4,7 +4,7 @@ export class UserFriendGenerator {
   /**
    * Suppresion de toutes les relations users-friends
    */
-  static async deleteUserProducts(): Promise<void> {
+  static async deleteAllUserFriendRelations(): Promise<void> {
     await RepositoryServiceImpl.getRepository().userFriendRepository.deleteAll();
   }
 }

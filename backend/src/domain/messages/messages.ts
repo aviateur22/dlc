@@ -3,6 +3,7 @@ export default {
     forbiddenAction: 'vous n\'êtes pas autorisé à faire cette action',
     formatCookieError: 'erreur format cookie',    
     emailExist: 'email existant',
+    emailNotFind:'cet email n\'est pas trouvé',
     userNotfind: 'utilisateur inconnu',
     errorServer: 'désolé il y a une erreur interne au serveur',
     expiredSession: 'la session a expirée',
@@ -26,7 +27,12 @@ export default {
     imageMandatory: 'l\'image est obligatpire',
     productNotBelongToUser: 'ce produit n\'est pas en votre possession',
     tokenMissing: 'certaines informations sont manquantes pour la soumission des données',
-    userFriendNotFind: 'aucune relation de trouvée'
+    userFriendNotFind: 'aucune relation de trouvée',
+    friendEmailMissing: 'l\'email est obligatoire',
+    friendNameMissing: 'le prénom est obligatoire',
+    friendIdMissing: 'id de l\'ami est manuqant',
+    friendRelationAlreadyExist: 'cette personne est déjà dans vos relations',
+    friendRelationMissing: 'cette personne n\'est pas dans vos relations',
 
     
   }

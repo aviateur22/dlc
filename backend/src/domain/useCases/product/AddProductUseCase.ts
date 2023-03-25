@@ -11,7 +11,7 @@ import { AddProductUserEntity } from "../../entities/productUser/AddProductUserE
 import { ProductUserEntity } from "../../entities/productUser/ProductUserEntity";
 import messages from "../../messages/messages";
 import { UseCaseModel } from "../UseCaseModel";
-import { Friends } from "../utils/Friends";
+import { Friends } from "../helpers/Friends";
 
 export class AddProductUseCase extends UseCaseModel {
   

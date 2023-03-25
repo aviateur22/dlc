@@ -2,6 +2,7 @@ import { AddFriendEntity } from "../../../domain/entities/friend/AddFriendEntity
 import { DeleteFriendEntity } from "../../../domain/entities/friend/DeleteFriendEntity";
 import { UserFriendRepositorySchema } from "../../../domain/ports/repositoriesSchemas/UserFriendRepositorySchema";
 import { UserFriendModel } from "../../models/userFriend/UserFriendModel";
+import functionsHelpers from './helpers/FactorisationFunction';
 
 /**
  * Repository InMemory
@@ -10,26 +11,39 @@ export class InMemoryUserFriendRepository implements UserFriendRepositorySchema 
   
   private userFriends: Array<UserFriendModel> = [];
 
+  
+
   /**
    * Ajout d'un ami
    * @param {AddFriendEntity} addFriend 
    * @returns {Promise<UserFriendModel>}
    */
-  async addFriend(addFriend: AddFriendEntity): Promise<UserFriendModel> {
-    const id = this.userFriends.length === 0 ? 1 : Math.max(...this.userFriends.map(x=>Number(x.id))) + 1;
-
-    const userFriend = {
-      id: id.toString(),
+  async addFriend(addFriend: AddFriendEntity): Promise<Array<UserFriendModel>> {
+    
+    const addFriendArray: Array<UserFriendModel> = [];
+    const userFriendRelation1 = await functionsHelpers.addUserFriendRelation(this.userFriends, {      
       userId: addFriend.userId,
       friendEmail: addFriend.friendEmail,
       friendId: addFriend.friendId,
       friendName: addFriend.friendName,
       createdAt: addFriend.createdAt,
       updatedAt: addFriend.updatedAt
-    }
+    });
 
-    this.userFriends.push(userFriend);
-    return userFriend;
+    const userFriendRelation2 = await functionsHelpers.addUserFriendRelation(this.userFriends, {      
+      userId: addFriend.friendId,
+      friendEmail: addFriend.friendEmail,
+      friendId: addFriend.userId,
+      friendName: addFriend.friendName,
+      createdAt: addFriend.createdAt,
+      updatedAt: addFriend.updatedAt
+    });
+
+    this.userFriends.push(userFriendRelation1, userFriendRelation2);
+    addFriendArray.push(userFriendRelation1, userFriendRelation2);
+
+
+    return addFriendArray;
   }
 
   /**
@@ -62,19 +76,23 @@ export class InMemoryUserFriendRepository implements UserFriendRepositorySchema 
    * @param {DeleteFriendEntity} deleteFriend
    * @returns {Promise<UserFriendModel|null>}
    */
-  async deleteFriendRelation(deleteFriend: DeleteFriendEntity): Promise<UserFriendModel|null> {
-    const index = this.userFriends.findIndex(x=>(x.userId === deleteFriend.userId && x.friendId === deleteFriend.friendId));
+  async deleteFriendRelation(deleteFriend: DeleteFriendEntity): Promise<Array<UserFriendModel>|null> {
+    const friendUserArray: Array<UserFriendModel> = [];
 
-    if(index < 0) {
-      return null;
+    const userFriendDelete1: UserFriendModel|null = functionsHelpers.deleteUserFriendRelation(this.userFriends, deleteFriend.userId, deleteFriend.friendId );
+    const userFriendDelete2: UserFriendModel|null = functionsHelpers.deleteUserFriendRelation(this.userFriends, deleteFriend.friendId, deleteFriend.userId );
+
+
+    if(userFriendDelete1) {
+      friendUserArray.push(userFriendDelete1);
     }
-
-    const userFriend = this.userFriends[index-1];
-
-    // Supprsion de l'item
-    this.userFriends.splice(index-1, 1);
-
-    return userFriend;
+    
+    
+    if(userFriendDelete2) {
+      friendUserArray.push(userFriendDelete2);
+    } 
+    
+    return friendUserArray;
   }
 
   /**
@@ -83,5 +101,7 @@ export class InMemoryUserFriendRepository implements UserFriendRepositorySchema 
   async deleteAll(): Promise<void> {
     this.userFriends = [];
   }
+
+
 
 }

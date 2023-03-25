@@ -10,12 +10,12 @@ export class UserFriendModelMapper {
    * @param data 
    * @returns {UserFriendModel}
    */
-  static getUserFriendModel(friendEmail: string, data: any): UserFriendModel {
+  static getUserFriendModel(data: any): UserFriendModel {
     return new UserFriendModel({
       id: data.id,
       userId: data.user_id,
       friendId: data.friend_id,
-      friendEmail: friendEmail,
+      friendEmail: data.email,
       friendName: data.friend_name,
       createdAt: data.created_at,
       updatedAt: data.updated_at
@@ -29,7 +29,7 @@ export class UserFriendModelMapper {
    */
   static getUserFriendsModel(datas: Array<any>): Array<UserFriendModel> {
     return datas.map(data=>{
-      return UserFriendModelMapper.getUserFriendModel(data.friend_email, data);
+      return UserFriendModelMapper.getUserFriendModel(data);
     })
   }
 }

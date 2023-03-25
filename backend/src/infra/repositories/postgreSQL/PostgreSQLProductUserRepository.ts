@@ -73,7 +73,11 @@ export class PostgreSQLProductUserRepository implements ProductUserRepositorySch
    * @param {string} userId
    */
   async deleteMultipleProductsByUserId(productIdArray: string[], userId: string): Promise<void> {
-    await client.query('DELETE FROM "product_user" WHERE product_user.product_id=ANY($1) AND "user_id" =$2', [
+    await client.query(`WITH delete_product_user AS(
+      DELETE FROM "product_user" WHERE product_user.product_id=ANY($1) AND "user_id" =$2 RETURNING *)
+      SELECT * FROM delete_product_user
+      JOIN "user" ON "delete_product_user".user_id = "user".id
+      `, [
       productIdArray, userId
     ]);
   }

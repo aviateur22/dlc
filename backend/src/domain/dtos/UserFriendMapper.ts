@@ -7,7 +7,7 @@ import { UserFriendEntity } from "../entities/friend/UserFriendEntity";
 export class UserFriendMapper {
 
   /**
-   * 
+   * Mapper UserFriendModel ver UserFriendEntity
    * @param {UserFriendModel} userFriend 
    * @returns {UserFriendEntity}
    */
@@ -21,5 +21,14 @@ export class UserFriendMapper {
       createdAt: userFriend.createdAt,
       updatedAt: userFriend.updatedAt
     });
+  }
+
+  /**
+   * Mapper UserFriendModel[] ver UserFriendEntity[]
+   * @param {Array<UserFriendModel>} usersFriends
+   * @returns {Array<UserFriendEntity>}
+   */
+  static getUserFriendsEntities(usersFriends: Array<UserFriendModel>): Array<UserFriendEntity> {
+    return usersFriends.map(userFriend=>UserFriendMapper.getUserFriendEntity(userFriend));
   }
 }

@@ -9,7 +9,7 @@ export interface UserFriendRepositorySchema {
    * @param addFriend 
    * @returns {Promise<UserFriendModel>} 
    */
-  addFriend(addFriend: AddFriendEntity): Promise<UserFriendModel>;
+  addFriend(addFriend: AddFriendEntity): Promise<Array<UserFriendModel>>;
 
   /**
    * Suppression des liens users-friends
@@ -20,7 +20,7 @@ export interface UserFriendRepositorySchema {
    * Suppression d'un friend
    * @param {deleteFriendEntity} deleteFriend 
    */
-  deleteFriendRelation(deleteFriend: DeleteFriendEntity): Promise<UserFriendModel|null>;
+  deleteFriendRelation(deleteFriend: DeleteFriendEntity): Promise<Array<UserFriendModel>|null>;
 
   /**
    * Recerche des amis d'une personne

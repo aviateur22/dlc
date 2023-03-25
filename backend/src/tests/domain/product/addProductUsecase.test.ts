@@ -22,7 +22,7 @@ describe('AddProductUseCase', ()=>{
     await UserGenerator.resteUser();
     await ProductGenerator.deleteProduct();
     await ImageGenerator.deleteImage();
-    await UserFriendGenerator.deleteUserProducts();
+    await UserFriendGenerator.deleteAllUserFriendRelations();
     await ProductUserGenerator.deleteProductUser();
   });
 
@@ -97,7 +97,7 @@ describe('AddProductUseCase', ()=>{
         }        
       }
 
-      const addFriend = await UseCaseServiceImpl.getUseCases().friendUseCase.addFriendUseCase.execute({
+      const addFriendRelation = await UseCaseServiceImpl.getUseCases().friendUseCase.addFriendUseCase.execute({
         friendEmail: 'helixia22@hotmail.fr',
         friendName: 'céline',
         userId: '1'
@@ -112,8 +112,8 @@ describe('AddProductUseCase', ()=>{
       });
 
       // Recherche des relations friend-product
-      const productFriendRelation = await RepositoryServiceImpl.getRepository().productUserRepository.findByUserId(addFriend.friendId);
-      const findAllProductsOfFriend = await RepositoryServiceImpl.getRepository().productRepository.findByUserId(addFriend.friendId);
+      const productFriendRelation = await RepositoryServiceImpl.getRepository().productUserRepository.findByUserId(addFriendRelation[0].friendId);
+      const findAllProductsOfFriend = await RepositoryServiceImpl.getRepository().productRepository.findByUserId(addFriendRelation[0].friendId);
 
       expect(productFriendRelation.length).toBe(2);
       expect(findAllProductsOfFriend.length).toBe(2)

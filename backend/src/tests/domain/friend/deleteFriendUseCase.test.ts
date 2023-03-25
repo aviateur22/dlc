@@ -20,7 +20,7 @@ describe('DeleteFriendUseCase', ()=>{
     await ProductGenerator.deleteProduct();
     await ImageGenerator.deleteImage();
     await ProductUserGenerator.deleteProductUser();
-    await UserFriendGenerator.deleteUserProducts();
+    await UserFriendGenerator.deleteAllUserFriendRelations();
     await ProductGenerator.createProduct();
     await ProductGenerator.createProduct();
   });
@@ -28,40 +28,36 @@ describe('DeleteFriendUseCase', ()=>{
   it('Should delete a friend', async()=>{
     try {
       // Ajout de 1 ami
-      const addFriend = await UseCaseServiceImpl.getUseCases().friendUseCase.addFriendUseCase.execute({
+      const addFriendRelation = await UseCaseServiceImpl.getUseCases().friendUseCase.addFriendUseCase.execute({
         friendEmail: 'helixia22@hotmail.fr',
         friendName: 'celine',
         userId: '1'
-      });
+      });     
 
-      // friendProducts
-      let friendProducts = await RepositoryServiceImpl.getRepository().productUserRepository.findByUserId(addFriend.friendId);
-   
+      // Récupération des produits de l'ami
+      let friendProducts = await RepositoryServiceImpl.getRepository().productUserRepository.findByUserId(addFriendRelation[0].friendId);   
 
-      // 
-      let userFriends = await RepositoryServiceImpl.getRepository().userFriendRepository.findAllFriendByUserId(addFriend.userId);
+      // Récupération de tous les amis du user
+      let userFriends = await RepositoryServiceImpl.getRepository().userFriendRepository.findAllFriendByUserId(addFriendRelation[0].userId);
 
       expect(friendProducts.length).toBe(2);
       expect(userFriends.length).toBe(1);
-
+      
       const { friendId, userId } = { friendId: '2', userId: '1'};
-      
-      
+            
       // Suppression de l'ami
-      let deleteFriend: UserFriendEntity = await UseCaseServiceImpl.getUseCases().friendUseCase.deleteFriendUseCase.execute({
+      let deleteFriendRelation: Array<UserFriendEntity> = await UseCaseServiceImpl.getUseCases().friendUseCase.deleteFriendUseCase.execute({
         friendId,
         userId
       });
      
-      // friendProduct
+      // Récupération des produits de l'ami
       friendProducts = await RepositoryServiceImpl.getRepository().productUserRepository.findByUserId(friendId);
 
-      // userFriend
-      userFriends = await RepositoryServiceImpl.getRepository().userFriendRepository.findAllFriendByUserId(addFriend.userId);
+      // Récupération de tous les amis du user
+      userFriends = await RepositoryServiceImpl.getRepository().userFriendRepository.findAllFriendByUserId(deleteFriendRelation[0].userId);
 
-
-
-      expect(deleteFriend).toBeInstanceOf(UserFriendEntity);
+      expect(deleteFriendRelation).toBeInstanceOf(Array<UserFriendEntity>);
       expect(friendProducts.length).toBe(0);
       expect(userFriends.length).toBe(0);
       

@@ -23,7 +23,7 @@ describe('DeleteProductUseCase', ()=>{
     await ProductGenerator.deleteProduct();
     await ImageGenerator.deleteImage();
     await ProductUserGenerator.deleteProductUser();
-    await UserFriendGenerator.deleteUserProducts();
+    await UserFriendGenerator.deleteAllUserFriendRelations();
     await ProductGenerator.createProduct();
   });
   
@@ -104,7 +104,7 @@ describe('DeleteProductUseCase', ()=>{
 
       
 
-      const addFriend = await UseCaseServiceImpl.getUseCases().friendUseCase.addFriendUseCase.execute({
+      const addFriendRelation = await UseCaseServiceImpl.getUseCases().friendUseCase.addFriendUseCase.execute({
         friendEmail: 'helixia22@hotmail.fr',
         friendName: 'céline',
         userId: '1'
@@ -119,8 +119,8 @@ describe('DeleteProductUseCase', ()=>{
       });
       
       // Recherche des relations friend-product
-      let productFriendRelation = await RepositoryServiceImpl.getRepository().productUserRepository.findByUserId(addFriend.friendId);
-      let findAllProductsOfFriend = await RepositoryServiceImpl.getRepository().productRepository.findByUserId(addFriend.friendId);
+      let productFriendRelation = await RepositoryServiceImpl.getRepository().productUserRepository.findByUserId(addFriendRelation[0].friendId);
+      let findAllProductsOfFriend = await RepositoryServiceImpl.getRepository().productRepository.findByUserId(addFriendRelation[0].friendId);
 
       expect(productFriendRelation.length).toBe(3);
       expect(findAllProductsOfFriend.length).toBe(3)
@@ -136,10 +136,9 @@ describe('DeleteProductUseCase', ()=>{
       });
       
       // Recherche des relations friend-product
-      productFriendRelation = await RepositoryServiceImpl.getRepository().productUserRepository.findByUserId(addFriend.friendId);
-      findAllProductsOfFriend = await RepositoryServiceImpl.getRepository().productRepository.findByUserId(addFriend.friendId);
+      productFriendRelation = await RepositoryServiceImpl.getRepository().productUserRepository.findByUserId(addFriendRelation[0].friendId);
+      findAllProductsOfFriend = await RepositoryServiceImpl.getRepository().productRepository.findByUserId(addFriendRelation[0].friendId);
 
-      console.log(addFriend.friendId)
       expect(productFriendRelation.length).toBe(2);
       expect(findAllProductsOfFriend.length).toBe(2)
 
