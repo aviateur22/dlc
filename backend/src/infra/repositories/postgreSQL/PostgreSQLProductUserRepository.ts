@@ -12,8 +12,8 @@ export class PostgreSQLProductUserRepository implements ProductUserRepositorySch
    */
   async save(productUser: Partial<AddProductUserEntity>): Promise<ProductUserModel|null> {
 
-    const addProductUser = await client.query('INSERT INTO "product_user" ("user_id", "product_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) returning *', [ 
-      productUser.userId, productUser.productId, productUser.createdAt, productUser.updatedAt
+    const addProductUser = await client.query('INSERT INTO "product_user" ("user_id", "product_id", "owner_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) returning *', [ 
+      productUser.userId, productUser.productId, productUser.ownerId, productUser.createdAt, productUser.updatedAt
     ]).then(result=>{
       
       // Erreur save

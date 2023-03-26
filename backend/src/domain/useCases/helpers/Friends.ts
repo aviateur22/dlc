@@ -3,6 +3,7 @@ import { FriendRelationException } from "../../../exceptions/FriendRelationExcep
 import { UserNotFindException } from "../../../exceptions/UserNotFindException";
 import { UserFriendModel } from "../../../infra/models/userFriend/UserFriendModel";
 import { RepositoryServiceImpl } from "../../../infra/services/repository/RepositoryServiceImpl";
+import { AddFriendProductEntity } from "../../entities/product/AddFriendProductEntity";
 import messages from "../../messages/messages";
 
 export class Friends {
@@ -16,14 +17,12 @@ export class Friends {
   static async addAllProductsToOneFriend(userId: string, friendId: string): Promise<void> {
     
     // Récuparation des produits
-    const productsId = await RepositoryServiceImpl.getRepository().productUserRepository.findByUserId(userId).then(products=>{
-      return products.map(product=>product.productId)
-    });   
+    const productsUser = await RepositoryServiceImpl.getRepository().productUserRepository.findByUserId(userId);
  
-    for(let product of productsId) {
+    for(let product of productsUser) {
       
       // vérification si produit déja rattaché a l'utilisateur
-      const findProduct = await RepositoryServiceImpl.getRepository().productUserRepository.findByUserIdAndProductId(friendId, product);
+      const findProduct = await RepositoryServiceImpl.getRepository().productUserRepository.findByUserIdAndProductId(friendId, product.productId);
       
       if(findProduct.length === 0) {
         // Date de création
@@ -31,8 +30,9 @@ export class Friends {
 
         // Ajout du ProduitUser        
         const addProductUser =  await RepositoryServiceImpl.getRepository().productUserRepository.save({
-          productId: product,
+          productId: product.productId,
           userId: friendId,
+          ownerId: product.ownerId,
           createdAt:  createdAt,
           updatedAt: createdAt
         });
@@ -47,23 +47,25 @@ export class Friends {
 
   /**
    * Ajout d'un produit à tous les amis
-   * @param {string} userId
-   * @param {string} productId
+   * 
+   * @param {Partial<AddFriendProductEntity>} addProductData
    */
-  static async addOneProductToAllFriend(userId: string, productId: string): Promise<void> {
+  static async addOneProductToAllFriend(addProductData: AddFriendProductEntity): Promise<void> {
+    
     // Date de création
     let createdAt = new Date();
 
     // Récupération des amis
-    const friends = await RepositoryServiceImpl.getRepository().userFriendRepository.findAllFriendByUserId(userId);
+    const friends = await RepositoryServiceImpl.getRepository().userFriendRepository.findAllFriendByUserId(addProductData.userId!);
 
     for(let friend of friends) {
       // Ajout du ProduitUser        
       const addProductUser =  await RepositoryServiceImpl.getRepository().productUserRepository.save({
         userId: friend.friendId,
-        productId: productId,
+        productId: addProductData.productId,
+        ownerId: addProductData.ownerId,
         createdAt:  createdAt,
-        updatedAt: createdAt
+        updatedAt: createdAt        
       });
 
       if(!addProductUser) {

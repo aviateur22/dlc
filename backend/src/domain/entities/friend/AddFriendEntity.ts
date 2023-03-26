@@ -7,8 +7,10 @@ export class AddFriendEntity {
   friendName!: string;
   userId!: string;
   friendId!: string;
+  relationId!: string;
   createdAt: Date;
   updatedAt: Date;
+
 
   constructor(addFriend: Partial<AddFriendEntity>) {
     

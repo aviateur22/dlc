@@ -1,5 +1,4 @@
 import { UserNotFindException } from "../../../exceptions/UserNotFindException";
-import { UserFriendModel } from "../../../infra/models/userFriend/UserFriendModel";
 import { UserFriendMapper } from "../../dtos/UserFriendMapper";
 import { DeleteFriendEntity } from "../../entities/friend/DeleteFriendEntity";
 import { UserFriendEntity } from "../../entities/friend/UserFriendEntity";
@@ -37,12 +36,11 @@ export class DeleteFriendUseCase extends UseCaseModel {
       let findAllUserProduct = await this.repositories.productUserRepository.findByUserId(userFriend.userId).then(result=>{
         return result.map(x=>x.productId)
       });
-      console.log(findAllUserProduct);
-      console.log(userFriend.friendId)
+      
       // Suppression  des relations friend-produits
       await this.repositories.productUserRepository.deleteMultipleProductsByUserId(findAllUserProduct, userFriend.friendId);
     }
-    console.log(deleteFriendRelations)
+  
     return UserFriendMapper.getUserFriendsEntities(deleteFriendRelations);
   }
 }

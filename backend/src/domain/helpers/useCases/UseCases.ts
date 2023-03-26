@@ -5,6 +5,7 @@ import { ImageUseCase } from "./useCases/ImageUseCase";
 import { ProductUserUseCase } from "./useCases/ProductUserUseCase";
 import { TodoUseCase } from "./useCases/TodoUseCase";
 import { FriendUseCase } from "./useCases/FriendUseCase";
+import { RelationUseCase } from "./useCases/RelationUseCase";
 
 /**
  * UseCases disponibles dans le domaine
@@ -18,6 +19,7 @@ class UseCases {
   readonly productUserUsecase: ProductUserUseCase = new ProductUserUseCase();
   readonly todoUseCase: TodoUseCase = new TodoUseCase();
   readonly friendUseCase: FriendUseCase = new FriendUseCase();
+  readonly relationUseCase: RelationUseCase = new RelationUseCase();
 
 }
 export { UseCases }

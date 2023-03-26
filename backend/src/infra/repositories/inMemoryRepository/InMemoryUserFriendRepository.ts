@@ -26,6 +26,7 @@ export class InMemoryUserFriendRepository implements UserFriendRepositorySchema 
       friendEmail: addFriend.friendEmail,
       friendId: addFriend.friendId,
       friendName: addFriend.friendName,
+      relationId: addFriend.relationId,
       createdAt: addFriend.createdAt,
       updatedAt: addFriend.updatedAt
     });
@@ -34,6 +35,7 @@ export class InMemoryUserFriendRepository implements UserFriendRepositorySchema 
       userId: addFriend.friendId,
       friendEmail: addFriend.friendEmail,
       friendId: addFriend.userId,
+      relationId: addFriend.relationId,
       friendName: addFriend.friendName,
       createdAt: addFriend.createdAt,
       updatedAt: addFriend.updatedAt
@@ -70,6 +72,16 @@ export class InMemoryUserFriendRepository implements UserFriendRepositorySchema 
 
     return findOneFriend;
   }
+
+  /**
+   * Recherche des amis suivants une relation
+   * @param {string} relationId 
+   * @returns {Promise<Array<UserFriendModel>>}
+   */
+  async findByRelationId(relationId: string): Promise<UserFriendModel[]> {
+    const friendsRelations = this.userFriends.filter(x=>x.relationId === relationId);
+    return friendsRelations;
+  }  
 
   /**
    * Suppression d'un ami

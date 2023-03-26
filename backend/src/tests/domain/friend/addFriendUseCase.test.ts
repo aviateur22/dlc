@@ -74,9 +74,7 @@ describe('AddFriendUsecase', ()=>{
     const productFriend = await RepositoryServiceImpl.getRepository().productUserRepository.findByUserId(addFriendRelation[0].friendId);
 
     // Liste des produits du user
-    const productUser = await RepositoryServiceImpl.getRepository().productUserRepository.findByUserId('1');
-
- 
+    const productUser = await RepositoryServiceImpl.getRepository().productUserRepository.findByUserId('1'); 
 
     expect(addFriendRelation.length).toBe(2);
     expect(addFriendRelation[0]).toEqual(expect.objectContaining({
@@ -88,9 +86,9 @@ describe('AddFriendUsecase', ()=>{
       updatedAt: addFriendRelation[0].updatedAt
     }));
 
-    expect(productFriend.length).toBe(3);    
-    expect(productUser.length).toBe(3);
-    expect(friends.length).toBe(1);
+    expect(productFriend.length).toBe(2);    
+    expect(productUser.length).toBe(1);
+    expect(friends.length).toBe(0);
   
   });
 

@@ -7,6 +7,7 @@ import { ProductUserGenerator } from "../../utilities/ProductUserGenerator";
 import { TestUtilities } from "../../utilities/TestUtilities";
 import { UserFriendGenerator } from "../../utilities/UserFriendGenerator";
 import { UserGenerator } from "../../utilities/UserGenerator";
+import imageData from "../../utilities/imageData.json"
 
 describe('DeleteFriendUseCase', ()=>{
   // Selection Server Express
@@ -32,7 +33,20 @@ describe('DeleteFriendUseCase', ()=>{
         friendEmail: 'helixia22@hotmail.fr',
         friendName: 'celine',
         userId: '1'
-      });     
+      }); 
+      
+      const product =  {
+        userId: '2',
+        openDate: new Date(),
+        image: {
+          size: 50000,
+          data: imageData.image.base64,
+          mimetype: 'image/jpeg'
+        }        
+      }
+
+      // Ajout produit à ami
+      const addProductToFriend = await UseCaseServiceImpl.getUseCases().productUsecase.addProductUseCase.execute({...product});
 
       // Récupération des produits de l'ami
       let friendProducts = await RepositoryServiceImpl.getRepository().productUserRepository.findByUserId(addFriendRelation[0].friendId);   
@@ -40,8 +54,8 @@ describe('DeleteFriendUseCase', ()=>{
       // Récupération de tous les amis du user
       let userFriends = await RepositoryServiceImpl.getRepository().userFriendRepository.findAllFriendByUserId(addFriendRelation[0].userId);
 
-      expect(friendProducts.length).toBe(2);
-      expect(userFriends.length).toBe(1);
+      expect(friendProducts.length).toBe(1);
+      expect(userFriends.length).toBe(0);
       
       const { friendId, userId } = { friendId: '2', userId: '1'};
             
@@ -58,7 +72,7 @@ describe('DeleteFriendUseCase', ()=>{
       userFriends = await RepositoryServiceImpl.getRepository().userFriendRepository.findAllFriendByUserId(deleteFriendRelation[0].userId);
 
       expect(deleteFriendRelation).toBeInstanceOf(Array<UserFriendEntity>);
-      expect(friendProducts.length).toBe(0);
+      expect(friendProducts.length).toBe(1);
       expect(userFriends.length).toBe(0);
       
 

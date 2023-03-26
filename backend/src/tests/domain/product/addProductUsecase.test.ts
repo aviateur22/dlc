@@ -26,7 +26,7 @@ describe('AddProductUseCase', ()=>{
     await ProductUserGenerator.deleteProductUser();
   });
 
-  it('Should add a new product', async()=>{
+  it('Should add a new product to a user', async()=>{
     try {
       const product =  {
         userId: '1',
@@ -73,10 +73,10 @@ describe('AddProductUseCase', ()=>{
     }    
   });
 
-  it('Should add a new product to all of the freinds', async()=>{
+  it('Should cascade product to a validated friend relation', async()=>{
     try {
 
-      // Ajouts de 2 produits
+      // Ajouts produit
       const product1 =  {
         userId: '1',
         openDate: new Date(),
@@ -86,6 +86,20 @@ describe('AddProductUseCase', ()=>{
           mimetype: 'image/jpeg'
         }        
       }
+
+      const addProduct1 = await UseCaseServiceImpl.getUseCases().productUsecase.addProductUseCase.execute({
+        ...product1
+      });
+
+      // Ajout ami
+      const addFriendRelation = await UseCaseServiceImpl.getUseCases().friendUseCase.addFriendUseCase.execute({
+        friendEmail: 'helixia22@hotmail.fr',
+        friendName: 'céline',
+        userId: '1'
+      });
+
+      // Validation de l'ajout d'ami
+      const acceptFriendRelation = await UseCaseServiceImpl.getUseCases().relationUseCase.acceptFriendRelationUseCase.execute('1');
 
       const product2 =  {
         userId: '1',
@@ -97,15 +111,61 @@ describe('AddProductUseCase', ()=>{
         }        
       }
 
+      const addProduct2 = await UseCaseServiceImpl.getUseCases().productUsecase.addProductUseCase.execute({
+        ...product2
+      });
+
+      // Recherche des relations friend-product
+      const productFriendRelation = await RepositoryServiceImpl.getRepository().productUserRepository.findByUserId(addFriendRelation[0].friendId);
+      const findAllProductsOfFriend = await RepositoryServiceImpl.getRepository().productRepository.findByUserId(addFriendRelation[0].friendId);
+      console.log(productFriendRelation)
+      const findAllProductsOfUser = await RepositoryServiceImpl.getRepository().productRepository.findByUserId(addFriendRelation[0].userId);
+
+      expect(productFriendRelation.length).toBe(2);
+      expect(findAllProductsOfFriend.length).toBe(2);
+      expect(findAllProductsOfUser.length).toBe(2)
+
+
+
+    } catch (error: any) {
+      expect(error).toBeFalsy();
+    }
+  });
+
+  it('Should not cascade product to a friend who has not validate friend relation', async()=>{
+    try {
+
+      // Ajouts produit
+      const product1 =  {
+        userId: '1',
+        openDate: new Date(),
+        image: {
+          size: 50000,
+          data: imageData.image.base64,
+          mimetype: 'image/jpeg'
+        }        
+      }
+
+      const addProduct1 = await UseCaseServiceImpl.getUseCases().productUsecase.addProductUseCase.execute({
+        ...product1
+      });
+
+      // Ajout ami
       const addFriendRelation = await UseCaseServiceImpl.getUseCases().friendUseCase.addFriendUseCase.execute({
         friendEmail: 'helixia22@hotmail.fr',
         friendName: 'céline',
         userId: '1'
-      });
-  
-      const addProduct1 = await UseCaseServiceImpl.getUseCases().productUsecase.addProductUseCase.execute({
-        ...product1
-      });
+      });  
+
+      const product2 =  {
+        userId: '1',
+        openDate: new Date(),
+        image: {
+          size: 40000,
+          data: imageData.image.base64,
+          mimetype: 'image/png'
+        }        
+      }
 
       const addProduct2 = await UseCaseServiceImpl.getUseCases().productUsecase.addProductUseCase.execute({
         ...product2
@@ -115,8 +175,11 @@ describe('AddProductUseCase', ()=>{
       const productFriendRelation = await RepositoryServiceImpl.getRepository().productUserRepository.findByUserId(addFriendRelation[0].friendId);
       const findAllProductsOfFriend = await RepositoryServiceImpl.getRepository().productRepository.findByUserId(addFriendRelation[0].friendId);
 
-      expect(productFriendRelation.length).toBe(2);
-      expect(findAllProductsOfFriend.length).toBe(2)
+      const findAllProductsOfUser = await RepositoryServiceImpl.getRepository().productRepository.findByUserId(addFriendRelation[0].userId);
+
+      expect(productFriendRelation.length).toBe(0);
+      expect(findAllProductsOfFriend.length).toBe(0);
+      expect(findAllProductsOfUser.length).toBe(2)
 
 
 

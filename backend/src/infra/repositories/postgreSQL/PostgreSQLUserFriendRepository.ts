@@ -5,8 +5,7 @@ import { UserFriendModelMapper } from "../../dto/UserFriendModelMapper";
 import { UserFriendModel } from "../../models/userFriend/UserFriendModel";
 import client from './connexion/databaseConnexion'
 
-export class PostgreSQLUserFriendRepository implements UserFriendRepositorySchema {  
-
+export class PostgreSQLUserFriendRepository implements UserFriendRepositorySchema {
   /**
    * Ajout d'un Friend
    * @param {AddFriendEntity} addFriend 
@@ -18,16 +17,16 @@ export class PostgreSQLUserFriendRepository implements UserFriendRepositorySchem
     const friend = await client.query(`
     WITH add_new_relation AS (
       INSERT INTO "friend_user" 
-      ("user_id", "friend_id", "friend_name", "created_at", "updated_at") 
+      ("user_id", "friend_id", "friend_name", "relation_id", "created_at", "updated_at") 
       VALUES 
-      ($1, $2, $3, $4 ,$5),
-      ($2, $1, $3, $4 ,$5)
+      ($1, $2, $3, $4, $5 ,$6),
+      ($2, $1, $3, $4 ,$5 ,$6)
       returning *
     )    
     SELECT * FROM add_new_relation
     JOIN "user" ON "add_new_relation".user_id = "user".id
     `, [
-      addFriend.userId, addFriend.friendId, addFriend.friendName, addFriend.createdAt, addFriend.updatedAt
+      addFriend.userId, addFriend.friendId, addFriend.friendName,addFriend.relationId, addFriend.createdAt, addFriend.updatedAt
     ]).then(result=>{
 
       // Pas de données
@@ -44,7 +43,7 @@ export class PostgreSQLUserFriendRepository implements UserFriendRepositorySchem
   }
 
   /**
-   * Recerche de tous les amis d'une personne
+   * Recherche de tous les amis d'une personne ayant la relalion valide
    * @param {string} userId 
    * @returns {Promise<Array<UserFriendModel>>}
    */
@@ -57,10 +56,12 @@ export class PostgreSQLUserFriendRepository implements UserFriendRepositorySchem
     "user".email AS friend_email,
     "friend_user".friend_name AS friend_name,
     "friend_user".created_at AS created_at, 
-    "friend_user".updated_at AS updated_at
+    "friend_user".updated_at AS updated_at,
+    "relation".is_accepted AS is_relation_accepted
     FROM "friend_user"
     JOIN "user" ON "friend_user".friend_id = "user".id
-    WHERE user_id=$1`, [
+    JOIN "relation" ON "friend_user".relation_id = "relation".id
+    WHERE user_id=$1 AND "relation".is_accepted=true`, [
       userId
     ]).then(results=>{
       return UserFriendModelMapper.getUserFriendsModel(results.rows);      
@@ -103,6 +104,21 @@ export class PostgreSQLUserFriendRepository implements UserFriendRepositorySchem
   }
 
   /**
+   * Recherche des amis suivants une relation
+   * @param {string} relationId 
+   * @returns {Promise<Array<UserFriendModel>>}
+   */
+  async findByRelationId(relationId: string): Promise<UserFriendModel[]> {
+    const friendsRelations = await client.query('SELECT * FROM "friend_user" WHERE "relation_id"=$1', [
+      relationId
+    ]).then(result=>{
+      return UserFriendModelMapper.getUserFriendsModel(result.rows);
+    });
+
+    return friendsRelations;
+  }  
+
+  /**
    * Suppression ami user->friend et friend->user
    * @param {DeleteFriendEntity} deleteFriend
    * @returns {Promise<UserFriendModel|null>}
@@ -136,5 +152,4 @@ export class PostgreSQLUserFriendRepository implements UserFriendRepositorySchem
   async deleteAll(): Promise<void> {
     await client.query('TRUNCATE "product_user" RESTART IDENTITY CASCADE');
   }
-
 }
