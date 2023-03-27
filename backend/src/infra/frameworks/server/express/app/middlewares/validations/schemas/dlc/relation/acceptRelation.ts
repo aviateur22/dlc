@@ -1,26 +1,21 @@
 import Joi from 'joi';
 import messages from '../../../../../../../../../../domain/messages/messages';
 
+/**
+ * Schéma validation relation
+ */
 export default Joi.object({
 
-  // userId
-  userId: Joi
+  relationId: Joi
   .string()
   .required()
   .messages({
-    'string.empty': messages.message.userIdMissing,
-    'any.required': messages.message.userIdMissing
+    'string.base': messages.message.relationIdBadeFormat,
+    'string.empty': messages.message.relationIdMissing,
+    'string.pattern.base': messages.message.relationIdMissing,
+    'any.required': messages.message.relationIdMissing
   }),
 
-  //FriendId
-  friendId: Joi
-  .string()
-  .required() 
-  .messages({
-    'string.empty': messages.message.friendIdMissing,    
-    'any.required': messages.message.friendIdMissing
-  }),
-  
   // Token csurf
   token: Joi
   .string()
@@ -31,4 +26,4 @@ export default Joi.object({
     'string.pattern.base': messages.message.tokenMissing,
     'any.required': messages.message.tokenMissing
   })
-})
+});

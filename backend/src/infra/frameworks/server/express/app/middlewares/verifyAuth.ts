@@ -9,7 +9,7 @@ export default(req: ReqCookie, res: Response, next: NextFunction)=>{
 
   /**Recupération des cookies */    
   if(!req.cookieList || !req.cookieList.authorization){
-    throw new ForbiddenException('');
+    throw new ForbiddenException(messages.message.forbiddenAction);
   }
 
   /** récupération cookie authorization */

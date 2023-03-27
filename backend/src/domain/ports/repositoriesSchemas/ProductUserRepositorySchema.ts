@@ -21,6 +21,14 @@ export interface ProductUserRepositorySchema {
   findByUserId(userId: string): Promise<Array<ProductUserModel>>;
 
   /**
+   * Recherche ProductUser par user et owner
+   * @param {string} userId 
+   * @param {string} ownerId
+   * @returns {Promise<Array<ProductUserModel>>} 
+   */
+  findByUserIdAndOwnerId(userId: string, ownerId: string): Promise<Array<ProductUserModel>>;
+
+  /**
    * FindByUserAndProductId
    * @param {string} userId 
    * @param {string} productId 

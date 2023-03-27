@@ -65,7 +65,7 @@ describe('DeleteFriendRequest', ()=>{
     await UseCaseServiceImpl.getUseCases().friendUseCase.addFriendUseCase.execute({
       friendEmail: 'helixia22@hotmail.fr',
       friendName: 'céline',
-      userId: '1',
+      userId: '1'      
     });
 
     const res = await request(jestApp)
@@ -74,7 +74,8 @@ describe('DeleteFriendRequest', ()=>{
     .set('content-type', 'application/json')
     .send({
       userId: '1',
-      friendId: '2'
+      friendId: '2',
+      token: token
     });
 
     expect(res.status).toBe(200);
@@ -100,7 +101,8 @@ describe('DeleteFriendRequest', ()=>{
     .set('content-type', 'application/json')
     .send({
       userId: '1',
-      friendId: '3'
+      friendId: '3',
+      token: token
     });
 
     expect(res.status).toBe(400);
@@ -126,7 +128,8 @@ describe('DeleteFriendRequest', ()=>{
     .set('content-type', 'application/json')
     .send({
       userId: '1',
-      friendId: ''
+      friendId: '',
+      token: token
     });
 
     expect(res.status).toBe(400);
@@ -152,7 +155,8 @@ describe('DeleteFriendRequest', ()=>{
     .set('content-type', 'application/json')
     .send({
       userId: '',
-      friendId: '2'
+      friendId: '2',
+      token: token
     });
 
     expect(res.status).toBe(400);

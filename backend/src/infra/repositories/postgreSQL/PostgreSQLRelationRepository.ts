@@ -70,7 +70,6 @@ export class PostgreSQLRelationRepository implements RelationRepositorySchema {
       `, [
       relationId
     ]).then(result=>{
-      console.log(result.rows);
       if(result.rowCount === 0) {
         return null;
       }

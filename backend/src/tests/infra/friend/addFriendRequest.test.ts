@@ -68,7 +68,8 @@ describe('AddFriendRequest', ()=>{
     .send({
       userId: '1',
       friendEmail: 'helixia22@hotmail.fr',
-      friendName: 'céline'
+      friendName: 'céline',
+      token: token
     });
 
     expect(res.status).toBe(201);
@@ -85,7 +86,7 @@ describe('AddFriendRequest', ()=>{
     const addFriend = await UseCaseServiceImpl.getUseCases().friendUseCase.addFriendUseCase.execute({
       friendEmail: 'helixia22@hotmail.fr',
       friendName: 'céline',
-      userId: '1',
+      userId: '1'
     });
 
 
@@ -96,9 +97,10 @@ describe('AddFriendRequest', ()=>{
     .send({
       userId: '1',
       friendEmail: 'helixia22@hotmail.fr',
-      friendName: 'céline'
+      friendName: 'céline',
+      token: token
     });
-
+    console.log(res.body);
     expect(res.status).toBe(400);
     expect(res.body).toHaveProperty('errorMessage');
     expect(res.body.errorMessage).toBe(messages.message.friendRelationAlreadyExist);
@@ -116,7 +118,8 @@ describe('AddFriendRequest', ()=>{
     .send({
       userId: '1',
       friendEmail: 'helixia22@yahoo.fr',
-      friendName: 'céline'
+      friendName: 'céline',
+      token: token
     });
 
     expect(res.status).toBe(400);
@@ -136,7 +139,8 @@ describe('AddFriendRequest', ()=>{
     .send({
       userId: '1',
       friendEmail: '',
-      friendName: 'céline'
+      friendName: 'céline',
+      token: token
     });
 
     expect(res.status).toBe(400);
@@ -156,7 +160,8 @@ describe('AddFriendRequest', ()=>{
     .send({
       userId: '1',
       friendEmail: 'helixia22hotmail.fr',
-      friendName: 'céline'
+      friendName: 'céline',
+      token: token
     });
 
     expect(res.status).toBe(400);
@@ -176,7 +181,8 @@ describe('AddFriendRequest', ()=>{
     .send({
       userId: '1',
       friendEmail: 'helixia22@hotmail.fr',
-      friendName: ''
+      friendName: '',
+      token: token
     });
 
     expect(res.status).toBe(400);
@@ -196,7 +202,8 @@ describe('AddFriendRequest', ()=>{
     .send({
       userId: '',
       friendEmail: 'helixia22@hotmail.fr',
-      friendName: 'céline'
+      friendName: 'céline',
+      token: token
     });
 
     expect(res.status).toBe(400);

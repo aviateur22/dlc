@@ -43,6 +43,22 @@ export class PostgreSQLProductUserRepository implements ProductUserRepositorySch
   }
 
   /**
+   * FindByUserIdAndOwnerId
+   * @param {string} userId 
+   * @param {string}ownerId 
+   * @returns {Promise<Array<ProductUserModel>>}
+   */
+  async findByUserIdAndOwnerId(userId:string, ownerId: string): Promise<Array<ProductUserModel>>  {
+    const productUserByUserId = await client.query('SELECT * FROM "product_user" WHERE "user_id"=$1 AND "owner_id"=$2',[
+      userId, ownerId
+    ]).then(result => {
+      return ProductUserModelMapper.getProductsUsersModel(result.rows);
+    });
+
+    return productUserByUserId;
+  }
+
+  /**
    * FindByUserIDProductId
    * @param {string} userId 
    * @param {string} productId 

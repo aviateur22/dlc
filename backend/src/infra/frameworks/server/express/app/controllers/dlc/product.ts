@@ -1,7 +1,6 @@
 import { Request, Response, NextFunction } from "express";
 import { ProductEntity } from "../../../../../../../domain/entities/product/ProductEntity";
 import { UseCaseServiceImpl } from "../../../../../../../domain/services/UseCaseServiceImpl";
-import user from "./user";
 
 export default {
   
@@ -19,7 +18,7 @@ export default {
         errorMessage: 'no file uploaded'
       });
     }
- 
+   
     const { userId, openDate } = req.body;
     const image: any = req.files.image;
   

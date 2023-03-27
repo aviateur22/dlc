@@ -1,8 +1,5 @@
 import {v4 as uuidv4} from 'uuid';
 import { CryptoAES } from '../aes/CryptoAES';
-import { JwtInfomration } from '../jwt/JwtInfomration';
-import { TokenJwt } from '../jwt/TokenJwt';
-import jsonwebtoken from 'jsonwebtoken';
 import { CookieToken } from '../../../ports/csurToken/CookieToken';
 import { DecryptCookieToken } from './DecryptCookieCsurf';
 import { ForbiddenException } from '../../../../exceptions/ForbiddenException';
@@ -53,17 +50,18 @@ static async compare(cookieToken: string, payloadToken: string) {
     const aes = new CryptoAES();
 
     const cookieJwtDecrypt: CookieToken = await DecryptCookieToken.getDecryptToken(cookieToken);
-      
+    console.log(payloadToken)
     // SecretWord
     const secretWord = process.env.SECRET_APP_WORD;
-
+    
     // PayloadToken decrypt             
     const tokenClientDecrypt =  await aes.decrypt(payloadToken);
-
+    
     //comparaison du secret word et du token aéatoire
     if(cookieJwtDecrypt.secretAppWord !== secretWord || cookieJwtDecrypt.uuidToken !== tokenClientDecrypt){
       throw new ForbiddenException(messages.message.forbiddenAction);  
     }
+    
     return true;    
   }
 }

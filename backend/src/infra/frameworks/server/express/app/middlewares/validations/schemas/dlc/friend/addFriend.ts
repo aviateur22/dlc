@@ -30,5 +30,16 @@ export default Joi.object({
   .messages({
     'string.empty': messages.message.friendNameMissing,    
     'any.required': messages.message.friendNameMissing
+  }),
+
+  // Token csurf
+  token: Joi
+  .string()
+  .required()
+  .messages({
+    'string.base': messages.message.tokenFormat,
+    'string.empty': messages.message.tokenMissing,
+    'string.pattern.base': messages.message.tokenMissing,
+    'any.required': messages.message.tokenMissing
   })
 })

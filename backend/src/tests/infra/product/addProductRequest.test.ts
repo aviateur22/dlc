@@ -8,7 +8,7 @@ import { ProductGenerator } from "../../utilities/ProductGenerator";
 import { ProductUserGenerator } from "../../utilities/ProductUserGenerator";
 import { UserGenerator } from "../../utilities/UserGenerator";
 import messages from "../../../domain/messages/messages";
-import { Token } from "../../../infra/helpers/security/csurf/Token";
+
 
 describe('AddProductRequest ', ()=>{
   const imageToDownload = path.join(process.cwd(),'./src/tests/utilities/image.jpg');
@@ -45,17 +45,14 @@ describe('AddProductRequest ', ()=>{
   let cookies: any;
 
   // Token csurf
-  let token: string = '';
- 
+  let token: string = ''; 
 
   beforeEach(async()=>{
     await UserGenerator.resteUser();
     await ProductGenerator.deleteProduct();
     await ImageGenerator.deleteImage();
     await ProductUserGenerator.deleteProductUser();
-  });
-
-  
+  });  
 
   it('Should login user to get a cookie', async()=>{
     if(serviceSelect === ServerSource.fastify) {

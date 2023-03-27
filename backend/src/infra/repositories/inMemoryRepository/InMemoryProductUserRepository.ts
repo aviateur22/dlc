@@ -2,7 +2,7 @@ import { AddProductUserEntity } from "../../../domain/entities/productUser/AddPr
 import { ProductUserRepositorySchema } from "../../../domain/ports/repositoriesSchemas/ProductUserRepositorySchema";
 import { ProductUserModel } from "../../models/productUser/ProductUserModel";
 
-export class InMemoryProductUserRepository implements ProductUserRepositorySchema {
+export class InMemoryProductUserRepository implements ProductUserRepositorySchema {  
   
   private productsUsers: Array<ProductUserModel>=[];
   /**
@@ -32,6 +32,16 @@ export class InMemoryProductUserRepository implements ProductUserRepositorySchem
    */
   async findByUserId(userId: string): Promise<Array<ProductUserModel>> {
     return this.productsUsers.filter(product=>product.userId === userId);
+  }
+
+  /**
+   * Recherche ProductUser par user et owner
+   * @param {string} userId 
+   * @param {string} ownerId
+   * @returns {Promise<Array<ProductUserModel>>} 
+   */
+  async findByUserIdAndOwnerId(userId: string, ownerId: string): Promise<ProductUserModel[]> {
+    return this.productsUsers.filter(product=>(product.userId === userId && product.ownerId === ownerId));
   }
 
   /**

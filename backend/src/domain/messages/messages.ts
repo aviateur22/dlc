@@ -33,7 +33,12 @@ export default {
     friendIdMissing: 'id de l\'ami est manuqant',
     friendRelationAlreadyExist: 'cette personne est déjà dans vos relations',
     friendRelationMissing: 'cette personne n\'est pas dans vos relations',
-
-    
+    relationMissing: 'cette relation n\'existe pas',
+    relationIdMissing: 'id de la relation manquante',
+    friendRelationNotDelete: 'erreur suppression lien ami',
+    aesErrorMessage: 'erreur token',
+    userIdBadFormat: 'userId doit etres au format string',
+    tokenFormat: 'token incorrect',
+    relationIdBadeFormat: 'relationId doit être au format string'    
   }
 }

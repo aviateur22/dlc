@@ -15,13 +15,13 @@ export class Relation {
    * @returns {Promise<RelationEntity>}
    * 
    */
-  static async addRelation(addFriend: Partial<AddFriendEntity>): Promise<RelationEntity> {
+  static async addRelation(addFriend: Partial<AddFriendEntity>): Promise<RelationEntity> {   
 
     // Verification existance relation ami user->friend
-    Relation.isFriendRelationFind(addFriend.userId!, addFriend.friendId!);
+    await Relation.isFriendRelationFind(addFriend.userId!, addFriend.friendId!);
 
     // Verifcation existance friend->user
-    Relation.isFriendRelationFind(addFriend.friendId!, addFriend.userId!);    
+    await Relation.isFriendRelationFind(addFriend.friendId!, addFriend.userId!);    
 
     // Données d'ajout de relation
     const addRelationData = new AddFriendRelationEntity({
@@ -56,7 +56,8 @@ export class Relation {
       friendId: friendId
     })
 
-    if(findFriendRelation){
+   
+    if(findFriendRelation){     
       throw new FriendRelationException(messages.message.friendRelationAlreadyExist)
     }
   }

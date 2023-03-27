@@ -7,6 +7,8 @@ import fileValidation from '../../../middlewares/validations/fileValidation';
 import bodyValidation from '../../../middlewares/validations/bodyValidation';
 import imageSchema from '../../../middlewares/validations/schemas/dlc/product/image';
 import addProductSchema from '../../../middlewares/validations/schemas/dlc/product/addProduct';
+import deleteProductSchema from '../../../middlewares/validations/schemas/dlc/product/deleteProduct';
+import getAllProductSchema from '../../../middlewares/validations/schemas/dlc/product/getAllProduct';
 import productIdSchema from '../../../middlewares/validations/schemas/dlc/product/productId'
 import sanitizer from "../../../middlewares/sanitizer";
 import verifyAuth from "../../../middlewares/verifyAuth";
@@ -29,19 +31,23 @@ router.post('/',
   controllerHandler(productController.addProduct)
 );
 
-
+// Suppression produit
 router.delete('/:productId',
   controllerHandler(formatCookie),
   controllerHandler(verifyAuth),
   controllerHandler(userRole.user),
   controllerHandler(paramValidation(productIdSchema)),
+  controllerHandler(bodyValidation(deleteProductSchema)),
+  controllerHandler(verifyCsurfToken),
   controllerHandler(productController.deleteProduct)
 );
 
+// Récupération produits par userId
 router.get('/get-all-by-user-id',
   controllerHandler(formatCookie),
   controllerHandler(verifyAuth),
   controllerHandler(userRole.user),
+  controllerHandler(bodyValidation(getAllProductSchema)),
   controllerHandler(productController.getAllProductUserId)
 );
 
