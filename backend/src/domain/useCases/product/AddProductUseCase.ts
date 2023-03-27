@@ -1,38 +1,26 @@
-import { ErrorDatabaseException } from "../../../exceptions/ErrorDatabaseException";
-import { ImageSizeException } from "../../../exceptions/ImageSizeException";
-import { EncodeBase64 } from "../../../infra/helpers/security/EncodeBase64";
 import { ProductMapper } from "../../dtos/ProductMapper";
-import { AddImageEntity } from "../../entities/image/AddImageEntity";
 import { AddProductEntity } from "../../entities/product/AddProductEntity";
 import { ProductEntity } from "../../entities/product/ProductEntity";
 import { ProductImageEntity } from "../../entities/product/ProductImageEntity";
 import { AddProductUserEntity } from "../../entities/productUser/AddProductUserEntity";
 import { ProductUserEntity } from "../../entities/productUser/ProductUserEntity";
+import messages from "../../messages/messages";
 import { UseCaseModel } from "../UseCaseModel";
+import { AddFriendProductEntity } from "../../entities/product/AddFriendProductEntity";
+import { Product } from "../helpers/Product";
+import { ServerException } from "../../../exceptions/ServerException";
 
 export class AddProductUseCase extends UseCaseModel {
   
+  /**
+   * Ajout d'un produit
+   * @param { Partial<AddProductEntity>} addProduct 
+   * @returns {Promise<ProductEntity>}
+   */
   async execute(addProduct: Partial<AddProductEntity>): Promise<ProductEntity> {
-    
-    let addProductE: AddProductEntity = new AddProductEntity(addProduct);
 
-    if(addProductE.image.size > 5000000) {
-      throw new ImageSizeException('maximum image size of 5Mo');
-    }
-    
-    // Convertion image en base64
-    const imageBase64: string = EncodeBase64.encodeStringToBase64(addProduct.image.data);
-    const mimeType: string = addProduct.image.mimetype;
-
-    // Ajout de l'image    
-    const addImage = await this.repositories.imageRepository.save(new AddImageEntity({
-      imageBase64,
-      mimeType
-    }));
-
-    if(!addImage) {
-      throw new ErrorDatabaseException('error database');
-    }
+    // Ajout de l'image en base de données
+    const addImage = await Product.saveImage(addProduct);
 
     const productImage = new ProductImageEntity({
       imageId: addImage.id,
@@ -43,20 +31,28 @@ export class AddProductUseCase extends UseCaseModel {
     const product = await this.repositories.productRepository.save(productImage);
   
     if(!product) {
-      throw new ErrorDatabaseException('error database');
+      throw new ServerException(messages.message.errorServer);
     }
 
     const productUser = new ProductUserEntity({
       productId: product.id,
-      userId: addProduct.userId
+      userId: addProduct.userId,
+      ownerId: addProduct.userId      
     });
 
-    // Ajout du ProduitUser
+    // Ajout de la relation produit-user
     const addProductUser = await this.repositories.productUserRepository.save(new AddProductUserEntity({...productUser}));
 
     if(!addProductUser) {
-      throw new ErrorDatabaseException('error database');
+      throw new ServerException(messages.message.errorServer);
     }
+
+    // Ajout de la relation a tous les amis
+    await Product.addOneProductToAllFriend(new AddFriendProductEntity({
+      productId: product.id,
+      userId: addProduct.userId!,
+      ownerId: addProduct.userId!
+    }));
 
     return ProductMapper.getProductEntity({userId: addProduct.userId, ...product});
   }

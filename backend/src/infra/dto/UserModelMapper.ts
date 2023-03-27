@@ -9,7 +9,8 @@ export class UserModelMapper {
    */
   static getUserModel(data: any): UserModel {
     return new UserModel({
-      id: data.id.toString(), 
+      id: data.id.toString(),
+      role: data.role,
       email: data.email,
       password: data.password,
       createdAt: data.created_at,

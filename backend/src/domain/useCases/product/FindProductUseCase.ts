@@ -2,6 +2,7 @@ import { ProductNotFindException } from "../../../exceptions/ProductNotFindExcep
 import { ProductMapper } from "../../dtos/ProductMapper";
 import { ProductEntity } from "../../entities/product/ProductEntity";
 import { SearchProductEntity } from "../../entities/product/SearchProductEntity";
+import messages from "../../messages/messages";
 import { UseCaseModel } from "../UseCaseModel";
 
 /**
@@ -16,12 +17,20 @@ export class FindProductUseCase extends UseCaseModel {
    */
   async execute(searchProduct: SearchProductEntity): Promise<ProductEntity> {
 
-    const product = await this.repositories.productRepository.findById(new SearchProductEntity({...searchProduct}));
+    // Recherche du produit
+    const findProduct = await this.repositories.productRepository.findById(new SearchProductEntity({...searchProduct}));
 
-    if(!product) {
-      throw new ProductNotFindException('product not find');
+    if(!findProduct) {
+      throw new ProductNotFindException(messages.message.productNotFind);
     }
 
-    return ProductMapper.getProductEntity({ userId: searchProduct.userId , ...product});
+    // Vérification si produit appartient au user
+    const findProdutByUser = await this.repositories.productUserRepository.findByUserIdAndProductId(searchProduct.userId, searchProduct.productId);
+
+    if(findProdutByUser.length === 0) {
+      throw new ProductNotFindException(messages.message.productNotToUser);
+    }
+
+    return ProductMapper.getProductEntity({ userId: searchProduct.userId , ...findProduct});
   }
 }

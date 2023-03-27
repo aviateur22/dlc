@@ -2,10 +2,11 @@
  * AddProductEntity
  */
 export class AddProductUserEntity {
-  userId!: string;
-  productId!: string;
-  createdAt!: Date;
-  updatedAt!: Date;
+  readonly userId!: string;
+  readonly productId!: string;
+  readonly ownerId!: string
+  readonly createdAt!: Date;
+  readonly updatedAt!: Date;
 
   constructor(addProductUser: Partial<AddProductUserEntity>) {
     let key: keyof typeof addProductUser;

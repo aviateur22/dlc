@@ -1,9 +1,8 @@
 import { AddProductUserEntity } from "../../../domain/entities/productUser/AddProductUserEntity";
 import { ProductUserRepositorySchema } from "../../../domain/ports/repositoriesSchemas/ProductUserRepositorySchema";
-import { ProductUserByUserModel } from "../../models/productUser/ProductUserByUserModel";
 import { ProductUserModel } from "../../models/productUser/ProductUserModel";
 
-export class InMemoryProductUserRepository implements ProductUserRepositorySchema {
+export class InMemoryProductUserRepository implements ProductUserRepositorySchema {  
   
   private productsUsers: Array<ProductUserModel>=[];
   /**
@@ -15,6 +14,7 @@ export class InMemoryProductUserRepository implements ProductUserRepositorySchem
     const index: number = this.productsUsers.length === 0 ? 1 : Math.max(...this.productsUsers.map(x=>Number(x.id))) + 1;
 
     this.productsUsers.push({id: index.toString(), ...productUser});
+    
     return {id: index.toString(), ...productUser};
   }
 
@@ -35,6 +35,16 @@ export class InMemoryProductUserRepository implements ProductUserRepositorySchem
   }
 
   /**
+   * Recherche ProductUser par user et owner
+   * @param {string} userId 
+   * @param {string} ownerId
+   * @returns {Promise<Array<ProductUserModel>>} 
+   */
+  async findByUserIdAndOwnerId(userId: string, ownerId: string): Promise<ProductUserModel[]> {
+    return this.productsUsers.filter(product=>(product.userId === userId && product.ownerId === ownerId));
+  }
+
+  /**
    * FindByUserIDProductId
    * @param {string} userId 
    * @param {string} productId 
@@ -43,6 +53,24 @@ export class InMemoryProductUserRepository implements ProductUserRepositorySchem
   async findByUserIdAndProductId(userId: string, productId: string): Promise<Array<ProductUserModel>> {
     return this.productsUsers.filter(product=>(product.productId === productId && product.userId === userId));
     
+  }
+
+  /**
+   * Suppression de plusieurs relations produit-utilisateur
+   * @param {Array<string>} productIdArray
+   * @param {string} userId
+   */
+  async deleteMultipleProductsByUserId(productIdArray: string[], userId: string): Promise<void> {
+    this.productsUsers = this.productsUsers.filter(product=>(!productIdArray.includes(product.productId) && product.userId !== userId));
+  }
+
+  /**
+   * Supprssion de plusieurs relation produit-utilisateur
+   * @param {string} productId 
+   * @param {Array<string>} userIdArray
+   */
+  async deleteOneProductForMultipleUsers(productId: string, userIdArray: string[]): Promise<void> {    
+    this.productsUsers = this.productsUsers.filter(product=>(product.productId !== productId || !userIdArray.includes(product.userId)));   
   }
 
   /**

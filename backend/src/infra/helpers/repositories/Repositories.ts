@@ -1,7 +1,9 @@
 import { ImageRepositorySchema } from "../../../domain/ports/repositoriesSchemas/ImageRepositorySchema";
 import { ProductRepositorySchema } from "../../../domain/ports/repositoriesSchemas/ProductRepositorySchema";
 import { ProductUserRepositorySchema } from "../../../domain/ports/repositoriesSchemas/ProductUserRepositorySchema";
+import { RelationRepositorySchema } from "../../../domain/ports/repositoriesSchemas/RelationRepositorySchema";
 import { TodoRepositorySchema } from "../../../domain/ports/repositoriesSchemas/TodoRepositorySchema"
+import { UserFriendRepositorySchema } from "../../../domain/ports/repositoriesSchemas/UserFriendRepositorySchema";
 import { UserRepositorySchema } from "../../../domain/ports/repositoriesSchemas/UserRepositorySchema";
 
 /**
@@ -23,12 +25,20 @@ class Repositories {
   // Repository ProductUser 
   readonly productUserRepository: ProductUserRepositorySchema;
 
+  // Repository Friend
+  readonly userFriendRepository: UserFriendRepositorySchema
+
+  // Repository Relation
+  readonly relationRepository: RelationRepositorySchema;
+
   constructor(
     todoRepository: TodoRepositorySchema,
     userRepository: UserRepositorySchema,
     productRepository: ProductRepositorySchema,
     imageRepository: ImageRepositorySchema,
-    productUserRepository: ProductUserRepositorySchema
+    productUserRepository: ProductUserRepositorySchema,
+    userFriendRepository: UserFriendRepositorySchema,
+    relationRepository: RelationRepositorySchema
   ) {
     // A faire: a supprimer
     this.todoRepository = todoRepository;
@@ -36,6 +46,8 @@ class Repositories {
     this.productRepository = productRepository;
     this.imageRepository = imageRepository;
     this.productUserRepository = productUserRepository;
+    this.userFriendRepository = userFriendRepository;
+    this.relationRepository = relationRepository
   }
 }
 export { Repositories }

@@ -7,11 +7,9 @@ import { ValidationException } from "../../../../../../../exceptions/ValidationE
  * @returns 
  */
 export default (schema: any)=>async(req: Request, res: Response, next: NextFunction)=>{
-  try {
-
-    await schema.validateAsync(req.files);
-    
-      next();        
+  try {    
+    await schema.validateAsync(req.files);    
+    next();        
   } catch (error: any) {
     throw new ValidationException(error.message)
   }

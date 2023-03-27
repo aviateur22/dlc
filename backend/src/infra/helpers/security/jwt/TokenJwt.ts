@@ -1,17 +1,17 @@
-import { JwtInfomration } from "./JwtData";
-import { jsonWebtoken } from 'jsonwebtoken';
+import { JwtInfomration } from "./JwtInfomration";
+import jsonWebtoken  from 'jsonwebtoken';
+import { ErrorServerException } from "../../../../exceptions/ErrorServerException";
+import messages from "../../../../domain/messages/messages";
 
 export class TokenJwt {    
-  constructor(private jwtInfomration: JwtInfomration){
-
-  }
+  constructor(private jwtInfomration: JwtInfomration){}
 
   async jwtWithoutToken() {
     //clé secrete
     const KEY = process.env.JWT_PRIVATE_KEY;
 
     if(!KEY){
-      throw new Error('invalid jwt generation');      
+      throw new ErrorServerException(messages.message.errorServer);      
     }
 
     // Génération JWT sans token */

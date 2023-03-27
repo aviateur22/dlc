@@ -1,3 +1,5 @@
+import { UserRole } from "../../helpers/userRole";
+
 /**
  * Nouvel utiliateur
  */
@@ -6,6 +8,7 @@ export class AddUserEntity {
   readonly password!: string;
   readonly createdAt!: Date;
   readonly updatedAt!: Date;
+  readonly role = UserRole.user;
 
   constructor(email: string, password: string) {
     const createdAt = new Date();

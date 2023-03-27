@@ -14,7 +14,7 @@ export class UserMapper {
    */
   static getUserEntity(user: UserModel): UserEntity { 
     const id = user.id.toString();
-    return new UserEntity({id, ...{ email: user.email, updatedAt: user.updatedAt, createdAt: user.createdAt }});
+    return new UserEntity({id, ...{ email: user.email, role: user.role, updatedAt: user.updatedAt, createdAt: user.createdAt }});
   }
 
 

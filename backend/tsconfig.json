@@ -103,7 +103,7 @@
   },
   "include": [
     "src/**/*"
-  ],
+, "src/data/seeding.js"  ],
   "exclude": [
     
   ]

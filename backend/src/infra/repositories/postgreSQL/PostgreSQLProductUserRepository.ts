@@ -12,8 +12,8 @@ export class PostgreSQLProductUserRepository implements ProductUserRepositorySch
    */
   async save(productUser: Partial<AddProductUserEntity>): Promise<ProductUserModel|null> {
 
-    const addProductUser = await client.query('INSERT INTO "product_user" ("user_id", "product_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) returning *', [ 
-      productUser.userId, productUser.productId, productUser.createdAt, productUser.updatedAt
+    const addProductUser = await client.query('INSERT INTO "product_user" ("user_id", "product_id", "owner_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) returning *', [ 
+      productUser.userId, productUser.productId, productUser.ownerId, productUser.createdAt, productUser.updatedAt
     ]).then(result=>{
       
       // Erreur save
@@ -35,6 +35,22 @@ export class PostgreSQLProductUserRepository implements ProductUserRepositorySch
   async findByUserId(userId: string): Promise<Array<ProductUserModel>> {
     const productUserByUserId = await client.query('SELECT * FROM "product_user" WHERE "user_id"=$1',[
       userId
+    ]).then(result => {
+      return ProductUserModelMapper.getProductsUsersModel(result.rows);
+    });
+
+    return productUserByUserId;
+  }
+
+  /**
+   * FindByUserIdAndOwnerId
+   * @param {string} userId 
+   * @param {string}ownerId 
+   * @returns {Promise<Array<ProductUserModel>>}
+   */
+  async findByUserIdAndOwnerId(userId:string, ownerId: string): Promise<Array<ProductUserModel>>  {
+    const productUserByUserId = await client.query('SELECT * FROM "product_user" WHERE "user_id"=$1 AND "owner_id"=$2',[
+      userId, ownerId
     ]).then(result => {
       return ProductUserModelMapper.getProductsUsersModel(result.rows);
     });
@@ -65,6 +81,32 @@ export class PostgreSQLProductUserRepository implements ProductUserRepositorySch
       return ProductUserModelMapper.getProductsUsersModel(result.rows);
     });
     return products;
+  }
+
+   /**
+   * Suppression de plusieurs relations produit-utilisateur
+   * @param {Array<string>} productIdArray
+   * @param {string} userId
+   */
+  async deleteMultipleProductsByUserId(productIdArray: string[], userId: string): Promise<void> {
+    await client.query(`WITH delete_product_user AS(
+      DELETE FROM "product_user" WHERE product_user.product_id=ANY($1) AND "user_id" =$2 RETURNING *)
+      SELECT * FROM delete_product_user
+      JOIN "user" ON "delete_product_user".user_id = "user".id
+      `, [
+      productIdArray, userId
+    ]);
+  }
+
+  /**
+   * Supprssion de plusieurs relation produit-utilisateur
+   * @param {string} productId 
+   * @param {Array<string>} userIdArray
+   */
+  async deleteOneProductForMultipleUsers(productId: string, userIdArray: string[]): Promise<void> {
+    await client.query('DELETE FROM "product_user" WHERE "product_id"=$1 AND product_user.user_id=ANY($2)', [
+      productId, userIdArray
+    ]);
   }
 
   /**
