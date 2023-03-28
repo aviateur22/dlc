@@ -1,0 +1,15 @@
+<div class="input__group" [formGroup]="formGroup">  
+  <label class="input__label" [for]="id">{{labelText}}</label>
+  <input
+    class="input"
+    [type]="type" 
+    [formControlName]="formControlName"   
+    [placeholder]="placeHolder"
+    [name]="name" 
+    [id]="id"
+  >
+  <!-- Erreur Message-->
+  <div>
+    <p>{{errorMessage}}</p>
+  </div>
+</div>

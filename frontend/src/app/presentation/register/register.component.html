@@ -1,0 +1,34 @@
+<div class="container">
+  <div class="inner__container">
+    <form [formGroup]="registerFormGroup" (submit)="validateRegisterData()"> 
+      <p></p>
+      <div class="register">
+        <!--button container-->
+        <div  class="login__input__container">
+
+          <!-- login-->
+          <div class="input__group">
+            <label for="email">email</label>
+            <input formControlName="email" type="text" name="email" id="email">
+          </div>
+    
+          <!-- password-->
+          <div class="input__group">
+            <label for="password">mot de passe</label>
+            <input formControlName="password" type="password" name="password" id="password">
+          </div>
+
+         <!-- CFM password-->
+          <div class="input__group">
+            <label for="confirmPassword">mot de passe</label>
+            <input formControlName="confirmPassword" type="password" name="confirmPassword" id="confirmPassword">
+          </div>
+
+        </div>
+        <div class="login__button__container">
+          <input type="submit" value="senregistrer">
+        </div>
+      </div>
+    </form>    
+  </div>
+</div>

@@ -1,20 +1,34 @@
-import { HttpClient } from "@angular/common/http";
-import { Observable } from "rxjs";
-import { UserRepositoryService } from "src/app/infra/services/repositoryService/user-repository.service";
-import { RegisterResponseSchema } from "../ports/EntitiesSchemas/RegisterResponseSchema";
+import { Injectable } from "@angular/core";
+import { FlashMessageService } from "src/app/infra/services/flashMessage/flash-message.service";
+import { RegisterService } from "src/app/infra/services/useCaseService/register.service";
 import { RegisterSchema } from "../ports/EntitiesSchemas/RegisterSchema";
 
 /**
  * Register
  */
-export class RegisterService {
+@Injectable({
+  providedIn: 'root'
+})
+export class RegisterUseCase {
 
-  constructor(private userRepositoryService: UserRepositoryService) {}
+  constructor(
+    private registerService: RegisterService,
+    private flashMessageService: FlashMessageService
+  
+  ) {}
 
   /**
-   * register
+   * Inscription
    */
-  execute(registerData: RegisterSchema): Observable<RegisterResponseSchema> {
-    return this.userRepositoryService.login(registerData); 
+  execute(registerData: RegisterSchema): void {
+
+    this.registerService.register(registerData).subscribe({
+      next: registerResponse=> {        
+        this.registerService.updateRegisterStatus(true);
+      },
+      error: error=> {
+        this.flashMessageService.updateFlashMessage(error.error.errorMessage);
+      }
+    });
   }
 }

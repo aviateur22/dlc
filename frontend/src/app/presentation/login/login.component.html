@@ -1,0 +1,48 @@
+<div class="container">
+  <div class="inner__container">
+    <form [formGroup]="loginFormGroup" (submit)="validateLoginData()">     
+      <div class="login">
+        <!--button container-->
+        <div class="login__input__container">
+
+          <!-- login-->
+          <app-input
+            [formGroup]="loginFormGroup"       
+            type="text"                  
+            formControlName="email"           
+            placeHolder="mon@email.fr"
+            name="email"
+            id="email"
+            labelText="email"
+          ></app-input>          
+
+          <!-- password-->
+          <app-input
+            [formGroup]="loginFormGroup"       
+            type="password"                  
+            formControlName="password"           
+            placeHolder="mot de passe"
+            name="password"
+            id="password"
+            labelText="password"
+          ></app-input>
+          
+          <!-- email-->
+          <div class="input__group">
+            <label for="email">mot de passe</label>
+            <input placeholder="mon@email.fr" formControlName="email" type="text" name="email" id="email">
+          </div>
+        
+            <!-- password-->
+            <div class="input__group">
+              <label for="password">mot de passe</label>
+              <input placeholder="mot de passe" formControlName="password" type="password" name="password" id="password">
+            </div>
+        </div>
+        <div class="login__button__container">
+          <input type="submit" value="se connecter">
+        </div>
+      </div>
+    </form>    
+  </div>
+</div>
