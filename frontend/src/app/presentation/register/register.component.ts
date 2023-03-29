@@ -1,7 +1,9 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { RegisterSchema } from 'src/app/domain/ports/EntitiesSchemas/RegisterSchema';
 import { RegisterUseCase } from 'src/app/domain/useCases/RegisterUSeCase';
+import messages from 'src/app/domain/utils/messages';
 import { RegisterService } from 'src/app/infra/services/useCaseService/register.service';
 
 @Component({
@@ -13,10 +15,16 @@ export class RegisterComponent {
 
   registerFormGroup: FormGroup = new FormGroup({});
 
+  // Affichage erreur HTML
+  emailMissing: string = messages.emailMissing;
+  passwordMissing: string = messages.passwordMissing;
+  confirmPasswordMissing: string = messages.confirmPasswordMissing
+
   constructor(
     private registerUseCase: RegisterUseCase,
     private registerService: RegisterService,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private router: Router, 
   ) {}
 
   ngOnInit() {
@@ -48,7 +56,6 @@ export class RegisterComponent {
       password: this.registerFormGroup.controls['password'].value,
       confirmPassword: this.registerFormGroup.controls['password'].value 
     })
-
   }
 
   /**
@@ -57,15 +64,16 @@ export class RegisterComponent {
    */
   private register(registerData: RegisterSchema) {
 
-    // Validation Inscription
-    this.registerService.isRegisterSuccessObservable.subscribe(registerStatus=>{
-      if(registerStatus) {
-        console.log(registerStatus);
-      }
-    });
-
     // Inscription
     this.registerUseCase.execute(registerData);
+
+    // Validation Inscription
+    this.registerService.registerResponseObservable.subscribe(registerResponse=>{
+      if(registerResponse) {
+        this.router.navigate(['/login']);
+        console.log(registerResponse.user.userId);
+      }
+    });   
   }
 
 }

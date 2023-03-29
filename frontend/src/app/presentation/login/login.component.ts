@@ -1,8 +1,11 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { LoginResponseSchema } from 'src/app/domain/ports/EntitiesSchemas/LoginResponseSchema';
 import { LoginSchema } from 'src/app/domain/ports/EntitiesSchemas/LoginSchema';
 import { LoginUseCase } from 'src/app/domain/useCases/LoginUseCase';
+import messages from 'src/app/domain/utils/messages';
+import { LoginService } from 'src/app/infra/services/useCaseService/login.service';
 
 @Component({
   selector: 'app-login',
@@ -14,7 +17,12 @@ export class LoginComponent {
   // Données Formulaire
   loginFormGroup: FormGroup = new FormGroup({});
 
-  constructor(    
+  // Affichage erreur HTML
+  emailMissing: string = messages.emailMissing;
+  passwordMissing: string = messages.passwordMissing;
+
+  constructor(
+    private loginService: LoginService,
     private loginUseCase: LoginUseCase,    
     private router: Router,    
     private fb: FormBuilder
@@ -41,8 +49,8 @@ export class LoginComponent {
    * Validation des données 
    * @returns { void }
    */
-  validateLoginData(): void {   
-   console.log(this.loginFormGroup.controls['email'].value)
+  validateLoginData(): void {
+    
     if (!this.loginFormGroup.valid) {
       console.log(this.loginFormGroup)
       return this.loginFormGroup.markAllAsTouched();
@@ -59,6 +67,17 @@ export class LoginComponent {
    * @param {LoginSchema} loginData 
    */
   private login(loginData: LoginSchema) {
+    // Login 
     this.loginUseCase.execute(loginData);
+
+    // Validation Inscription
+    this.loginService.loginResponseObservable.subscribe((loginResponse: LoginResponseSchema)=>{
+      if(typeof loginResponse !== 'undefined') {
+        console.log(loginResponse.user);
+      }
+    });
+
+
+   
   }
 }

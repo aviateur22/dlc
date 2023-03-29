@@ -3,31 +3,48 @@
     <form [formGroup]="registerFormGroup" (submit)="validateRegisterData()"> 
       <p></p>
       <div class="register">
+        <!-- email-->
+        <app-input            
+          [formGroup]="registerFormGroup"
+          [autoFocus]="true"  
+          type="text"                  
+          formControlName="email"           
+          placeHolder="mon@email.fr"
+          name="email"
+          id="email"
+          labelText="email"
+          [errorMessage]="emailMissing"
+        ></app-input>
+
+        <!-- password-->
+        <app-input
+          [formGroup]="registerFormGroup"       
+          type="password"                  
+          formControlName="password"           
+          placeHolder="mot de passe"
+          name="password"
+          id="password"
+          labelText="password"
+          [hasDisplaPasswordOption]="true"
+          [errorMessage]="passwordMissing"
+        ></app-input>
+
+        <!-- confirmPassword-->
+        <app-input
+          [formGroup]="registerFormGroup"       
+          type="password"                  
+          formControlName="confirmPassword"           
+          placeHolder="mot de passe"
+          name="confirmPassword"
+          id="confirmPassword"
+          labelText="password"
+          [hasDisplaPasswordOption]="true"          
+          [errorMessage]="confirmPasswordMissing"
+        ></app-input>
+
         <!--button container-->
-        <div  class="login__input__container">
+        <app-rectangle-button type="submit" value="inscription"></app-rectangle-button>
 
-          <!-- login-->
-          <div class="input__group">
-            <label for="email">email</label>
-            <input formControlName="email" type="text" name="email" id="email">
-          </div>
-    
-          <!-- password-->
-          <div class="input__group">
-            <label for="password">mot de passe</label>
-            <input formControlName="password" type="password" name="password" id="password">
-          </div>
-
-         <!-- CFM password-->
-          <div class="input__group">
-            <label for="confirmPassword">mot de passe</label>
-            <input formControlName="confirmPassword" type="password" name="confirmPassword" id="confirmPassword">
-          </div>
-
-        </div>
-        <div class="login__button__container">
-          <input type="submit" value="senregistrer">
-        </div>
       </div>
     </form>    
   </div>

@@ -3,8 +3,10 @@ import { ErrorResponseSchema } from "../EntitiesSchemas/ErrorResponseSchema";
 import { LoginResponseSchema } from "../EntitiesSchemas/LoginResponseSchema";
 import { LoginSchema } from "../EntitiesSchemas/LoginSchema";
 import { LougoutResponseSchema } from "../EntitiesSchemas/LougoutResponseSchema";
+import { RegisterResponseSchema } from "../EntitiesSchemas/RegisterResponseSchema";
 import { RegisterSchema } from "../EntitiesSchemas/RegisterSchema";
-import { UserSchema } from "../EntitiesSchemas/UserSchema";
+import { UserProductsResponseSchema } from "../EntitiesSchemas/UserProductsResponseSchema";
+import { UserProductsSchema } from "../EntitiesSchemas/UserProductsSchema";
 
 export interface UserRepositorySchema {
 
@@ -20,7 +22,13 @@ export interface UserRepositorySchema {
    * @param {RegisterSchema} registerData 
    * @returns {Observable<UserSchema>}
    */
-  register(registerData: RegisterSchema): Observable<UserSchema|ErrorResponseSchema>;
+  register(registerData: RegisterSchema): Observable<RegisterResponseSchema|ErrorResponseSchema>;
+
+  /**
+   * Récupération produits utilisateur
+   * @param {UserProductsSchema} data 
+   */
+  userProducts(data: UserProductsSchema): Observable<UserProductsResponseSchema>;
 
   /**
    * Logout

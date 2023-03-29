@@ -6,15 +6,17 @@
         <div class="login__input__container">
 
           <!-- login-->
-          <app-input
-            [formGroup]="loginFormGroup"       
+          <app-input            
+            [formGroup]="loginFormGroup"
+            [autoFocus]="true"  
             type="text"                  
             formControlName="email"           
             placeHolder="mon@email.fr"
             name="email"
             id="email"
             labelText="email"
-          ></app-input>          
+            [errorMessage]="emailMissing"
+          ></app-input>
 
           <!-- password-->
           <app-input
@@ -25,23 +27,13 @@
             name="password"
             id="password"
             labelText="password"
+            [hasDisplaPasswordOption]="true"
+            [errorMessage]="passwordMissing"
           ></app-input>
-          
-          <!-- email-->
-          <div class="input__group">
-            <label for="email">mot de passe</label>
-            <input placeholder="mon@email.fr" formControlName="email" type="text" name="email" id="email">
-          </div>
+        </div>
+
+        <app-rectangle-button type="submit" value="login"></app-rectangle-button>
         
-            <!-- password-->
-            <div class="input__group">
-              <label for="password">mot de passe</label>
-              <input placeholder="mot de passe" formControlName="password" type="password" name="password" id="password">
-            </div>
-        </div>
-        <div class="login__button__container">
-          <input type="submit" value="se connecter">
-        </div>
       </div>
     </form>    
   </div>

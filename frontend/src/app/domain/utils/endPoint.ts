@@ -6,6 +6,9 @@ export default {
     url: '/user/register'
   },
   productsUser: {
-    url: '/user/productUser'
+    url: '/product/get-all-by-user-id'
+  },
+  productImage:  {
+    url: '/image'
   }
 }

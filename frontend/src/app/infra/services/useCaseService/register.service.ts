@@ -14,8 +14,12 @@ import { UserRepositoryService } from '../repositoryService/user-repository.serv
  */
 export class RegisterService {
 
-  private isRegisterSuccess = new BehaviorSubject(false);
-  public isRegisterSuccessObservable = this.isRegisterSuccess.asObservable();
+  // Schema de la réponse
+  private registerResponseSchema!: RegisterResponseSchema;
+
+  // Rxjs
+  private registerResponse = new BehaviorSubject(this.registerResponseSchema);
+  public registerResponseObservable = this.registerResponse.asObservable();
 
   constructor(private userSerice: UserRepositoryService) { }
 
@@ -23,14 +27,14 @@ export class RegisterService {
    * Modification statut Inscription
    * @param registerStatus 
    */
-  updateRegisterStatus(registerStatus: boolean): void {
-    this.isRegisterSuccess.next(registerStatus); 
+  updateRegisterStatus(registerResponse: RegisterResponseSchema): void {
+    this.registerResponse.next(registerResponse); 
   }
 
   /**
    * Inscription client
    */
-  register(registerData: RegisterSchema): Observable<UserSchema> {
+  register(registerData: RegisterSchema): Observable<RegisterResponseSchema> {
     return this.userSerice.register(registerData)
   }
 }

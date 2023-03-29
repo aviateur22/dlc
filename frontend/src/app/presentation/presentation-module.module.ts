@@ -10,6 +10,10 @@ import { NotAuthorizeComponent } from './not-authorize/not-authorize.component';
 import { RegisterComponent } from './register/register.component';
 import { InputComponent } from './components/input/input.component';
 import { RoundButtonComponent } from './components/round-button/round-button.component';
+import { RectangleButtonComponent } from './components/rectangle-button/rectangle-button.component';
+import { NotFindComponent } from './not-find/not-find.component';
+import { ProductListComponent } from './home/product-list/product-list.component';
+import { ProductComponent } from './home/product/product.component';
 
 
 @NgModule({
@@ -19,7 +23,11 @@ import { RoundButtonComponent } from './components/round-button/round-button.com
     RegisterComponent,
     HomeComponent,
     NotAuthorizeComponent,    
-    RoundButtonComponent
+    RoundButtonComponent, 
+    RectangleButtonComponent, 
+    NotFindComponent, 
+    ProductListComponent,
+    ProductComponent
   ],
   imports: [
     CommonModule,

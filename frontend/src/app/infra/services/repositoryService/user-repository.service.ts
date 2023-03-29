@@ -8,7 +8,10 @@ import { environment } from 'src/environments/environment';
 import { RegisterSchema } from 'src/app/domain/ports/EntitiesSchemas/RegisterSchema';
 import {  LoginResponseSchema } from 'src/app/domain/ports/EntitiesSchemas/LoginResponseSchema';
 import { LougoutResponseSchema } from 'src/app/domain/ports/EntitiesSchemas/LougoutResponseSchema';
-import endPoint from '../../utils/endPoint';
+import endPoint from '../../../domain/utils/endPoint';
+import { RegisterResponseSchema } from 'src/app/domain/ports/EntitiesSchemas/RegisterResponseSchema';
+import { UserProductsResponseSchema } from 'src/app/domain/ports/EntitiesSchemas/UserProductsResponseSchema';
+import { UserProductsSchema } from 'src/app/domain/ports/EntitiesSchemas/UserProductsSchema';
 
 @Injectable({
   providedIn: 'root'
@@ -16,7 +19,7 @@ import endPoint from '../../utils/endPoint';
 export class UserRepositoryService implements UserRepositorySchema {
 
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) { }  
 
   private baseUrl: string = environment.domain + environment.api
 
@@ -35,14 +38,23 @@ export class UserRepositoryService implements UserRepositorySchema {
   /**
    * Inscription
    * @param {RegisterSchema} registerData 
-   * @returns {Observable<UserSchema>}
+   * @returns {Observable<RegisterResponseSchema>}
    */
-  register(registerData: RegisterSchema): Observable<UserSchema> {
-    return this.http.post<UserSchema>(this.baseUrl + endPoint.register.url, {
+  register(registerData: RegisterSchema): Observable<RegisterResponseSchema> {
+    return this.http.post<RegisterResponseSchema>(this.baseUrl + endPoint.register.url, {
       email: registerData.email,
       password: registerData.password,
       confirmPassword: registerData.confirmPassword
     });
+  }
+
+  /**
+   * Récupération produits utilisateur
+   * @param {UserProductsSchema} data
+   * @returns {Observable<UserProductsResponseSchema>}
+   */
+  userProducts(data: UserProductsSchema): Observable<UserProductsResponseSchema> {
+    return this.http.get<UserProductsResponseSchema>(this.baseUrl + endPoint.productsUser.url)
   }
 
   /**

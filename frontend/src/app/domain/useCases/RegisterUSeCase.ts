@@ -23,8 +23,9 @@ export class RegisterUseCase {
   execute(registerData: RegisterSchema): void {
 
     this.registerService.register(registerData).subscribe({
-      next: registerResponse=> {        
-        this.registerService.updateRegisterStatus(true);
+      next: registerResponse=> {
+        localStorage.clear();    
+        this.registerService.updateRegisterStatus(registerResponse);
       },
       error: error=> {
         this.flashMessageService.updateFlashMessage(error.error.errorMessage);
