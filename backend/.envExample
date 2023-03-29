@@ -1,12 +1,27 @@
 # SERVER PORT
 PORT = 4000
 
-#ENVIRRONEMENT 
+# ENVIRRONEMENT 
 NODE_ENV = DEV
 
-#CORS
+# JWT TOKEN
+JWT_PRIVATE_KEY = KEY
+
+# CORS
 CORS_ORIGIN_DEV = http://localhost:4200,https://aviateur22.github.io
 CORS_ORIGIN_PROD = http://localhost:4200,https://aviateur22.github.io
 
-#DATABASE
-DATABASE_URL = postgresql://login:password@server:port/databaseName
+# DATABASE PROD
+DATABASE_URL = postgresql://admin:admin@localhost:5433/todo
+
+# DATABASE DEV
+#DATABASE_URL_DEV = DATABASE URL
+DATABASE_URL_DEV = postgresql://admin:admin@localhost:5433/dlc
+
+# AES
+AES_IV = KEY
+AES_KEY = KEY
+
+# SECRET WORD
+SECRET_APP_WORD = KEY
+SECRET_APP_WORD_NOT_CONNECTED = KEY

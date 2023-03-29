@@ -39,6 +39,8 @@ export default {
     aesErrorMessage: 'erreur token',
     userIdBadFormat: 'userId doit etres au format string',
     tokenFormat: 'token incorrect',
-    relationIdBadeFormat: 'relationId doit être au format string'    
+    relationIdBadeFormat: 'relationId doit être au format string',
+    productImageMissing: 'image manquante',
+    productImageBadformat: 'mauvais format imageId'
   }
 }

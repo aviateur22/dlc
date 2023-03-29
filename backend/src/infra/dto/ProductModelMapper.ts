@@ -1,5 +1,6 @@
 import { ProductModel } from "../models/product/ProductModel";
 import { ProductWithImageModel } from "../models/product/ProductWithImageModel";
+import { ProductImageModel } from "../models/ProductImageModel";
 
 /**
  * ProductModel mapper

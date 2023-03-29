@@ -50,7 +50,7 @@ export default {
       }     
     });
 
-    res.cookie('authorization', loginJwt, { secure: false, sameSite:'none', httpOnly: true });
+    res.cookie('authorization', loginJwt, { secure: false, sameSite:"lax", httpOnly: true });
     res.json({
       user: userLogin,
       token: token.payloadToken 

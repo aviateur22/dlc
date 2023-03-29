@@ -63,7 +63,7 @@ export default {
    * @returns {Promise<Response>}
    */
   getAllProductUserId: async(req: Request, res: Response, next: NextFunction): Promise<Response>=>{
-    const { userId } = req.body;
+    const {userId} = req.params;
     const products = await UseCaseServiceImpl.getUseCases().productUsecase.findProductsOfUserUseCase.execute(userId);
 
     return res.json({

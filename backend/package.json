@@ -6,8 +6,9 @@
   "directories": {
     "doc": "doc"
   },
-  "scripts": {
-    "dev": "concurrently -k -n \"Typescript,Node\" -p \"[{name}]\" -c \"blue,green\" \"tsc --watch\" \"nodemon dist/infra/frameworks/index.js\"",
+  "scripts": {    
+    "dev": "concurrently -k -n \"Typescript,Node\" -p \"[{name}]\" -c \"blue,green\" \"tsc --watch\" \"nodemon dist/infra/frameworks/index.js\"" ,
+    "server": "nodemon dist/infra/frameworks/index.js",
     "test": "jest --watchAll --detectOpenHandles",
     "tsc": "tsc",
     "start": "node dist/infra/frameworks/index.js",

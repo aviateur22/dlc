@@ -1,6 +1,9 @@
+import { ImageMapper } from "../../../domain/dtos/ImageMapper";
 import { AddImageEntity } from "../../../domain/entities/image/AddImageEntity";
 import { ImageRepositorySchema } from "../../../domain/ports/repositoriesSchemas/ImageRepositorySchema";
+import { ImageModelMapper } from "../../dto/ImageModelMapper";
 import { ImageModel } from "../../models/ImageModel";
+import { ProductImageModel } from "../../models/ProductImageModel";
 
 export class InMemoryImagerepository implements ImageRepositorySchema {
   // Images
@@ -45,6 +48,20 @@ export class InMemoryImagerepository implements ImageRepositorySchema {
    */
   async findAll(): Promise<ImageModel[]> {
     return this.images;
+  }
+
+  /**
+   * Trouve productImage
+   * @param imageId 
+   */
+  async findProductImageById(imageId: string): Promise<ProductImageModel | null> {
+    const image = this.images.find(image=>image.id === imageId);
+
+    if(typeof image === 'undefined') {
+      return null;
+    }
+
+    return ImageModelMapper.getProductImage(image.imageBase64);
   }
 
   /**

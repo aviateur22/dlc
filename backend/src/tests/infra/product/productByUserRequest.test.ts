@@ -7,7 +7,7 @@ import { ProductUserGenerator } from "../../utilities/ProductUserGenerator";
 import { TestUtilities } from "../../utilities/TestUtilities";
 import { UserGenerator } from "../../utilities/UserGenerator";
 
-describe('DeleteUseCase', ()=>{
+describe('DeleteProductsRequest', ()=>{
   // Selection Server Express
   const testUtilities = new TestUtilities();
 
@@ -58,16 +58,9 @@ describe('DeleteUseCase', ()=>{
     }
 
     const res = await request(jestApp)
-    .get('/api/v1/dlc/product/get-all-by-user-id')
+    .get('/api/v1/dlc/product/get-all-by-user-id/1')
     .set('content-type', 'application/json')
     .set('Cookie', cookies)
-    .send({
-      userId: "1",
-    });
-
-    console.log(res.body.products);
     expect(res.status).toBe(200);
-
-    
   })
 });

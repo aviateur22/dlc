@@ -1,8 +1,21 @@
 import { ImageModel } from "../../infra/models/ImageModel";
+import { ProductImageModel } from "../../infra/models/ProductImageModel";
 import { ImageBase64Entity } from "../entities/image/ImageBase64Entity";
+import { ImageEntity } from "../entities/image/imageEntity";
 import { ImageIdEntity } from "../entities/image/ImageIdEntity";
+import { ProductImageEntity } from "../entities/product/ProductImageEntity";
 
 export class ImageMapper {
+
+  /**
+   * Image
+   * @param image 
+   * @returns 
+   */
+  static getProductImageEntity(image: ProductImageModel): ImageEntity {
+    return new ImageEntity(image.imageBase64);
+  }
+
   /**
    * Mapper vers ImageId
    * @param { ImageModel } image 

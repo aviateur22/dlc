@@ -43,11 +43,11 @@ router.delete('/:productId',
 );
 
 // Récupération produits par userId
-router.get('/get-all-by-user-id',
+router.get('/get-all-by-user-id/:userId',
   controllerHandler(formatCookie),
   controllerHandler(verifyAuth),
   controllerHandler(userRole.user),
-  controllerHandler(bodyValidation(getAllProductSchema)),
+  controllerHandler(paramValidation(getAllProductSchema)),
   controllerHandler(productController.getAllProductUserId)
 );
 

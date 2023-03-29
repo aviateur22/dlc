@@ -4,10 +4,12 @@ import { ServerSource } from "../../../infra/helpers/server/ServerSource";
 import { ImageGenerator } from "../../utilities/ImageGenerator";
 import { ProductGenerator } from "../../utilities/ProductGenerator";
 import { ProductUserGenerator } from "../../utilities/ProductUserGenerator";
+import { RelationGenerator } from "../../utilities/RelationGenerator";
 import { TestUtilities } from "../../utilities/TestUtilities";
+import { UserFriendGenerator } from "../../utilities/UserFriendGenerator";
 import { UserGenerator } from "../../utilities/UserGenerator";
 
-describe('DeleteProductsUseCase', ()=>{
+describe('FindProductImageRequest', ()=>{
   // Selection Server Express
   const testUtilities = new TestUtilities();
 
@@ -31,6 +33,8 @@ describe('DeleteProductsUseCase', ()=>{
     await ProductGenerator.deleteProduct();
     await ImageGenerator.deleteImage();
     await ProductUserGenerator.deleteProductUser();
+    await UserFriendGenerator.deleteAllUserFriendRelations();
+    await RelationGenerator.addRelation();
     await ProductGenerator.createProduct();
   });
 
@@ -47,45 +51,44 @@ describe('DeleteProductsUseCase', ()=>{
       password: "d"
     });
 
+    expect(res.status).toBe(200);
     expect(res.headers['set-cookie'].length).toBe(1);
+    expect(res.body).toHaveProperty('token');
     cookies = res.headers['set-cookie'];
     token = res.body.token
-  })
-     
-  it('Should delete a product', async()=>{
+  });
+
+  it('should send the image', async()=>{
+
     if(serviceSelect === ServerSource.fastify) {
       await app.ready();
     }
 
     const res = await request(jestApp)
-    .delete('/api/v1/dlc/product/1')
+    .get('/api/v1/dlc/image/1')
+    .set('content-type', 'application/json')
     .set('Cookie', cookies)
-    .send({
-      userId: '1',
-      token
-    })
-    
-    expect(res.status).toBe(200); 
-    expect(res.body).toHaveProperty('product');
+
+    expect(res.status).toBe(200);
 
   });
 
-  it('Should throw ActionNotAllowedException because product don\'t belong to user', async()=>{
+  it('should send errorMessage because image is not find', async()=>{
+
     if(serviceSelect === ServerSource.fastify) {
       await app.ready();
     }
 
     const res = await request(jestApp)
-    .delete('/api/v1/dlc/product/1')
+    .get('/api/v1/dlc/image/2')
+    .set('content-type', 'application/json')
     .set('Cookie', cookies)
-    .send({
-      userId: '2',
-      token
-    })
-    
-    expect(res.status).toBe(401);
+
+    expect(res.status).toBe(404);
     expect(res.body).toHaveProperty('errorMessage');
-    expect(res.body.errorMessage).toBe(messages.message.productNotBelongToUser);
+    expect(res.body.errorMessage).toBe(messages.message.productImageMissing)
 
   });
-});
+
+
+})

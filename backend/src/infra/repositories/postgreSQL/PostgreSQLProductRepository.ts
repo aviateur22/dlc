@@ -12,6 +12,7 @@ import client from "./connexion/databaseConnexion";
  * User repo PostgreSQL
  */
 export class PostgreSQLProductRepository implements ProductRepositorySchema {
+ 
   /**
    * FindAll product
    * @returns {Array<ProductModel>}
