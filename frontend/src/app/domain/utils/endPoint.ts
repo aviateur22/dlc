@@ -1,3 +1,6 @@
+/**
+ * Endpoint request
+ */
 export default {
   login: {
     url: '/user/login'
@@ -10,5 +13,11 @@ export default {
   },
   productImage:  {
     url: '/image'
+  },
+  logout: {
+    url: '/user/logout'
+  },
+  addProduct: {
+    url: '/product'
   }
 }

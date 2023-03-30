@@ -3,6 +3,7 @@
  */
 export interface ProductSchema {
   id: string,
+  imageId: string,
   mimeType: string,
   imageBase64: string,
   openDate: Date,

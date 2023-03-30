@@ -3,7 +3,7 @@ import { ProductSchema } from 'src/app/domain/ports/EntitiesSchemas/ProductSchem
 import { UserAuthInformation } from 'src/app/domain/ports/EntitiesSchemas/UserAuthInformation';
 import { UserProductsResponseSchema } from 'src/app/domain/ports/EntitiesSchemas/UserProductsResponseSchema';
 import { UserProductsUseCase } from 'src/app/domain/useCases/UserProductsUseCase';
-import { SessionInformation } from 'src/app/domain/utils/SessionInformation';
+import { SessionInformation } from 'src/app/domain/helpers/SessionInformation';
 import { UserProductsService } from 'src/app/infra/services/useCaseService/user-products.service';
 
 @Component({

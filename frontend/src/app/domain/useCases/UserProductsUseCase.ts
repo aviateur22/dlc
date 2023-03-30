@@ -26,9 +26,6 @@ export class UserProductsUseCase {
     this.productService.userProducts(userProductsdata).subscribe({
       next: userProductsResponse=> {        
         this.userProductsService.updateUserProducts(userProductsResponse);
-      },
-      error: error=> {
-        this.flashService.updateFlashMessage(error.error.errorMessage);
       }
     });    
   }

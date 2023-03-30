@@ -5,15 +5,17 @@ import {
   HttpEvent,
   HttpInterceptor,
   HttpHeaders,
-  HttpResponse
+  HttpResponse,
+  HttpErrorResponse
 } from '@angular/common/http';
 import { filter, map, Observable, tap } from 'rxjs';
 import { Router } from '@angular/router';
+import { FlashMessageService } from '../flashMessage/flash-message.service';
 
 @Injectable()
 export class HeadersHttpInterceptor implements HttpInterceptor { 
 
-  constructor(private router: Router){ }
+  constructor(private router: Router, private flashService: FlashMessageService){ }
 
   /**
    * Surcharge de HttpClient avec
@@ -25,7 +27,9 @@ export class HeadersHttpInterceptor implements HttpInterceptor {
    * @returns 
    */
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
-    const token = localStorage.getItem('token');    
+    // Récupération token
+    const token = localStorage.getItem('token');
+
     if(token) {
       request = request.clone({
         withCredentials: true,
@@ -42,11 +46,19 @@ export class HeadersHttpInterceptor implements HttpInterceptor {
         console.log(event.status)
       }
     },
+    // Error
     error=> {
-      // Si erreur 403 ou 401
-      if(error.status.toString() === '403' || error.status.toString() === '403') {
-        this.router.navigate(['/403']);
-      } 
+      const errorHttp: HttpErrorResponse = error;      
+      const errorStatus: number = parseInt(errorHttp.status.toString(), 10);
+
+      switch (errorStatus) {
+        case 401:
+        case 403: this.router.navigate(['/403']); break;
+        default: break;
+      }
+
+      this.flashService.updateFlashMessage(error.error.errorMessage);
+     
     }
     ));
   }

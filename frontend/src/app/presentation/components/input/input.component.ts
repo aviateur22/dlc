@@ -1,4 +1,4 @@
-import { Component, ElementRef, forwardRef, Input, ViewChild } from '@angular/core';
+import { Component, ElementRef, EventEmitter, forwardRef, Input, Output, ViewChild } from '@angular/core';
 import { ControlValueAccessor, FormGroup, NG_VALUE_ACCESSOR } from '@angular/forms';
 
 @Component({
@@ -15,26 +15,41 @@ export class InputComponent implements ControlValueAccessor {
 
   @ViewChild('input', {static: false}) input!: ElementRef;
 
-  @Input() autoFocus = false;
+  @Input()
+  autoFocus = false;
 
-  @Input() id: string = '';
+  @Input()
+  accept='';
 
-  @Input() type: string = '';
+  @Input()
+  id: string = '';
 
-  @Input() formControlName: string = '';
+  @Input()
+  type: string = '';
 
-  @Input() placeHolder: string = '';
+  @Input()
+  formControlName: string = '';
 
-  @Input() name: string = '';
+  @Input()
+  placeHolder: string = '';
 
-  @Input() errorMessage: string ='';
+  @Input()
+  name: string = '';
 
-  @Input() labelText: string = ''
+  @Input()
+  errorMessage: string ='';
 
-  @Input() formGroup: FormGroup = new FormGroup({});
+  @Input()
+  labelText: string = ''
+
+  @Input()
+  formGroup: FormGroup = new FormGroup({});
 
   @Input() 
   hasDisplaPasswordOption: boolean = false;
+
+  @Output()
+  changeEmit: EventEmitter<any> = new EventEmitter();
   
   ngAfterViewInit() {
     if(this.autoFocus) {

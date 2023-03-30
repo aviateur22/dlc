@@ -2,7 +2,7 @@ import { Observable } from "rxjs";
 import { ErrorResponseSchema } from "../EntitiesSchemas/ErrorResponseSchema";
 import { LoginResponseSchema } from "../EntitiesSchemas/LoginResponseSchema";
 import { LoginSchema } from "../EntitiesSchemas/LoginSchema";
-import { LougoutResponseSchema } from "../EntitiesSchemas/LougoutResponseSchema";
+import { LogoutResponseSchema } from "../EntitiesSchemas/LogoutResponseSchema";
 import { RegisterResponseSchema } from "../EntitiesSchemas/RegisterResponseSchema";
 import { RegisterSchema } from "../EntitiesSchemas/RegisterSchema";
 import { UserProductsResponseSchema } from "../EntitiesSchemas/UserProductsResponseSchema";
@@ -34,5 +34,5 @@ export interface UserRepositorySchema {
    * Logout
    * @returns {Observable<LoginResponseSchema>}
    */
-    logout(): Observable<LougoutResponseSchema>;
+    logout(): Observable<LogoutResponseSchema>;
 }

@@ -2,12 +2,11 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http'
 import { LoginSchema } from 'src/app/domain/ports/EntitiesSchemas/LoginSchema';
-import { UserSchema } from 'src/app/domain/ports/EntitiesSchemas/UserSchema';
 import { UserRepositorySchema } from 'src/app/domain/ports/repositoriesSchemas/UserRepositorySchema';
 import { environment } from 'src/environments/environment';
 import { RegisterSchema } from 'src/app/domain/ports/EntitiesSchemas/RegisterSchema';
 import {  LoginResponseSchema } from 'src/app/domain/ports/EntitiesSchemas/LoginResponseSchema';
-import { LougoutResponseSchema } from 'src/app/domain/ports/EntitiesSchemas/LougoutResponseSchema';
+import { LogoutResponseSchema } from 'src/app/domain/ports/EntitiesSchemas/LogoutResponseSchema';
 import endPoint from '../../../domain/utils/endPoint';
 import { RegisterResponseSchema } from 'src/app/domain/ports/EntitiesSchemas/RegisterResponseSchema';
 import { UserProductsResponseSchema } from 'src/app/domain/ports/EntitiesSchemas/UserProductsResponseSchema';
@@ -61,7 +60,7 @@ export class UserRepositoryService implements UserRepositorySchema {
    * Logout
    * @returns {Observable<LoginResponseSchema>}
    */
-  logout(): Observable<LougoutResponseSchema> {
-    return this.http.get<LougoutResponseSchema>(environment.api);
+  logout(): Observable<LogoutResponseSchema> {
+    return this.http.get<LogoutResponseSchema>(environment.baseUrl + endPoint.logout.url);
   }
 }

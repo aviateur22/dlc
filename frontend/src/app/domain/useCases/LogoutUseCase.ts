@@ -1,19 +1,29 @@
-import { Observable } from "rxjs";
+import { Injectable } from "@angular/core";
+import { FlashMessageService } from "src/app/infra/services/flashMessage/flash-message.service";
 import { UserRepositoryService } from "src/app/infra/services/repositoryService/user-repository.service";
-import { LougoutResponseSchema } from "../ports/EntitiesSchemas/LougoutResponseSchema";
+import { LogoutService } from "src/app/infra/services/useCaseService/logout.service";
+
 
 
 /**
  * Logout
  */
+@Injectable({
+  providedIn: 'root'
+})
 export class LogoutUseCase {
 
-  constructor(private userRepositoryService: UserRepositoryService) {}
+  constructor(private userService: UserRepositoryService, private flashService: FlashMessageService, private logoutService: LogoutService) {}
 
   /**
-   * register
+   * Logout
    */
-  execute(): Observable<LougoutResponseSchema> {
-    return this.userRepositoryService.logout(); 
+  execute() {
+    this.userService.logout().subscribe({
+      next: logoutResponse=>{
+        this.flashService.updateFlashMessage(logoutResponse.message);
+        this.logoutService.updateLogout(logoutResponse);
+      }
+    }); 
   }
 }

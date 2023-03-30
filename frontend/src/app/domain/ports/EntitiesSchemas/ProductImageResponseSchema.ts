@@ -1,3 +1,5 @@
 export interface ProductImageResponseSchema {
-  imageBase64: string
+  imageId: string,
+  imageBase64: string,
+  imageMimeType: string
 }
