@@ -2,9 +2,13 @@
  * ProductImageEntity
  */
 export class ImageEntity {
-  imageBase64!: string;
+  readonly id!: string;
+  readonly imageBase64!: string;
+  readonly mimeType!: string;
 
-  constructor(imageBase64: string) {
+  constructor(id: string, imageBase64: string, mimeType: string) {
+    this.id = id;
     this.imageBase64 = imageBase64;
+    this.mimeType = mimeType
   }
 }

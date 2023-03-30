@@ -71,7 +71,7 @@ export class PostgreSQLImageRepository implements ImageRepositorySchema {
    * @param imageId 
    */
   async findProductImageById(imageId: string): Promise<ProductImageModel | null> {
-    const image = await client.query('SELECT "image_base64" FROM "image" WHERE id=$1', [
+    const image = await client.query('SELECT "id", "image_base64", "mime_type" FROM "image" WHERE id=$1', [
       imageId
     ]).then(result=>{
 

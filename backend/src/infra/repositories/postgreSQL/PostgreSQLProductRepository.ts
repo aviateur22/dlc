@@ -35,11 +35,19 @@ export class PostgreSQLProductRepository implements ProductRepositorySchema {
     const productUserIdList = productUserByUserIdList.map(item=>item.productId);
 
     const products = await client.query(`
-    SELECT * FROM "product"   
+    SELECT 
+    "product".id,
+    "product".image_id,
+    "product".open_date,
+    "product".created_at,
+    "product".updated_at,
+    "image".image_base64,
+    "image".mime_type
+    FROM "product"   
     JOIN "image" ON product.image_id = image.id
     WHERE product.id = ANY($1)`, [
      productUserIdList
-    ]).then(result=>{
+    ]).then(result=>{     
       return ProductModelMapper.getProductWithImageModel(result.rows);
     })
     

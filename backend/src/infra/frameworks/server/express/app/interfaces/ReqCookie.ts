@@ -1,4 +1,5 @@
 import { NextFunction, Request, Response } from "express";
+import { JwtInformation } from "./JwtInformation";
 
 export interface ReqCookie extends Request {
 
@@ -6,5 +7,8 @@ export interface ReqCookie extends Request {
   cookieList: any
 
   // Payload
-  payload: any
+  payload: any,
+
+  // Info sur le JWT
+  jwtInformation: JwtInformation
 }

@@ -41,6 +41,8 @@ export default {
     tokenFormat: 'token incorrect',
     relationIdBadeFormat: 'relationId doit être au format string',
     productImageMissing: 'image manquante',
-    productImageBadformat: 'mauvais format imageId'
+    productImageBadformat: 'mauvais format imageId',
+    jwtUnvalidData: 'Données manquantes sur le jwt',
+    goodByeMessage: 'a bientôt'
   }
 }

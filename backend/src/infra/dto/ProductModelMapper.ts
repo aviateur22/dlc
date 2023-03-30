@@ -39,8 +39,7 @@ export class ProductModelMapper {
   static getProductWithImageModel(datas: Array<any>): Array<ProductWithImageModel> {
     return datas.map(data => new ProductWithImageModel({
       id: data.id.toString(),
-      mimeType: data.mime_type,
-      imageBase64: data.image_base64,
+      imageId: data.image_id,
       openDate: data.open_date,
       createdAt: data.created_at,
       updatedAt: data.updated_at    

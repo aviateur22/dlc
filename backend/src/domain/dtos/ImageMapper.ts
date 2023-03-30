@@ -13,7 +13,7 @@ export class ImageMapper {
    * @returns 
    */
   static getProductImageEntity(image: ProductImageModel): ImageEntity {
-    return new ImageEntity(image.imageBase64);
+    return new ImageEntity(image.id, image.imageBase64, image.mimeType);
   }
 
   /**

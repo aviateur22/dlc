@@ -4,8 +4,7 @@
 export class ProductWithImageEntity {
   readonly id!: string;
   readonly openDate!: Date;
-  readonly imageBase64!: string;
-  readonly mimeType! :string; 
+  readonly imageId!: string;  
   readonly userId!: string;
   readonly createdAt!: Date;
   readonly updatedAt!: Date;

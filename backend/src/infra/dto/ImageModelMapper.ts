@@ -33,6 +33,6 @@ export class ImageModelMapper {
    * @returns 
    */
   static getProductImage(data: any): ProductImageModel {
-    return new ProductImageModel(data.image_base64);
+    return new ProductImageModel(data.id, data.image_base64, data.mime_type);
   }
 }
