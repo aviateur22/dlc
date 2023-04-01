@@ -18,6 +18,8 @@ export class UserFriendMapper {
       friendId: userFriend.friendId,
       friendName: userFriend.friendName,
       friendEmail: userFriend.friendEmail,
+      relationId: userFriend.relationId,
+      relationAccepted: userFriend.relationAccepted,
       createdAt: userFriend.createdAt,
       updatedAt: userFriend.updatedAt
     });

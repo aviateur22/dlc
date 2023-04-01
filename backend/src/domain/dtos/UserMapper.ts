@@ -4,6 +4,7 @@ import { UserModel } from "../../infra/models/UserModel";
 import { ProductWithImageEntity } from "../entities/product/ProductWithImageEntity";
 import { UserEntity } from "../entities/user/UserEntity";
 import { UserHomePageEntity } from "../entities/user/UserHomePageEntity";
+import formatDate from "../helpers/formatDate";
 
 export class UserMapper {
   
@@ -21,7 +22,13 @@ export class UserMapper {
   static getUserHomeEntity(userId: string, userEmail: string, products: Array<ProductWithImageModel>) {
     // Productentity
     const productsWithImageEntity = products.map(product=>{
-      return new ProductWithImageEntity(product);
+      return new ProductWithImageEntity({
+        id: product.id,
+        openDay: formatDate(product.openDate),
+        imageId: product.imageId ,
+        createdAt:product.createdAt ,
+        updatedAt: product.updatedAt
+      });
     })
     return new UserHomePageEntity({ userId, userEmail, products: productsWithImageEntity})
     

@@ -28,7 +28,8 @@ export class InMemoryUserFriendRepository implements UserFriendRepositorySchema 
       friendName: addFriend.friendName,
       relationId: addFriend.relationId,
       createdAt: addFriend.createdAt,
-      updatedAt: addFriend.updatedAt
+      updatedAt: addFriend.updatedAt,
+      relationAccepted: addFriend.relationAccepted
     });
 
     const userFriendRelation2 = await functionsHelpers.addUserFriendRelation(this.userFriends, {      
@@ -38,7 +39,9 @@ export class InMemoryUserFriendRepository implements UserFriendRepositorySchema 
       relationId: addFriend.relationId,
       friendName: addFriend.friendName,
       createdAt: addFriend.createdAt,
-      updatedAt: addFriend.updatedAt
+      updatedAt: addFriend.updatedAt,
+      relationAccepted: addFriend.relationAccepted
+
     });
 
     this.userFriends.push(userFriendRelation1, userFriendRelation2);

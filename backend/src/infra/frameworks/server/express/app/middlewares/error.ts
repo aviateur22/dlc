@@ -50,11 +50,19 @@ export default(err: any, req: Request, res: Response, next: NextFunction)=>{
         }); 
     break;
 
+    // Action interdite
     case ForbiddenException:
+        return res.status(403).json({
+            errorMessage: err.message
+        });
+        break;
+
+    // Session expirée
     case ActionNotAllowedException:
         return res.status(401).json({
             errorMessage: err.message
         });
+        break;
 
     case ImageNotFindException:
         return res.status(404).json({

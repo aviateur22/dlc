@@ -17,6 +17,8 @@ export class UserFriendModelMapper {
       friendId: data.friend_id,
       friendEmail: data.email,
       friendName: data.friend_name,
+      relationId: data.relation_id,
+      relationAccepted: data.is_relation_accepted ? data.is_relation_accepted : false,
       createdAt: data.created_at,
       updatedAt: data.updated_at
     })

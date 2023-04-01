@@ -38,6 +38,7 @@ export default {
     friendName: string,
     relationId: string,
     createdAt: Date,
+    relationAccepted: boolean,
     updatedAt: Date    
   }): Promise<UserFriendModel> => {    
     let id = userFriendArray.length === 0 ? 1 : Math.max(...userFriendArray.map(x=>Number(x.id))) + 1;
@@ -51,6 +52,7 @@ export default {
       friendEmail: userEmail,
       friendId: addFriend.friendId,
       friendName: addFriend.friendName,
+      relationAccepted: addFriend.relationAccepted ? addFriend.relationAccepted : false,
       relationId: addFriend.relationId,
       createdAt: addFriend.createdAt,
       updatedAt: addFriend.updatedAt

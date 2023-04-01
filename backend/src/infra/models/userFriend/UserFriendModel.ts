@@ -7,6 +7,7 @@ export class UserFriendModel {
   readonly friendId!: string;
   readonly friendName!: string;
   readonly friendEmail!: string;
+  readonly relationAccepted!: boolean;
   readonly relationId!: string;
   readonly createdAt!: Date;
   readonly updatedAt!: Date;

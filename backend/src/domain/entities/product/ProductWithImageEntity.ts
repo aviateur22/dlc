@@ -3,7 +3,7 @@
  */
 export class ProductWithImageEntity {
   readonly id!: string;
-  readonly openDate!: Date;
+  readonly openDay!: number ;
   readonly imageId!: string;  
   readonly userId!: string;
   readonly createdAt!: Date;

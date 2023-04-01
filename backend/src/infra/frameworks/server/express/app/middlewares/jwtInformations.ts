@@ -5,7 +5,7 @@ import { ErrorServerException } from "../../../../../../exceptions/ErrorServerEx
 import messages from "../../../../../../domain/messages/messages";
 
 /**
- * Récupération données sur le JWT
+ * Récupération données sur le JWT (ExpiredAt and JWTidentifier)
  */
 export default(req: ReqCookie, res: Response, next: NextFunction)=>{
   

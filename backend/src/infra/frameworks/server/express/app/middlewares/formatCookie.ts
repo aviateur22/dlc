@@ -6,7 +6,7 @@ import { ReqCookie } from "../interfaces/ReqCookie";
 export default(req: ReqCookie, res: Response, next: NextFunction)=>{
   /**object pour stocker les cookies */
   const list = {};
-
+  
   // Pas de header dans la requete
   if(!req.headers){
     return next();

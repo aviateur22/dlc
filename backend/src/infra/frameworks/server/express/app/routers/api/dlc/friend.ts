@@ -8,8 +8,20 @@ import userRole from "../../../middlewares/userRole";
 import friendValidation from '../../../middlewares/validations/schemas/dlc/friend'
 import formatCookie from "../../../middlewares/formatCookie";
 import verifyCsurfToken from "../../../middlewares/verifyCsurfToken";
+import paramValidation from "../../../middlewares/validations/paramValidation";
 
 const router = express.Router();
+
+// Recherche de tous les amis d'un user
+router.get('/find-friends/:userId',
+  controllerHandler(sanitizer), 
+  controllerHandler(formatCookie),
+  controllerHandler(verifyAuth),
+  controllerHandler(userRole.user),
+  controllerHandler(verifyCsurfToken),
+  controllerHandler(paramValidation(friendValidation.userId)),
+  controllerHandler(friendController.findFriendsByUserId)
+)
 
 // Ajout ami
 router.post('/',

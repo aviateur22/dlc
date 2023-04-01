@@ -35,9 +35,9 @@ export class AddFriendUseCase extends UseCaseModel {
       friendId: findFriend.id!,
       friendEmail: findFriend.email!,
       friendName: addFriend.friendName!,
-      relationId: relationData.id
+      relationId: relationData.id     
     }));
-
+    
     return UserFriendMapper.getUserFriendsEntities(addFriendRelation);
   }
 }

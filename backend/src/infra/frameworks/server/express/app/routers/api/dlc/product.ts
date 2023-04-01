@@ -16,10 +16,13 @@ import formatCookie from "../../../middlewares/formatCookie";
 import verifyCsurfToken from "../../../middlewares/verifyCsurfToken";
 import paramValidation from "../../../middlewares/validations/paramValidation";
 
+
+
 const router = express.Router();
 
 // Ajout d'un produit
 router.post('/',
+
   controllerHandler(formatCookie),
   controllerHandler(verifyAuth),
   controllerHandler(userRole.user),
@@ -35,6 +38,7 @@ router.post('/',
 router.delete('/:productId',
   controllerHandler(formatCookie),
   controllerHandler(verifyAuth),
+  controllerHandler(verifyCsurfToken),
   controllerHandler(userRole.user),
   controllerHandler(paramValidation(productIdSchema)),
   controllerHandler(bodyValidation(deleteProductSchema)),

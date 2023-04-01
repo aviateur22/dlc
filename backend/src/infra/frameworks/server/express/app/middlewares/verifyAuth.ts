@@ -1,34 +1,24 @@
 import { NextFunction, Response } from "express";
 import { ReqCookie } from "../interfaces/ReqCookie";
-import jsonwebtoken from 'jsonwebtoken'
 import { ForbiddenException } from "../../../../../../exceptions/ForbiddenException";
-import { ErrorServerException } from "../../../../../../exceptions/ErrorServerException";
 import messages from "../../../../../../domain/messages/messages";
+import { JwtHandler } from "../../../../../helpers/security/jwt/JwtHandler";
 
 export default(req: ReqCookie, res: Response, next: NextFunction)=>{
 
-  /**Recupération des cookies */    
+  // Recupération des cookies
   if(!req.cookieList || !req.cookieList.authorization){
     throw new ForbiddenException(messages.message.forbiddenAction);
   }
 
-  /** récupération cookie authorization */
-  const authorizationToken = req.cookieList.authorization;  
-  
-  //clé secrete
-  const KEY = process.env.JWT_PRIVATE_KEY;  
+  // Récupération JWT
+  const jwtToVerify = req.cookieList.authorization; 
 
-  if(!KEY){
-    throw new ErrorServerException(messages.message.errorServer)
-  }
+  // Vérifcation jwt + récupération payload
+  const tokenJwt = new JwtHandler();  
+  const payload = tokenJwt.verify(jwtToVerify);
 
-  jsonwebtoken.verify(authorizationToken, KEY, function(err: any, payload: any) {        
-    if(err){
-      console.log(err.name)
-      throw new ForbiddenException(messages.message.expiredSession);
-    }
-    
-    req.payload = payload;
-    return next();
-  });
+  req.payload = payload;
+
+  return next();
  }

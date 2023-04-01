@@ -1,6 +1,7 @@
 import { AddProductException } from "../../../exceptions/AddProductException";
 import { ImageSizeException } from "../../../exceptions/ImageSizeException";
 import { ServerException } from "../../../exceptions/ServerException";
+import { EncodeBase64 } from "../../../infra/helpers/security/EncodeBase64";
 import { EncodeBase64Url } from "../../../infra/helpers/security/EncodeBase64Url";
 import { ImageModel } from "../../../infra/models/ImageModel";
 import { RepositoryServiceImpl } from "../../../infra/services/repository/RepositoryServiceImpl";
@@ -28,7 +29,7 @@ export class Product {
     }
     
     // Convertion image en base64
-    const imageBase64: string = EncodeBase64Url.encodeStringToBase64Url(addProduct.image.data);
+    const imageBase64: string = EncodeBase64.encodeStringToBase64(addProduct.image.data);
     const mimeType: string = addProduct.image.mimetype;
 
     // Ajout de l'image    
@@ -89,10 +90,10 @@ export class Product {
     
     // Date de création
     let createdAt = new Date();
-
+    
     // Récupération des amis
     const friends = await RepositoryServiceImpl.getRepository().userFriendRepository.findAllFriendByUserId(addProductData.userId!);
-
+   
     for(let friend of friends) {
       // Ajout du ProduitUser        
       const addProductUser =  await RepositoryServiceImpl.getRepository().productUserRepository.save({

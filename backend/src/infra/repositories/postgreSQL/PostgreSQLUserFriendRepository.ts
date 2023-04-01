@@ -35,7 +35,7 @@ export class PostgreSQLUserFriendRepository implements UserFriendRepositorySchem
       }
       
       // Data
-      const data = result.rows;
+      const data = result.rows;     
       return UserFriendModelMapper.getUserFriendsModel(data);
     });
 
@@ -47,23 +47,25 @@ export class PostgreSQLUserFriendRepository implements UserFriendRepositorySchem
    * @param {string} userId 
    * @returns {Promise<Array<UserFriendModel>>}
    */
-  async findAllFriendByUserId(userId: string): Promise<UserFriendModel[]> {
+  async findAllFriendByUserId(userId: string): Promise<UserFriendModel[]> {   
     const friends = await client.query(`
     SELECT 
     "friend_user".id AS id,
     "friend_user".user_id AS user_id,
     "friend_user".friend_id AS friend_id,
-    "user".email AS friend_email,
+    "user".email AS email,
     "friend_user".friend_name AS friend_name,
     "friend_user".created_at AS created_at, 
     "friend_user".updated_at AS updated_at,
+    "relation".id AS relation_id,
     "relation".is_accepted AS is_relation_accepted
     FROM "friend_user"
     JOIN "user" ON "friend_user".friend_id = "user".id
-    JOIN "relation" ON "friend_user".relation_id = "relation".id
+    JOIN "relation" ON "friend_user"."relation_id"= "relation"."id"
     WHERE user_id=$1 AND "relation".is_accepted=true`, [
       userId
     ]).then(results=>{
+      
       return UserFriendModelMapper.getUserFriendsModel(results.rows);      
     });
 
