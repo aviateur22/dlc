@@ -1,0 +1,25 @@
+<div class="product__container">
+  <div class="inner__container">
+    <form #addProductForm [formGroup]="addProductFormGroup" (submit)="validateProductData()">
+      <!--header-->
+      <div class="produc__header">
+        <app-rectangle-button value="annuler"></app-rectangle-button>
+        <p class="product__title__text">Ajout d'une produit</p>
+      </div>
+
+      <!--Select image-->
+      <input formControlName="image"  #inputFile accept="image/*" type="file" (change)="loadSelectedImage(inputFile?.files?.[0])" style="display:none;" />
+      
+      <!-- Preview image-->
+      <div *ngIf="previewImageBase64 !== ''" class="product__image__container">
+        <img class="product__image__preview" [src]="previewImageBase64" alt="productImage.fileName">
+      </div>
+
+      <!--button-->
+      <div class="button__container">
+        <app-rectangle-button type="submit" value="Ajouter"></app-rectangle-button>
+        <app-rectangle-button type="button" (clickEmitter)="inputFile.click()" value="Selectionner une image"></app-rectangle-button>      
+      </div>
+    </form>     
+  </div>
+</div>

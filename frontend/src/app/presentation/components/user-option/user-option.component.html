@@ -1,0 +1,9 @@
+<div (click)="displayOptionToggle()" class="user__option__container">
+  <p>user</p>
+  <div *ngIf="isOptionDisplay" class="user__option">
+    <app-rectangle-button (clickEmitter)="navigateToUserAccount($event)" value="espace utilisateur" type="button"></app-rectangle-button>
+    <app-rectangle-button (clickEmitter)="logout()" value="deconnexion" type="button"></app-rectangle-button>
+  </div>
+
+</div>
+

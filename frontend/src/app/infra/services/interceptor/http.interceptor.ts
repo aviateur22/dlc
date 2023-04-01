@@ -11,6 +11,7 @@ import {
 import { filter, map, Observable, tap } from 'rxjs';
 import { Router } from '@angular/router';
 import { FlashMessageService } from '../flashMessage/flash-message.service';
+import localStorageAccess from 'src/app/domain/helpers/localStorage';
 
 @Injectable()
 export class HeadersHttpInterceptor implements HttpInterceptor { 
@@ -29,10 +30,11 @@ export class HeadersHttpInterceptor implements HttpInterceptor {
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
     // Récupération token
     const token = localStorage.getItem('token');
-
+    console.log(request.headers)
     if(token) {
       request = request.clone({
-        withCredentials: true,
+        
+        withCredentials: true,        
         headers: request.headers.set('token', token),
       });
     } else {
@@ -52,7 +54,11 @@ export class HeadersHttpInterceptor implements HttpInterceptor {
       const errorStatus: number = parseInt(errorHttp.status.toString(), 10);
 
       switch (errorStatus) {
-        case 401:
+        // Session Expirée
+        case 401: localStorageAccess.clearAll(); this.router.navigate(['/login']); break;
+
+
+        // Access Interdit
         case 403: this.router.navigate(['/403']); break;
         default: break;
       }

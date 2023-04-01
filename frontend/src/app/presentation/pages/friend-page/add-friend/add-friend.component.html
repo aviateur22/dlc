@@ -1,0 +1,24 @@
+<div class="add_friend__container">
+  <div class="add__friend__inner">    
+    <form [formGroup]="addFriendFormGroup" class="add__friend" (submit)="addFriend()">
+
+      <!--email-->
+      <app-input 
+        [formGroup]="addFriendFormGroup"
+        labelText="nouveau compte" 
+        name="email" 
+        type="text" 
+        id="email"
+        formControlName="email"        
+        placeHolder="celine@yahoo.fr"
+        errorMessage="email obligatoire">        
+      </app-input>
+
+      <!--submit button-->
+      <app-rectangle-button type="submit" value="ajouter"></app-rectangle-button>
+    </form>
+  </div>
+  
+  
+
+</div>

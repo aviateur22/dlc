@@ -19,5 +19,17 @@ export default {
   },
   addProduct: {
     url: '/product'
+  },
+  deleteProduct: {
+    url: '/product/'
+  },  
+  addfriend: {
+    url: '/friend'
+  },
+  deleteFriend: {
+    url: '/friend/'
+  },
+  findAllFriendsByUserId: {
+    url: '/friend/find-by-user-id'
   }
 }

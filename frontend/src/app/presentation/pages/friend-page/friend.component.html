@@ -1,0 +1,20 @@
+<div class="container">
+  <div class="friend">
+    <!--Header-->
+    <div class="friend__header">
+      <p>compte associé</p>
+      <app-rectangle-button (clickEmitter)="navigateToUserAccount()" value="annuler"></app-rectangle-button>
+    </div>
+
+    <!--Comptes deja associés-->
+    <div class="friend__list">
+      <app-friend-list [friends]="friends"></app-friend-list>      
+    </div>
+
+    <!--Ajout ami-->
+    <div class="friend__add__container">
+      <app-add-friend></app-add-friend>
+    </div>
+  </div>
+
+</div>

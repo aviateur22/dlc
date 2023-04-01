@@ -6,7 +6,7 @@ export interface ProductSchema {
   imageId: string,
   mimeType: string,
   imageBase64: string,
-  openDate: Date,
+  openDay: number,
   createdAt: Date,
   updatedAt: Date
 }

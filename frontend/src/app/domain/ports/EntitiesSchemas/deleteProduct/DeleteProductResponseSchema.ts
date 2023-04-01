@@ -1,4 +1,4 @@
-export interface AddProductResponseSchema {
+export interface DeleteProductResponseSchema {
   id: string,
   userId: string,
   openDate: Date,

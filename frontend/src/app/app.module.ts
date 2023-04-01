@@ -9,21 +9,28 @@ import { HTTP_INTERCEPTORS } from '@angular/common/http';
 // Custom
 
 import { InfraModule } from './infra/infra.module';
-import { FlashMessageComponent } from './presentation/flash-message/flash-message.component';
+import { FlashMessageComponent } from './presentation/components/flash-message/flash-message.component';
 import { HeadersHttpInterceptor } from './infra/services/interceptor/http.interceptor';
-import { LogoutComponent } from './presentation/logout/logout.component';
+import { UserOptionComponent } from './presentation/components/user-option/user-option.component';
 import { InputComponent } from './presentation/components/input/input.component';
 import { RectangleButtonComponent } from './presentation/components/rectangle-button/rectangle-button.component';
 import { RoundButtonComponent } from './presentation/components/round-button/round-button.component';
-import { HomeComponent } from './presentation/home/home.component';
-import { ProductListComponent } from './presentation/home/product-list/product-list.component';
-import { ProductComponent } from './presentation/home/product/product.component';
-import { LoginComponent } from './presentation/login/login.component';
-import { NotAuthorizeComponent } from './presentation/not-authorize/not-authorize.component';
-import { NotFindComponent } from './presentation/not-find/not-find.component';
-import { RegisterComponent } from './presentation/register/register.component';
+import { HomeComponent } from './presentation/pages/user-home-page/home.component';
+import { ProductListComponent } from './presentation/pages/user-home-page/product-list/product-list.component';
+import { ProductComponent } from './presentation/pages/user-home-page/product/product.component';
+import { LoginComponent } from './presentation/pages/login-page/login.component';
+import { NotAuthorizeComponent } from './presentation/pages/not-authorize-page/not-authorize.component';
+import { NotFindComponent } from './presentation/pages/not-find-page/not-find.component';
+import { RegisterComponent } from './presentation/pages/register-page/register.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { AddProductComponent } from './presentation/add-product/add-product.component';
+import { AddProductComponent } from './presentation/pages/add-product-page/add-product.component';
+import { HeaderComponent } from './presentation/components/header/header.component';
+import { DeleteModalComponent } from './presentation/pages/user-home-page/delete-modal/delete-modal.component';
+import { AboutComponent } from './presentation/pages/about-page/about.component';
+import { FriendComponent } from './presentation/pages/friend-page/friend.component';
+import { FriendDisplayComponent } from './presentation/pages/friend-page/friend/friend-display.component';
+import { AddFriendComponent } from './presentation/pages/friend-page/add-friend/add-friend.component';
+import { FriendListComponent } from './presentation/pages/friend-page/friend-list/friend-list.component';
 
 
 @NgModule({
@@ -40,8 +47,15 @@ import { AddProductComponent } from './presentation/add-product/add-product.comp
     ProductListComponent,
     ProductComponent,
     FlashMessageComponent,
-    LogoutComponent,
-    AddProductComponent
+    UserOptionComponent,
+    AddProductComponent,
+    HeaderComponent,
+    DeleteModalComponent,
+    AboutComponent,
+    FriendComponent,
+    FriendDisplayComponent,
+    AddFriendComponent,
+    FriendListComponent
   ],
 
   imports: [

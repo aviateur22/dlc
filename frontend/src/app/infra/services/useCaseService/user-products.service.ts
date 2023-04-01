@@ -15,7 +15,7 @@ export class UserProductsService {
   public userProductsResponseObservable = this.userProductsResponse.asObservable();
 
   /**
-  * Mise a jour 
+  * Mise a jour des produits utilisateur
   * @param {UserProductsResponseSchema} userProducts 
   */
   updateUserProducts(userProducts: UserProductsResponseSchema): void {

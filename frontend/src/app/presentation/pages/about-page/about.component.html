@@ -1,0 +1,20 @@
+<div class="about__container">
+  <!--Header-->
+  <div class="about__header">   
+
+    <!--userHomePage-->    
+    <app-rectangle-button (clickEmitter)="navigateToHomeUserPage()" value="annuler"></app-rectangle-button>
+
+    <p>compte</p>
+  </div>
+
+  <!---->
+  <div class="about__main">
+    <!--Profil-->
+    <app-rectangle-button value="profil"></app-rectangle-button>
+
+    <!--Compte assoccié-->
+    <app-rectangle-button (clickEmitter)="navigateToFriendPage()" value="amis"></app-rectangle-button>
+  </div>
+
+</div>
