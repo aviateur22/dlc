@@ -16,10 +16,16 @@ export class AddFriendUseCase extends UseCaseModel {
    * @param addFriend 
    * @returns 
    */
-  async execute(addFriend: Partial<AddFriendEntity>): Promise<Array<UserFriendEntity>> {
+  async execute(addFriend: Partial<AddFriendEntity>): Promise<Array<UserFriendEntity>> {    
 
     // Recherche existance email
     const findFriend = await this.repositories.userRepository.findByEmail(addFriend.friendEmail!);
+
+    // Ajout de son propre email
+    if(findFriend?.id === addFriend.userId) {
+      // Todo remplacer par l'ajout d'un compte et envoie d'email 
+      throw new UserNotFindException(messages.message.personalEmailNotAllowed);
+    }
 
     if(!findFriend) {
       // Todo remplacer par l'ajout d'un compte et envoie d'email 

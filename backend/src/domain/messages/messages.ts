@@ -42,7 +42,8 @@ export default {
     relationIdBadeFormat: 'relationId doit être au format string',
     productImageMissing: 'image manquante',
     productImageBadformat: 'mauvais format imageId',
-    jwtUnvalidData: 'Données manquantes sur le jwt',
-    goodByeMessage: 'a bientôt'
+    jwtUnvalidData: 'données manquantes sur le jwt',
+    goodByeMessage: 'a bientôt',
+    personalEmailNotAllowed: 'impossible d\'ajouter son propre email'
   }
 }

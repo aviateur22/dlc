@@ -40,9 +40,7 @@ export default {
     // recherche amis
     const findFriends = await UseCaseServiceImpl.getUseCases().friendUseCase.findFriendsUseCase.execute(userId);
 
-    return res.status(200).json({      
-      friends: findFriends
-    });
+    return res.status(200).json(findFriends);
   },  
 
   /**

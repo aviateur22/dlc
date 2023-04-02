@@ -2,13 +2,14 @@ import { AcceptFriendRelationEntity } from "../../../domain/entities/relation/Ac
 import { AddFriendRelationEntity } from "../../../domain/entities/relation/AddFriendRelationEntity";
 import { RelationRepositorySchema } from "../../../domain/ports/repositoriesSchemas/RelationRepositorySchema";
 import { RelationModel } from "../../models/RelationModel";
+import { UserFriendModel } from "../../models/userFriend/UserFriendModel";
 import { RepositoryServiceImpl } from "../../services/repository/RepositoryServiceImpl";
 
 
 /**
  * Relation Repository
  */
-export class InMemoryRelationRepository implements RelationRepositorySchema {
+export class InMemoryRelationRepository implements RelationRepositorySchema { 
 
   private relaltions: Array<RelationModel> = [];
 
@@ -29,6 +30,7 @@ export class InMemoryRelationRepository implements RelationRepositorySchema {
     // Relation
     const relation: RelationModel = {
       id,
+      senderId: relationData.userId,
       friendId: relationData.friendId,
       isAcceppted: relationData.isAccepted,
       isNew: relationData.isNew,
@@ -58,6 +60,15 @@ export class InMemoryRelationRepository implements RelationRepositorySchema {
    * @return {Promise<RelationEntity>}
    */
   async updateById(relationData: AcceptFriendRelationEntity): Promise<RelationModel|null> {
+    throw new Error("Method not implemented.");
+  }
+
+  /**
+   * Liste des nouvelles realtions
+   * @param {string} userId
+   * @returns Promise<UserFriendModel[]>
+   */
+  findNewRelationByUserId(userId: string): Promise<UserFriendModel[]> {
     throw new Error("Method not implemented.");
   }
 

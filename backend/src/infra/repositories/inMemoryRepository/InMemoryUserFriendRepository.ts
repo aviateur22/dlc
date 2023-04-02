@@ -7,11 +7,9 @@ import functionsHelpers from './helpers/FactorisationFunction';
 /**
  * Repository InMemory
  */
-export class InMemoryUserFriendRepository implements UserFriendRepositorySchema {  
+export class InMemoryUserFriendRepository implements UserFriendRepositorySchema { 
   
-  private userFriends: Array<UserFriendModel> = [];
-
-  
+  private userFriends: Array<UserFriendModel> = []; 
 
   /**
    * Ajout d'un ami
@@ -75,6 +73,16 @@ export class InMemoryUserFriendRepository implements UserFriendRepositorySchema 
 
     return findOneFriend;
   }
+
+  
+  /**
+   * Liste des amis ayant validée la relation
+   * @param {string} userId
+   * @returns Promise<UserFriendModel[]>
+   */
+  findAllFriendsWithAcceptedRelation(userId: string): Promise<UserFriendModel[]> {
+    throw new Error("Method not implemented.");
+  } 
 
   /**
    * Recherche des amis suivants une relation

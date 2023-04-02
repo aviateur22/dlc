@@ -11,11 +11,8 @@ export class RelationMapper {
    * @param { UserModel } user 
    * @returns { UserEntity }
    */
-  static getRelationEntity(relationData: RelationModel): RelationEntity { 
+  static getRelationEntity(relationData: RelationModel): RelationEntity {    
     const id = relationData.id.toString();
-    return new RelationEntity ({ id, ...{isNew: relationData.isNew, isAcceppted: relationData.isAcceppted, friendEmail: relationData.friendEmail, friendId: relationData.friendId.toString(), createdAt: relationData.createdAt, updatedAt: relationData.updatedAt}});
+    return new RelationEntity ({ id, ...{isNew: relationData.isNew, isAcceppted: relationData.isAcceppted, friendEmail: relationData.friendEmail, senderId: relationData.senderId, friendId: relationData.friendId.toString(), createdAt: relationData.createdAt, updatedAt: relationData.updatedAt}});
   }
-
-
-  
 }

@@ -1,4 +1,5 @@
 import { RelationModel } from "../../../infra/models/RelationModel";
+import { UserFriendModel } from "../../../infra/models/userFriend/UserFriendModel";
 import { AcceptFriendRelationEntity } from "../../entities/relation/AcceptFriendRelationEntity";
 import { AddFriendRelationEntity } from "../../entities/relation/AddFriendRelationEntity";
 
@@ -21,6 +22,14 @@ export interface RelationRepositorySchema {
    * @return { Promise<Array<RelationModel>>}
    */
   findById(realtionId: string): Promise<RelationModel|null>
+
+  
+  /**
+   * Liste des nouvelles realtions
+   * @param {string} userId
+   * @returns Promise<UserFriendModel[]>
+   */
+  findNewRelationByUserId(userId: string): Promise<UserFriendModel[]>;
 
   /**
    * Mise a jour d'une relation

@@ -30,6 +30,13 @@ export interface UserFriendRepositorySchema {
   findAllFriendByUserId(userId: string): Promise<Array<UserFriendModel>>;
 
   /**
+   * Recherhce ami avec relation acceptée
+   * @param {string} userId
+   * @returns {Promise<Array<UserFriendModel>>}
+   */
+  findAllFriendsWithAcceptedRelation(userId: string): Promise<Array<UserFriendModel>>;
+
+  /**
    * Recherche de 1 friend
    * @param {{userId: string, friendId: string}} findFriend
    * @returns {Promise<UserFriendModel>}

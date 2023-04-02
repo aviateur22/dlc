@@ -24,7 +24,7 @@ export class PostgreSQLUserFriendRepository implements UserFriendRepositorySchem
       returning *
     )    
     SELECT * FROM add_new_relation
-    JOIN "user" ON "add_new_relation".user_id = "user".id
+    JOIN "user" ON "add_new_relation".friend_id = "user".id
     `, [
       addFriend.userId, addFriend.friendId, addFriend.friendName,addFriend.relationId, addFriend.createdAt, addFriend.updatedAt
     ]).then(result=>{
@@ -61,8 +61,41 @@ export class PostgreSQLUserFriendRepository implements UserFriendRepositorySchem
     "relation".is_accepted AS is_relation_accepted
     FROM "friend_user"
     JOIN "user" ON "friend_user".friend_id = "user".id
+    JOIN "relation" ON "friend_user"."relation_id"= "relation"."id"    
+    WHERE "friend_user".user_id=$1
+    AND "relation".is_accepted=true
+    OR ("relation".sender_id=$1 AND "friend_user".friend_id<>$1)`, [
+      userId
+    ]).then(results=>{
+      
+      return UserFriendModelMapper.getUserFriendsModel(results.rows);      
+    });
+
+    return friends;
+  }
+
+  /**
+   * Liste des amis ayant validée la relation
+   * @param {string} userId
+   * @returns Promise<UserFriendModel[]>
+   */
+  async findAllFriendsWithAcceptedRelation(userId: string): Promise<UserFriendModel[]> {
+    const friends = await client.query(`
+    SELECT 
+    "friend_user".id AS id,
+    "friend_user".user_id AS user_id,
+    "friend_user".friend_id AS friend_id,
+    "user".email AS email,
+    "friend_user".friend_name AS friend_name,
+    "friend_user".created_at AS created_at, 
+    "friend_user".updated_at AS updated_at,
+    "relation".id AS relation_id,
+    "relation".is_accepted AS is_relation_accepted
+    FROM "friend_user"
+    JOIN "user" ON "friend_user".friend_id = "user".id
     JOIN "relation" ON "friend_user"."relation_id"= "relation"."id"
-    WHERE user_id=$1 AND "relation".is_accepted=true`, [
+    WHERE user_id=$1 
+    AND "relation".is_accepted=true`, [
       userId
     ]).then(results=>{
       
@@ -132,7 +165,7 @@ export class PostgreSQLUserFriendRepository implements UserFriendRepositorySchem
       DELETE FROM "friend_user" WHERE (user_id=$1 AND friend_id=$2) OR (user_id=$2 AND friend_id=$1) returning *
     )
     SELECT * FROM "delete_friend_user" 
-    JOIN "user" ON "delete_friend_user".user_id = "user".id
+    JOIN "user" ON "delete_friend_user".friend_id = "user".id
     `, [
       deleteFriend.userId, deleteFriend.friendId
    ]).then(result=>{

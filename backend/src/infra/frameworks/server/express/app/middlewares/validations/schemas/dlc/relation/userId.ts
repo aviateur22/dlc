@@ -10,14 +10,5 @@ export default Joi.object({
   .messages({
     'string.empty': messages.message.userIdMissing,
     'any.required': messages.message.userIdMissing
-  }),
-
-  //FriendId
-  friendId: Joi
-  .string()
-  .required() 
-  .messages({
-    'string.empty': messages.message.friendIdMissing,    
-    'any.required': messages.message.friendIdMissing
   })
-})
+});

@@ -25,17 +25,18 @@ export class Relation {
 
     // Données d'ajout de relation
     const addRelationData = new AddFriendRelationEntity({
+      userId: addFriend.userId,
       friendId: addFriend.friendId,
       isAccepted: false,
       isNew: true
     }) 
     
     const addFriendRelation = await RepositoryServiceImpl.getRepository().relationRepository.save(addRelationData);
-
+    
     if(!addFriendRelation) {
       throw new ServerException(messages.message.errorServer);
     }
-    
+
     return RelationMapper.getRelationEntity(addFriendRelation);
   }
 

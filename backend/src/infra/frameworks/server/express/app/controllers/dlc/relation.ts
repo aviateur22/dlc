@@ -1,6 +1,7 @@
 import { NextFunction, Request, Response } from "express";
 import { RelationEntity } from "../../../../../../../domain/entities/relation/RelationEntity";
 import { UseCaseServiceImpl } from "../../../../../../../domain/services/UseCaseServiceImpl";
+import { UserFriendEntity } from "../../../../../../../domain/entities/friend/UserFriendEntity";
 
 export default {
 
@@ -43,4 +44,17 @@ export default {
       relation: refuseRelation
     });
   },
+
+  /**
+   * Recherche nouvelle relation d'un utilisateur
+   * @param {Request} req 
+   * @param {Response} res 
+   * @param {NextFunction} next 
+   * @returns {Promise<Response>}
+   */
+  findNewRelation: async(req: Request, res: Response, next: NextFunction):Promise<Response<UserFriendEntity>>=>{ 
+    const userId = req.params.userId;
+    const findNewRelation = await UseCaseServiceImpl.getUseCases().relationUseCase.findNewRelationUseCase.execute(userId);
+    return res.json(findNewRelation);
+  }
 }

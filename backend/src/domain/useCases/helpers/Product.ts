@@ -92,7 +92,7 @@ export class Product {
     let createdAt = new Date();
     
     // Récupération des amis
-    const friends = await RepositoryServiceImpl.getRepository().userFriendRepository.findAllFriendByUserId(addProductData.userId!);
+    const friends = await RepositoryServiceImpl.getRepository().userFriendRepository.findAllFriendsWithAcceptedRelation(addProductData.userId!);
    
     for(let friend of friends) {
       // Ajout du ProduitUser        
