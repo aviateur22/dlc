@@ -5,6 +5,7 @@ import { UserProductsResponseSchema } from 'src/app/domain/ports/EntitiesSchemas
 import { UserProductsUseCase } from 'src/app/domain/useCases/UserProductsUseCase';
 import { SessionInformation } from 'src/app/domain/helpers/SessionInformation';
 import { UserProductsService } from 'src/app/infra/services/useCaseService/user-products.service';
+import { UserService } from 'src/app/infra/services/dataService/userService';
 
 @Component({
   selector: 'app-home',
@@ -13,6 +14,7 @@ import { UserProductsService } from 'src/app/infra/services/useCaseService/user-
 })
 export class HomeComponent {  
 
+  // Produits utilisateur
   products: Array<ProductSchema> = [];
 
   // Info utilisateur
@@ -21,10 +23,11 @@ export class HomeComponent {
   constructor(
     private userProductsUseCase: UserProductsUseCase, 
     private sessionInformation: SessionInformation, 
-    private userProductService: UserProductsService
+    private userProductService: UserProductsService,
+    private userService: UserService
   ) {}
 
-  ngOnInit() {    
+  ngOnInit() {        
     this.getUserProducts(); 
   }
 
@@ -32,6 +35,7 @@ export class HomeComponent {
    * Récupération produits clients
    */
   private getUserProducts() {
+    
     this.userProductsUseCase.execute(this.userInformation);
 
     this.userProductService.userProductsResponseObservable.subscribe(userProductsResponse=>{

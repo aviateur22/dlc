@@ -8,7 +8,7 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 export class RectangleButtonComponent {
   
   @Output() 
-  clickEmitter: EventEmitter<any> = new EventEmitter<any>();
+  clickEmitter: EventEmitter<Event> = new EventEmitter<Event>();
 
   @Input()
   type: string ='button'
@@ -19,7 +19,8 @@ export class RectangleButtonComponent {
   /**
    * Action du click
    */
-  click() {
+  click(e: Event) {
+    e.stopPropagation();
     this.clickEmitter.emit();
   }
 }

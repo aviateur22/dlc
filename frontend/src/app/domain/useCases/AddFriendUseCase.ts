@@ -2,6 +2,9 @@ import { FriendRepositoryService } from "src/app/infra/services/repositoryServic
 import { AddFriendSchema } from "../ports/EntitiesSchemas/friend/AddFriendSchema";
 import { AddFriendService } from "src/app/infra/services/useCaseService/add-friend.service";
 import { Injectable } from "@angular/core";
+import { Observable } from "rxjs";
+import { FriendResponseSchema } from "../ports/EntitiesSchemas/friend/FriendResponseSchema";
+import { FriendArrayResponseSchema } from "../ports/EntitiesSchemas/friend/FriendArrayResponseSchema";
 
 /**
  * Ajout d'un ami
@@ -13,19 +16,13 @@ export class AddFriendUseCase {
 
   constructor(
     private friendService: FriendRepositoryService,
-    private addFriendService: AddFriendService
   ) {}
 
   /**
-   * Ajout ami
+   * Ajout d'un ami
    * @param {AddFriendSchema} data 
    */
-  execute(data: AddFriendSchema) {
-    this.friendService.addFriend(data).subscribe(addFriendResponse=>{
-
-      if(addFriendResponse) {
-        this.addFriendService.updateAddFriend(addFriendResponse);
-      }
-    });
+  execute(data: AddFriendSchema): Observable<FriendArrayResponseSchema> {    
+    return this.friendService.addFriend(data);
   }
 }

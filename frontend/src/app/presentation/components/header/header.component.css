@@ -1,0 +1,23 @@
+.main__header__container{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.main__header {
+ width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.main__header_title {
+  text-transform: uppercase;
+  font-weight: var(--font_heavy);
+  font-size: var(--title_mobile)!important;
+  color: var(--main_color);
+}
+
+.user__option__container {
+}

@@ -52,7 +52,6 @@ export class LoginComponent {
   validateLoginData(): void {
     
     if (!this.loginFormGroup.valid) {
-      console.log(this.loginFormGroup)
       return this.loginFormGroup.markAllAsTouched();
     }
     

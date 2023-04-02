@@ -1,0 +1,16 @@
+<div class="friend__relation__container">
+  <div class="friend__relation">
+
+    <!--Email de la nouvelle relation-->
+    <p class="friend__relation__email">{{friendRelation?.friendEmail}}</p>
+
+    <!--Validation vutton relation ami-->
+    <app-yes-no-button 
+    
+      textValueButton1="accepter"
+      textValueButton2="refuser"
+      (clickEmitterButton1)="acceptFriendRelation()"
+      (clickEmitterButton2)="refuseFriendRelation()"
+    ></app-yes-no-button>
+  </div>
+</div>

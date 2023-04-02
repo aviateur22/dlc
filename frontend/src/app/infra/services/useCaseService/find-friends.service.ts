@@ -16,7 +16,7 @@ export class FindFriendsService {
    
    /**
    * Mise a jour 
-   * @param {FriendResponseSchema} FriendResponse 
+   * @param {FriendResponseSchema} findFriendsResponse 
    */
    updateFindFriends(findFriendsResponse: Array<FriendResponseSchema>): void {
      this.findFriendsResponse.next(findFriendsResponse);     

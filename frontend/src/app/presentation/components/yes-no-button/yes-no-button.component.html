@@ -1,0 +1,9 @@
+<div (click)="displayButtonToggle($event)" class="yes__no__button__container">
+  <div *ngIf="areButtonVisible" class="button__container">
+    <!--Action button 1-->
+    <app-rectangle-button (clickEmitter)="clickButton1($event)" value={{textValueButton1}}></app-rectangle-button>
+
+    <!--Action button 2-->
+    <app-rectangle-button (clickEmitter)="clickButton2($event)" value={{textValueButton2}}></app-rectangle-button>
+  </div>  
+</div>

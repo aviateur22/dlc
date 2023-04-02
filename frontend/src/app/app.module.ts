@@ -31,6 +31,11 @@ import { FriendComponent } from './presentation/pages/friend-page/friend.compone
 import { FriendDisplayComponent } from './presentation/pages/friend-page/friend/friend-display.component';
 import { AddFriendComponent } from './presentation/pages/friend-page/add-friend/add-friend.component';
 import { FriendListComponent } from './presentation/pages/friend-page/friend-list/friend-list.component';
+import { NewFriendsRelationModalComponent } from './presentation/pages/friend-page/new-friends-relation-modal/new-friends-relation-modal.component';
+import { YesNoButtonComponent } from './presentation/components/yes-no-button/yes-no-button.component';
+import { HeaderPageComponent } from './presentation/components/header-page/header-page.component';
+import { NewFriendRelationComponent } from './presentation/pages/friend-page/new-friends-relation-modal/friend-relation/friend-relation.component';
+import { NewFriendListComponent } from './presentation/pages/friend-page/new-friends-relation-modal/new-friend-list/new-friend-list.component';
 
 
 @NgModule({
@@ -55,7 +60,12 @@ import { FriendListComponent } from './presentation/pages/friend-page/friend-lis
     FriendComponent,
     FriendDisplayComponent,
     AddFriendComponent,
-    FriendListComponent
+    FriendListComponent,
+    NewFriendsRelationModalComponent,
+    YesNoButtonComponent,
+    HeaderPageComponent,
+    NewFriendRelationComponent,
+    NewFriendListComponent
   ],
 
   imports: [

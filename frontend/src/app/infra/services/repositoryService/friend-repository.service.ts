@@ -8,6 +8,7 @@ import { DeleteFriendSchema } from 'src/app/domain/ports/EntitiesSchemas/friend/
 import { FriendResponseSchema } from 'src/app/domain/ports/EntitiesSchemas/friend/FriendResponseSchema';
 import { FriendRepositorySchema } from 'src/app/domain/ports/repositoriesSchemas/FriendRepositorySchema';
 import { environment } from 'src/environments/environment';
+import { FriendArrayResponseSchema } from 'src/app/domain/ports/EntitiesSchemas/friend/FriendArrayResponseSchema';
 
 @Injectable({
   providedIn: 'root'
@@ -21,8 +22,8 @@ export class FriendRepositoryService implements FriendRepositorySchema {
    * @param {AddFriendSchema} data
    * @returns {Observable<FriendResponseSchema>}
    */
-  addFriend(data: AddFriendSchema): Observable<FriendResponseSchema> {
-    return this.http.post<FriendResponseSchema>(environment.baseUrl + endPoint.addfriend.url, data);
+  addFriend(data: AddFriendSchema): Observable<FriendArrayResponseSchema> {
+    return this.http.post<FriendArrayResponseSchema>(environment.baseUrl + endPoint.addfriend.url, data);
   }
 
   /**
@@ -31,7 +32,7 @@ export class FriendRepositoryService implements FriendRepositorySchema {
    * @returns {Observable<FriendResponseSchema[]>}
    */
   findAllFriendOfUser(userId: string): Observable<FriendResponseSchema[]> {
-    return this.http.get<Array<FriendResponseSchema>>(environment.baseUrl + endPoint.findAllFriendsByUserId.url + `/${userId}`);
+    return this.http.get<Array<FriendResponseSchema>>(environment.baseUrl + endPoint.findAllFriendsByUserId.url + `${userId}`);
   }
 
   /**
@@ -39,9 +40,12 @@ export class FriendRepositoryService implements FriendRepositorySchema {
    * @param {DeleteFriendSchema} data 
    * @returns {Observable<FriendResponseSchema>}
    */
-  deleteFriendByRelationId(data: DeleteFriendSchema): Observable<FriendResponseSchema> {
-    return this.http.delete<FriendResponseSchema>(environment.baseUrl + endPoint.deleteFriend.url, {
-      body: data
+  deleteFriendByRelationId(data: DeleteFriendSchema): Observable<Array<FriendResponseSchema>> {
+    return this.http.delete<Array<FriendResponseSchema>>(environment.baseUrl + endPoint.deleteFriend.url, {
+      body: {
+        userId: data.userId,
+        friendId: data.friendId
+      }
     })
   }
 }

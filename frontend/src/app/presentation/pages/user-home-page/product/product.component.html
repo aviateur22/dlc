@@ -1,7 +1,13 @@
 <div class="product__container">
   <div class="product">
     <img [src]="productImage" alt="test">
-    <p>ouvert depuis: {{product.openDay}} jour <ng-container *ngIf="product.openDay > 1">s</ng-container> </p> 
-    <app-round-button (clickEmit)="deleteProduct()" value="suppression"></app-round-button>
+
+    <!--Ouverture-->
+    <div class="product__text">
+      <p>ouvert depuis: {{product.openDay}} jour <ng-container *ngIf="product.openDay > 1">s</ng-container> </p> 
+    </div>
+    
+    <!--Suppression button-->
+    <app-round-button class="product__button" (clickEmit)="deleteProduct()" value="suppression"></app-round-button>
   </div>
 </div>

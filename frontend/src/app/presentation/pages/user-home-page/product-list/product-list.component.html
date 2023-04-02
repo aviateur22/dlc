@@ -1,12 +1,17 @@
 <div class="products__container">
+  <!--Modal confirmation suppression-->
   <app-delete-modal 
     (deleteProductEmit)="deleteProduct()" *ngIf="isDeleteModalVisible"
     (cancelDeleteEmit)="cancelDeleteProduct()">
   </app-delete-modal>
-  <ul class="products">
+
+  <!--Lite des produits-->
+  <ul class="product__list" class="products">
     <li class="product__item" *ngFor="let product of products">
-      <app-product (deleteProductEmit)="displayDeleteModal($event)" [product]="product">1</app-product>
+      <app-product class="product" (deleteProductEmit)="displayDeleteModal($event)" [product]="product">1</app-product>
     </li>    
   </ul>  
+
+  <!--Button suppr.-->
   <app-rectangle-button (clickEmitter)="redirectToAddProductPage()" value="ajouter un produit"></app-rectangle-button>
 </div>

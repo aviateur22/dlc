@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
@@ -10,15 +10,27 @@ export class AddFriendComponent {
 
   addFriendFormGroup: FormGroup = new FormGroup({});
 
-  constructor(private fb: FormBuilder) {}
+  @Output()
+  addFriendEmitter: EventEmitter<string> = new EventEmitter<string>();
 
-  addFriend() {
-    
-  }
+  constructor(private fb: FormBuilder) {}
 
   ngOnInit() {
     this.addFriendFormGroup = this.fb.group({
       email: ['', Validators.required]
     })
   }
+
+  /**
+   * 
+   */
+  ValidateFriendEmail() {
+    if(!this.addFriendFormGroup.valid) {
+      return this.addFriendFormGroup.markAllAsTouched()
+    }
+    console.log('ff')
+    this.addFriendEmitter.emit(this.addFriendFormGroup.controls['email'].value)
+  }
+
+  
 } 

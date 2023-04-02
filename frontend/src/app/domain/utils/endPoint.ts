@@ -30,6 +30,15 @@ export default {
     url: '/friend/'
   },
   findAllFriendsByUserId: {
-    url: '/friend/find-by-user-id'
+    url: '/friend/find-friends/'
+  },
+  acceptFriendRelation: {
+    url: '/relation'
+  },
+  refuseFriendRelation: {
+    url: '/relation'
+  },
+  findNewFriendRelation: {
+    url: '/relation/find-new-relation/'
   }
 }

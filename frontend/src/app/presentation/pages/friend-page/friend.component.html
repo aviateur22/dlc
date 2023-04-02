@@ -1,4 +1,7 @@
 <div class="container">
+  <!--Liste des nouvelles relations-->
+  <app-new-friends-relation-modal></app-new-friends-relation-modal>
+
   <div class="friend">
     <!--Header-->
     <div class="friend__header">
@@ -13,8 +16,7 @@
 
     <!--Ajout ami-->
     <div class="friend__add__container">
-      <app-add-friend></app-add-friend>
+      <app-add-friend (addFriendEmitter)="addFriend($event)"></app-add-friend>
     </div>
   </div>
-
 </div>

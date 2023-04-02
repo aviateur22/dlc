@@ -1,0 +1,39 @@
+.user__option__container {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: var(--main_color);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+}
+
+.button__svg {
+  transition: all 0.3s ease-in-out;
+}
+
+.user__option__container:hover {
+  box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px, rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;
+}
+
+.user__option__container:hover .button__svg {
+  height: 20px;
+}
+
+.user__option {
+  position: absolute;
+  left: 0px;
+  top: 45px;
+  background-color: red;
+  width:100%;
+  display: flex;
+  flex-direction: column;
+
+
+}
+
+
+
