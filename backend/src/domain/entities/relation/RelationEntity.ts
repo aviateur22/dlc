@@ -2,12 +2,8 @@
  * Entity FriendRelation
  */
 export class RelationEntity {
-  id!: string;
-  senderId!: string;
-  friendId!: string;
-  isAcceppted!: boolean;
-  isNew!: boolean;
-  friendEmail!: string;
+  id!: string; 
+  isActivated!: boolean;
   createdAt!: Date;
   updatedAt!: Date;
 

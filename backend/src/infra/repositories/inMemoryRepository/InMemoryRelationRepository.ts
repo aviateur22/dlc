@@ -24,19 +24,12 @@ export class InMemoryRelationRepository implements RelationRepositorySchema {
     //id
     const id = (Math.max(...this.relaltions.map(x=>Number(x.id))) + 1).toString();
 
-    // Email
-    const friendEmail = await RepositoryServiceImpl.getRepository().userRepository.findById(relationData.friendId).then(result=>result!.email);
-
     // Relation
     const relation: RelationModel = {
       id,
-      senderId: relationData.userId,
-      friendId: relationData.friendId,
-      isAcceppted: relationData.isAccepted,
-      isNew: relationData.isNew,
-      friendEmail,
+      isActivated: relationData.isActivated,
       createdAt: relationData.createdAt,
-      updatedAt: relationData.updtedAt
+      updatedAt: relationData.updatedAt
     }
 
     this.relaltions.push(relation);

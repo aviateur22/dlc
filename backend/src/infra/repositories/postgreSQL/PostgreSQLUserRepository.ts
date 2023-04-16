@@ -44,7 +44,7 @@ export class PostgreSQLUserRepository implements UserRepositorySchema {
   }
 
   /**
-   * findUserById
+   * Recherche user par id
    * @param { string } userId 
    * @returns {Promise<UserModel | null>} 
    */

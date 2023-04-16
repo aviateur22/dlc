@@ -8,7 +8,8 @@ export class UserFriendEntity {
   readonly friendName!: string;
   readonly friendEmail!: string;
   readonly relationId! : string;
-  readonly relationAccepted!: boolean;
+  readonly isFriendAccepted!: boolean;
+  readonly isNewFriend!: boolean;
   readonly createdAt!: Date;
   readonly updatedAt!: Date;
 

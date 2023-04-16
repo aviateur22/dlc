@@ -1,10 +1,10 @@
+import { FriendRelationException } from "../../../exceptions/FriendRelationException";
 import { UserNotFindException } from "../../../exceptions/UserNotFindException";
 import { UserFriendMapper } from "../../dtos/UserFriendMapper";
 import { AddFriendEntity } from "../../entities/friend/AddFriendEntity";
 import { UserFriendEntity } from "../../entities/friend/UserFriendEntity";
 import messages from "../../messages/messages";
 import { UseCaseModel } from "../UseCaseModel";
-import { Relation } from "../helpers/Relation";
 
 /**
  * AddFriendUsecase
@@ -24,7 +24,7 @@ export class AddFriendUseCase extends UseCaseModel {
     // Ajout de son propre email
     if(findFriend?.id === addFriend.userId) {
       // Todo remplacer par l'ajout d'un compte et envoie d'email 
-      throw new UserNotFindException(messages.message.personalEmailNotAllowed);
+      throw new FriendRelationException(messages.message.personalEmailNotAllowed);
     }
 
     if(!findFriend) {
@@ -33,17 +33,22 @@ export class AddFriendUseCase extends UseCaseModel {
     }
 
     // Vérification existance relation amis et ajout de la relation
-    const relationData = await Relation.addRelation({friendId: findFriend.id, ...addFriend});
-   
+    const isFriendRelationExist = await this.repositories.userFriendRepository.findOneFriendByUserId({
+    userId: addFriend.userId!,
+    friendId: findFriend.id!
+   });
+
+   if(isFriendRelationExist) {
+    throw new FriendRelationException(messages.message.friendRelationAlreadyExist);
+   }
+
     // Ajout ami user->ami et ami->user    
     const addFriendRelation = await this.repositories.userFriendRepository.addFriend(new AddFriendEntity({
       userId: addFriend.userId!,
       friendId: findFriend.id!,
       friendEmail: findFriend.email!,
-      friendName: addFriend.friendName!,
-      relationId: relationData.id     
+      friendName: addFriend.friendName!
     }));
-    
     return UserFriendMapper.getUserFriendsEntities(addFriendRelation);
   }
 }

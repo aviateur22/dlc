@@ -21,29 +21,19 @@ export class PostgreSQLRelationRepository implements RelationRepositorySchema {
   async save(relationData: AddFriendRelationEntity): Promise<RelationModel|null> {
    
     const addRelation = await client.query(`
-    WITH add_relation AS (
-      INSERT INTO "relation" ("sender_id", "friend_id", "is_accepted", "is_new", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING *
-    )
-    SELECT 
-    "add_relation"."id",
-    "add_relation"."sender_id",
-    "add_relation"."friend_id",
-    "add_relation"."is_accepted",
-    "add_relation"."is_new",
-    "add_relation"."created_at",
-    "add_relation"."updated_at",
-    "user"."email" AS friend_email
-    from add_relation
-    JOIN "user" ON "add_relation"."friend_id" = "user"."id"
-    `, [
-      relationData.userId,  relationData.friendId, relationData.isAccepted, relationData.isNew, relationData.createdAt, relationData.updatedAt
-    ]).then(result=>{
+      INSERT INTO "relation" 
+      ("created_at", "updated_at") 
+      VALUES ($1, $2) 
+      RETURNING *`, [
+        relationData.createdAt, relationData.updatedAt
+      ]).then(result=>{
       
-      if(result.rowCount === 0) {
-        return null;
-      }           
-      return RelationModelMappper.getRelationModel(result.rows.shift());
-    })
+        if(result.rowCount === 0) {
+          return null;
+        }
+
+        return RelationModelMappper.getRelationModel(result.rows.shift());
+    });
 
     return addRelation;
   }

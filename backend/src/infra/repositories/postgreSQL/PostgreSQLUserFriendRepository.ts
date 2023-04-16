@@ -3,6 +3,7 @@ import { DeleteFriendEntity } from "../../../domain/entities/friend/DeleteFriend
 import { UserFriendRepositorySchema } from "../../../domain/ports/repositoriesSchemas/UserFriendRepositorySchema";
 import { UserFriendModelMapper } from "../../dto/UserFriendModelMapper";
 import { UserFriendModel } from "../../models/userFriend/UserFriendModel";
+import { RepositoryServiceImpl } from "../../services/repository/RepositoryServiceImpl";
 import client from './connexion/databaseConnexion'
 
 export class PostgreSQLUserFriendRepository implements UserFriendRepositorySchema {
@@ -14,19 +15,36 @@ export class PostgreSQLUserFriendRepository implements UserFriendRepositorySchem
   async addFriend(addFriend: AddFriendEntity): Promise<Array<UserFriendModel>> {
     
     // Ajout user->friend
+    await client.query('BEGIN');
+
+    const addRelation = await RepositoryServiceImpl.getRepository().relationRepository.save({
+      isActivated: false,
+      createdAt: addFriend.createdAt,
+      updatedAt: addFriend.updatedAt
+    });
+
+    if(!addRelation) {
+      throw new Error('error')
+    }
+
     const friend = await client.query(`
-    WITH add_new_relation AS (
+    WITH add_new_friend_relation AS (
       INSERT INTO "friend_user" 
-      ("user_id", "friend_id", "friend_name", "relation_id", "created_at", "updated_at") 
+      ("user_id", "friend_id", "friend_name", "relation_id", "is_new", "is_accepted", "created_at", "updated_at") 
       VALUES 
-      ($1, $2, $3, $4, $5 ,$6),
-      ($2, $1, $3, $4 ,$5 ,$6)
+      ($1, $2, $3, $4, false, true, $5, $6),
+      ($2, $1, $3, $4, true, false, $5, $6)
       returning *
     )    
-    SELECT * FROM add_new_relation
-    JOIN "user" ON "add_new_relation".friend_id = "user".id
+    SELECT * FROM add_new_friend_relation    
+    JOIN "user" ON "add_new_friend_relation".friend_id = "user".id
     `, [
-      addFriend.userId, addFriend.friendId, addFriend.friendName,addFriend.relationId, addFriend.createdAt, addFriend.updatedAt
+     addFriend.userId, 
+     addFriend.friendId, 
+     addFriend.friendName, 
+     addRelation.id,
+     addFriend.createdAt, 
+     addFriend.updatedAt
     ]).then(result=>{
 
       // Pas de données
@@ -39,8 +57,12 @@ export class PostgreSQLUserFriendRepository implements UserFriendRepositorySchem
       return UserFriendModelMapper.getUserFriendsModel(data);
     });
 
+    await client.query('COMMIT');
+
     return friend!;
   }
+
+  
 
   /**
    * Recherche de tous les amis d'une personne ayant la relalion valide
@@ -58,13 +80,12 @@ export class PostgreSQLUserFriendRepository implements UserFriendRepositorySchem
     "friend_user".created_at AS created_at, 
     "friend_user".updated_at AS updated_at,
     "relation".id AS relation_id,
-    "relation".is_accepted AS is_relation_accepted
+    "relation".is_activated AS is_relation_accepted
     FROM "friend_user"
     JOIN "user" ON "friend_user".friend_id = "user".id
     JOIN "relation" ON "friend_user"."relation_id"= "relation"."id"    
     WHERE "friend_user".user_id=$1
-    AND "relation".is_accepted=true
-    OR ("relation".sender_id=$1 AND "friend_user".friend_id<>$1)`, [
+    AND "relation".is_activated=true`, [
       userId
     ]).then(results=>{
       
@@ -90,12 +111,12 @@ export class PostgreSQLUserFriendRepository implements UserFriendRepositorySchem
     "friend_user".created_at AS created_at, 
     "friend_user".updated_at AS updated_at,
     "relation".id AS relation_id,
-    "relation".is_accepted AS is_relation_accepted
+    "relation".is_activated AS is_relation_accepted
     FROM "friend_user"
     JOIN "user" ON "friend_user".friend_id = "user".id
     JOIN "relation" ON "friend_user"."relation_id"= "relation"."id"
     WHERE user_id=$1 
-    AND "relation".is_accepted=true`, [
+    AND "relation".is_activated=true`, [
       userId
     ]).then(results=>{
       

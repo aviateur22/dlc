@@ -19,7 +19,8 @@ export class UserFriendMapper {
       friendName: userFriend.friendName,
       friendEmail: userFriend.friendEmail,
       relationId: userFriend.relationId,
-      relationAccepted: userFriend.relationAccepted,
+      isFriendAccepted: userFriend.isFriendAccepted,
+      isNewFriend: userFriend.isNewFriend,
       createdAt: userFriend.createdAt,
       updatedAt: userFriend.updatedAt
     });

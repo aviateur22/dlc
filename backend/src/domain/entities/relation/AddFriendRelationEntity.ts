@@ -2,10 +2,7 @@
  * Création FriendRelation Entity
  */
 export class AddFriendRelationEntity { 
-  readonly friendId!: string;
-  readonly userId!: string;
-  readonly isAccepted!: boolean;
-  readonly isNew!: boolean;
+  readonly isActivated!: boolean;
   readonly updatedAt!: Date;
   readonly createdAt!: Date;
 
