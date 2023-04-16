@@ -73,7 +73,7 @@ describe('AcceptRelationRequest', ()=>{
       relationId: "1",
       token: token
     });
-    console.log(res.body)
+    
     expect(res.status).toBe(200);
     expect(res.body).toHaveProperty('relation');
     expect(res.body.relation).toEqual(expect.objectContaining({

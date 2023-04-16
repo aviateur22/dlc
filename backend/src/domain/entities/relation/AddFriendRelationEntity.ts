@@ -2,10 +2,11 @@
  * Création FriendRelation Entity
  */
 export class AddFriendRelationEntity { 
-  readonly friendId!: string 
+  readonly friendId!: string;
+  readonly userId!: string;
   readonly isAccepted!: boolean;
   readonly isNew!: boolean;
-  readonly updtedAt!: Date;
+  readonly updatedAt!: Date;
   readonly createdAt!: Date;
 
   constructor(acceptRelationData: Partial<AddFriendRelationEntity>) {
@@ -16,7 +17,7 @@ export class AddFriendRelationEntity {
     }
 
     const createdAt = new Date();
-    this.updtedAt = createdAt;
+    this.updatedAt = createdAt;
     this.createdAt = createdAt;
   }
 }

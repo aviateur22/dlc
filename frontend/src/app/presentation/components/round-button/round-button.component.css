@@ -1,0 +1,31 @@
+.rounded__button__container {
+ 
+}
+
+.rounded__button {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background-color: var(--main_color);
+  cursor: pointer;
+  border: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: all 0.2s ease-in-out;
+}
+
+.rounded__button:hover {
+  box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px, rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;
+}
+
+.button__svg {
+  color: white;
+  height: 15px;
+  width: auto;
+  transition: all 0.2s ease-in-out;
+}
+
+.rounded__button:hover .button__svg  {
+  height: 20px;
+}

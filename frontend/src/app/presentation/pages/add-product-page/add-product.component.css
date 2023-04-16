@@ -1,0 +1,56 @@
+.product__container {
+  width: 100%;
+  height: calc(100vh - var(--banner_height));
+  overflow: hidden;
+}
+
+.inner__container {
+  height: 100%;
+  position: relative;
+}
+
+.product__form {
+  height: 100%;
+}
+
+.product__image__container {
+  width: 100%;
+  height: 100%;
+  padding: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+.product__image__preview {
+  width: 90%;
+  height: auto;
+  object-fit: contain;
+}
+
+.product__default__image {
+  width: 90%;
+  height: 90%;
+  object-fit: contain;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.product__button {
+  width: 100%;
+}
+
+.button__container {
+  background-color: white;
+  position: absolute;
+  bottom: 0px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 5px;
+  row-gap: 5px;
+}

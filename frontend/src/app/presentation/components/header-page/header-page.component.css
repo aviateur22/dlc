@@ -1,0 +1,30 @@
+.header__page__container {
+  display: flex;
+  width: 100%;
+  height: 40px;
+  padding: 10px 0px;
+  position: relative;
+}
+
+.header__page {
+  
+  width: 100%;
+  display: flex;
+  align-items: center;
+  text-align: center;
+}
+
+.header__button {
+  position: absolute;
+  left: 0px;
+  top: 50%;
+  transform: translateY(-50%);
+  margin-left: 5px;
+}
+
+.header__page__title {
+  color: var(--main_color);
+  width: 100%;
+  text-align: center;
+  font-size: var(--text_20) !important;
+}

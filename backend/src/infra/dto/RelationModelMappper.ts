@@ -14,6 +14,7 @@ export class RelationModelMappper {
     
     return new RelationModel({
       id: data.id.toString(),     
+      senderId: data.sender_id,
       friendId: data.friend_id,
       friendEmail: data.friend_email,      
       isNew: data.is_new,

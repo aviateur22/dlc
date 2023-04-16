@@ -3,8 +3,7 @@
  */
 export class ProductWithImageModel {
   readonly id!: string;
-  readonly mimeType!: string;
-  readonly imageBase64!: string;
+  readonly imageId!: string  
   readonly openDate!: Date;
   readonly createdAt!: Date;
   readonly updatedAt!: Date;

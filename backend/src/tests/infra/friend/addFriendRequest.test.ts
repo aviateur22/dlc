@@ -65,16 +65,18 @@ describe('AddFriendRequest', ()=>{
     .post('/api/v1/dlc/friend')
     .set('Cookie', cookies)
     .set('content-type', 'application/json')
+    .set('token', token)
     .send({
       userId: '1',
       friendEmail: 'helixia22@hotmail.fr',
-      friendName: 'céline',
-      token: token
+      friendName: 'céline'
     });
 
     expect(res.status).toBe(201);
     expect(res.body).toHaveProperty('friends');
-    expect(res.body.friends.length).toBe(2);    
+    expect(res.body.friends.length).toBe(2);  
+    console.log(res.body)  
+
   });
 
   it('Should failed adding a friend, because relation already exist', async()=>{
@@ -94,11 +96,11 @@ describe('AddFriendRequest', ()=>{
     .post('/api/v1/dlc/friend')
     .set('Cookie', cookies)
     .set('content-type', 'application/json')
+    .set('token', token)
     .send({
       userId: '1',
       friendEmail: 'helixia22@hotmail.fr',
-      friendName: 'céline',
-      token: token
+      friendName: 'céline',    
     });
     console.log(res.body);
     expect(res.status).toBe(400);
@@ -115,11 +117,11 @@ describe('AddFriendRequest', ()=>{
     .post('/api/v1/dlc/friend')
     .set('Cookie', cookies)
     .set('content-type', 'application/json')
+    .set('token', token)
     .send({
       userId: '1',
       friendEmail: 'helixia22@yahoo.fr',
-      friendName: 'céline',
-      token: token
+      friendName: 'céline'     
     });
 
     expect(res.status).toBe(400);
@@ -136,11 +138,12 @@ describe('AddFriendRequest', ()=>{
     .post('/api/v1/dlc/friend')
     .set('Cookie', cookies)
     .set('content-type', 'application/json')
+    .set('token', token)
     .send({
       userId: '1',
       friendEmail: '',
-      friendName: 'céline',
-      token: token
+      friendName: 'céline'
+     
     });
 
     expect(res.status).toBe(400);
@@ -157,11 +160,11 @@ describe('AddFriendRequest', ()=>{
     .post('/api/v1/dlc/friend')
     .set('Cookie', cookies)
     .set('content-type', 'application/json')
+    .set('token', token)
     .send({
       userId: '1',
       friendEmail: 'helixia22hotmail.fr',
-      friendName: 'céline',
-      token: token
+      friendName: 'céline'    
     });
 
     expect(res.status).toBe(400);
@@ -178,11 +181,11 @@ describe('AddFriendRequest', ()=>{
     .post('/api/v1/dlc/friend')
     .set('Cookie', cookies)
     .set('content-type', 'application/json')
+    .set('token', token)
     .send({
       userId: '1',
       friendEmail: 'helixia22@hotmail.fr',
       friendName: '',
-      token: token
     });
 
     expect(res.status).toBe(400);
@@ -199,11 +202,11 @@ describe('AddFriendRequest', ()=>{
     .post('/api/v1/dlc/friend')
     .set('Cookie', cookies)
     .set('content-type', 'application/json')
+    .set('token', token)
     .send({
       userId: '',
       friendEmail: 'helixia22@hotmail.fr',
-      friendName: 'céline',
-      token: token
+      friendName: 'céline'
     });
 
     expect(res.status).toBe(400);

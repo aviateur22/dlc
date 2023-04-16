@@ -1,0 +1,26 @@
+<div class="input__group" [formGroup]="formGroup">  
+  <label class="input__label" [for]="id">{{labelText}}</label>
+
+  <div class="input__container">
+    <input #input
+      [class.border--error]="formGroup.get(formControlName)?.touched && formGroup.get(formControlName)?.errors?.['required']"
+      class="input"
+      [type]="type" 
+      [formControlName]="formControlName"   
+      [placeholder]="placeHolder"
+      [name]="name" 
+      [id]="id"
+    >
+    <!-- Mot de passe en clair-->
+    <div *ngIf="hasDisplaPasswordOption">
+      <button (click)="showPassword()">
+        password
+      </button>
+    </div>   
+  </div>
+  
+  <!-- Erreur Message-->
+  <div *ngIf="formGroup.get(formControlName)?.touched && formGroup.get(formControlName)?.errors?.['required']">
+    <p>{{errorMessage}}</p>
+  </div>
+</div>

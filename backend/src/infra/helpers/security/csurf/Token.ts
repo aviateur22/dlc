@@ -5,6 +5,7 @@ import { DecryptCookieToken } from './DecryptCookieCsurf';
 import { ForbiddenException } from '../../../../exceptions/ForbiddenException';
 import messages from '../../../../domain/messages/messages';
 import { TokenSchema } from '../../../ports/csurToken/TokenSchema';
+import { ErrorServerException } from '../../../../exceptions/ErrorServerException';
 
 export class Token {
 
@@ -40,7 +41,7 @@ static async compare(cookieToken: string, payloadToken: string) {
   const KEY = process.env.JWT_PRIVATE_KEY;
 
     if(!KEY){
-      throw ({message: 'KEY token absente', statusCode:'500'});
+      throw new ErrorServerException(messages.message.errorServer);
     }   
     
     if(!payloadToken || !cookieToken){
@@ -50,7 +51,7 @@ static async compare(cookieToken: string, payloadToken: string) {
     const aes = new CryptoAES();
 
     const cookieJwtDecrypt: CookieToken = await DecryptCookieToken.getDecryptToken(cookieToken);
-    console.log(payloadToken)
+   
     // SecretWord
     const secretWord = process.env.SECRET_APP_WORD;
     

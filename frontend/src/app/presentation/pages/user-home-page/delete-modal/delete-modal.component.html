@@ -1,0 +1,14 @@
+<div class="delete__modal__container">
+  <div class="modal">    
+    <p class="modal__text">supprimer le produit ?</p>
+
+    <!--Button Container-->
+    <div class="modal__button__container">
+      <!--Suppr-->      
+      <app-rectangle-button [isPrimary]="true" (clickEmitter)="cancelDelete()" value="Annuler"></app-rectangle-button>
+      
+      <!--Annuler-->
+      <app-rectangle-button (clickEmitter)="deleteProduct()" value="Supprimer"></app-rectangle-button>
+    </div>
+  </div>
+</div>

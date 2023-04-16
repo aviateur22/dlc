@@ -2,7 +2,8 @@
  * Model issu de la base de données
  */
 export class RelationModel {
-  readonly id!: string;
+  readonly id!: string;  
+  readonly senderId!: string;
   readonly friendId!: string;
   readonly friendEmail!: string;
   readonly isAcceppted!: boolean;

@@ -9,6 +9,8 @@ import acceptRelationSchema from '../../../middlewares/validations/schemas/dlc/r
 import refuseRelationSchema from '../../../middlewares/validations/schemas/dlc/relation/refuseRelation';
 import relationController from '../../../controllers/dlc/relation'
 import verifyCsurfToken from "../../../middlewares/verifyCsurfToken";
+import paramValidation from "../../../middlewares/validations/paramValidation";
+import userId from "../../../middlewares/validations/schemas/dlc/relation/userId";
 
 const router = express.Router();
 
@@ -22,6 +24,17 @@ router.post('/',
   controllerHandler(bodyValidation(acceptRelationSchema)), 
   controllerHandler(relationController.acceptRelation)
 );
+
+router.get('/find-new-relation/:userId',
+  controllerHandler(sanitizer), 
+  controllerHandler(formatCookie),
+  controllerHandler(verifyAuth),
+  controllerHandler(userRole.user),
+  controllerHandler(verifyCsurfToken),
+  controllerHandler(paramValidation(userId)),
+  controllerHandler(relationController.findNewRelation)
+
+)
 
 // suppression relation
 router.delete('/',

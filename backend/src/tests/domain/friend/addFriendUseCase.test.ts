@@ -77,6 +77,7 @@ describe('AddFriendUsecase', ()=>{
     const productUser = await RepositoryServiceImpl.getRepository().productUserRepository.findByUserId('1'); 
 
     expect(addFriendRelation.length).toBe(2);
+ 
     expect(addFriendRelation[0]).toEqual(expect.objectContaining({
       id: '1',
       friendId: '2',

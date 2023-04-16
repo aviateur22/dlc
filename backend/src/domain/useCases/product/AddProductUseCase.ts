@@ -46,14 +46,14 @@ export class AddProductUseCase extends UseCaseModel {
     if(!addProductUser) {
       throw new ServerException(messages.message.errorServer);
     }
-
+    
     // Ajout de la relation a tous les amis
     await Product.addOneProductToAllFriend(new AddFriendProductEntity({
       productId: product.id,
       userId: addProduct.userId!,
       ownerId: addProduct.userId!
     }));
-
+    
     return ProductMapper.getProductEntity({userId: addProduct.userId, ...product});
   }
 }

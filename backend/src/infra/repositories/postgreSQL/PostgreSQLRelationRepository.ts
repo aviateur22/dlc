@@ -2,7 +2,9 @@ import { AcceptFriendRelationEntity } from "../../../domain/entities/relation/Ac
 import { AddFriendRelationEntity } from "../../../domain/entities/relation/AddFriendRelationEntity";
 import { RelationRepositorySchema } from "../../../domain/ports/repositoriesSchemas/RelationRepositorySchema";
 import { RelationModelMappper } from "../../dto/RelationModelMappper";
+import { UserFriendModelMapper } from "../../dto/UserFriendModelMapper";
 import { RelationModel } from "../../models/RelationModel";
+import { UserFriendModel } from "../../models/userFriend/UserFriendModel";
 import client from './connexion/databaseConnexion'
 
 /**
@@ -17,13 +19,14 @@ export class PostgreSQLRelationRepository implements RelationRepositorySchema {
    * @return {Promise<RelationEntity>}
    */
   async save(relationData: AddFriendRelationEntity): Promise<RelationModel|null> {
-
+   
     const addRelation = await client.query(`
     WITH add_relation AS (
-      INSERT INTO "relation" ("friend_id", "is_accepted", "is_new", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING *
+      INSERT INTO "relation" ("sender_id", "friend_id", "is_accepted", "is_new", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING *
     )
     SELECT 
     "add_relation"."id",
+    "add_relation"."sender_id",
     "add_relation"."friend_id",
     "add_relation"."is_accepted",
     "add_relation"."is_new",
@@ -33,13 +36,12 @@ export class PostgreSQLRelationRepository implements RelationRepositorySchema {
     from add_relation
     JOIN "user" ON "add_relation"."friend_id" = "user"."id"
     `, [
-      relationData.friendId, relationData.isAccepted, relationData.isNew, relationData.createdAt, relationData.updtedAt
+      relationData.userId,  relationData.friendId, relationData.isAccepted, relationData.isNew, relationData.createdAt, relationData.updatedAt
     ]).then(result=>{
       
       if(result.rowCount === 0) {
         return null;
-      }      
-
+      }           
       return RelationModelMappper.getRelationModel(result.rows.shift());
     })
 
@@ -126,6 +128,38 @@ export class PostgreSQLRelationRepository implements RelationRepositorySchema {
     });
 
     return updateRepository;
+  }
+
+  /**
+   * Liste des nouvelles realtions
+   * @param {string} userId
+   * @returns Promise<UserFriendModel[]>
+   */
+  async findNewRelationByUserId(userId: string): Promise<UserFriendModel[]> {
+    const friends = await client.query(`
+    SELECT 
+    "friend_user".id AS id,
+    "friend_user".user_id AS user_id,
+    "friend_user".friend_id AS friend_id,
+    "user".email AS email,
+    "friend_user".friend_name AS friend_name,
+    "friend_user".created_at AS created_at, 
+    "friend_user".updated_at AS updated_at,
+    "relation".id AS relation_id,
+    "relation".is_accepted AS is_relation_accepted
+    FROM "friend_user"
+    JOIN "user" ON "friend_user".friend_id = "user".id
+    JOIN "relation" ON "friend_user"."relation_id"= "relation"."id"
+    WHERE user_id=$1 
+    AND "relation".is_new=true 
+    AND "relation".friend_id=$1`, [
+      userId
+    ]).then(results=>{
+      
+      return UserFriendModelMapper.getUserFriendsModel(results.rows);      
+    });
+
+    return friends;
   }
 
   /**

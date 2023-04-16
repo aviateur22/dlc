@@ -1,0 +1,48 @@
+.delete__modal__container {
+  position: fixed;
+  width: 100%;
+  top: 0px;
+  left: 0px;
+  bottom: 0px;
+  background-color: rgba(0,0,0,0.5);
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+}
+
+.modal {
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+  height: 100px;
+  width: 100%;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  box-shadow: rgba(0, 0, 0, 0.2) 0px 12px 28px 0px, rgba(0, 0, 0, 0.1) 0px 2px 4px 0px, rgba(255, 255, 255, 0.05) 0px 0px 0px 1px inset;
+  
+
+}
+
+.modal__text {
+  text-align: center;
+  padding-top: 10px;
+  color: #979797;
+}
+
+.modal__text::first-letter {
+  text-transform: capitalize;
+}
+
+.modal__button__container {
+  display: flex;
+  height: 100%;
+  justify-content: center;
+  align-items: flex-end;
+  padding-bottom: 10px;
+  padding: 5px;
+  column-gap: 10px;
+}
+
+.modal__button__container > * { 
+  flex: 1; 
+}

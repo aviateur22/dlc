@@ -7,7 +7,7 @@ import { ValidationException } from "../../../../../../../exceptions/ValidationE
  * @returns 
  */
 export default (schema: any)=>async(req: Request, res: Response, next: NextFunction)=>{
-  try {
+  try {       
     await schema.validateAsync(req.body);
     // if(req.method.toLowerCase() ==='get'){
     //     await schema.validateAsync(req.query);          

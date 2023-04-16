@@ -3,6 +3,7 @@
  */
 export class RelationEntity {
   id!: string;
+  senderId!: string;
   friendId!: string;
   isAcceppted!: boolean;
   isNew!: boolean;

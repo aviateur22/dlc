@@ -34,9 +34,7 @@ export class InMemoryProductRepository implements ProductRepositorySchema {
         }
 
         return new ProductWithImageModel({
-          id: product.id,
-          imageBase64: imageData.imageBase64,
-          mimeType: imageData.mimeType,
+          id: product.id,                  
           openDate: product.openDate,
           createdAt: product.createdAt,
           updatedAt: product.updatedAt

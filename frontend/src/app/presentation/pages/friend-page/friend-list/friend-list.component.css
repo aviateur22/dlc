@@ -1,0 +1,19 @@
+.friends {
+  display: flex;
+  width: 100%;
+}
+
+.friends__list {
+  display: flex;
+  width: 100%;
+}
+
+.friend__item {
+  display: flex;
+  width: 100%;
+}
+
+.friend {
+  display: flex;
+  width: 100%;
+}

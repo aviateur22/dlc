@@ -1,0 +1,23 @@
+<div class="friend__container">
+  <!--Liste des nouvelles relations-->
+  <app-new-friends-relation-modal *ngIf="isAddFriendModalVisible"></app-new-friends-relation-modal>
+
+  <!--header-->
+  <app-header-page (headerButtonEmitter)="navigateToHomePage()" headerTitle="Gestion des amis" buttonHeaderText="Annuler"></app-header-page>
+
+  <div class="friend">
+    <div class="friends__avail">
+      <p class="title--part">comptes déjà associés</p>
+      <!--Comptes deja associés-->
+      <div class="friend__list">
+        <app-friend-list class="friend__list" [friends]="friends"></app-friend-list>      
+      </div>
+    </div>
+    
+
+    <!--Ajout ami-->
+    <div class="friend__add__container">
+      <app-add-friend (addFriendEmitter)="addFriend($event)"></app-add-friend>
+    </div>
+  </div>
+</div>

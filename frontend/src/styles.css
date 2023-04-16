@@ -1,1 +1,47 @@
-/* You can add global styles to this file, and also import other style files */
+@import './assets/css/reset.css';
+
+@font-face {
+  font-family: 'raleWay';
+  src: url('./assets/fonts/Raleway.ttf');
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: 'raleway', 'arial', sans-serif;
+  font-size: 1em !important;
+}
+
+:root {
+  /* break point */
+  --tablet: 768px;
+  --desktop: 1024px;
+
+  --main_color: #FF8A00;
+  --success_color: #31BC00;
+  --error_color: #FF0000;
+  --white_color:#FFFFFF;
+  --banner_height: 105px;
+  --max_width: 1024px;
+
+  /* font-weight */
+  --font_medium: 700;
+  --font_heavy: 900;
+
+  /* font-size */
+  --text_20: 1.25em;
+  --text_24: 1.5em;
+  --text_32: 2em;
+
+  /* tablet */
+  --text_tablet: 1.25em;
+  --title_tablet: 2em;
+
+  /* computer */
+  --text_desktop: 1.375em;
+  --title_desktop: 2.25em;
+
+  /* animation time */
+  --time_3: 0.3s;
+}

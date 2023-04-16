@@ -24,17 +24,5 @@ export default Joi.object({
     'string.empty': messages.message.friendIdMissing,
     'string.pattern.base': messages.message.friendIdMissing,
     'any.required': messages.message.friendIdMissing
-  }),
-
-    // Token csurf
-    token: Joi
-    .string()
-    .required()
-    .messages({
-      'string.base': messages.message.tokenFormat,
-      'string.empty': messages.message.tokenMissing,
-      'string.pattern.base': messages.message.tokenMissing,
-      'any.required': messages.message.tokenMissing
-    })
-
+  })
 });

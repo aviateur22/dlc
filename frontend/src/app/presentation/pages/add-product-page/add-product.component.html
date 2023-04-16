@@ -1,0 +1,46 @@
+<div class="product__container">
+  <div class="inner__container">
+     <!--header-->
+    <app-header-page (headerButtonEmitter)="navigate()" headerTitle="Ajout d'un produit" buttonHeaderText="Annuler"></app-header-page>
+    <form class="product__form" #addProductForm [formGroup]="addProductFormGroup" (submit)="validateProductData()">
+      <!--Select image-->
+      <input formControlName="image"  #inputFile accept="image/*" type="file" (change)="loadSelectedImage(inputFile?.files?.[0])" style="display:none;" />
+      
+      <!-- Preview image-->
+      <div class="product__image__container" *ngIf="addProductFormGroup.valid; else ImageNotSelected">
+        <img class="product__image__preview" [src]="previewImageBase64" alt="productImage.fileName">
+      </div>
+
+       <!--Image par default si pas de sélection-->
+      <ng-template #ImageNotSelected>
+        <div class="product__default__image">
+          <svg width="181" height="136" viewBox="0 0 181 136" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M0 0H181V136H0V0Z" fill="#777777"/>
+            <rect x="59" y="14" width="30" height="30" rx="15" fill="#F4F4F4"/>
+            <path d="M46.9296 56.814L67.0763 85.0558L107.808 29L170 121H84.8592H9L46.9296 56.814Z" fill="#F4F4F4"/>
+          </svg>
+        </div>                    
+      </ng-template>
+
+      <!--Button container-->
+      <div class="button__container">   
+        <!-- Ajouter -->     
+        <app-rectangle-button 
+          class="product__button" 
+          [isPrimary]="true" 
+          *ngIf="addProductFormGroup.valid" 
+          type="submit" 
+          value="Ajouter">
+        </app-rectangle-button>
+        
+        <!-- Selectionner une image -->  
+        <app-rectangle-button 
+          class="product__button" 
+          type="button" 
+          (clickEmitter)="inputFile.click()" 
+          value="Selectionner une image">
+        </app-rectangle-button>      
+      </div>
+    </form>     
+  </div>
+</div>

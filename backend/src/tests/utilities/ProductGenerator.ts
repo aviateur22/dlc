@@ -5,6 +5,7 @@ import imageData from "./imageData.json";
 
 export class ProductGenerator {
 
+
   // Product a ajouter
   private static product =  {
     userId: '1',
@@ -28,7 +29,7 @@ export class ProductGenerator {
   /**
    * Create Pro.
    */
-  static async createProduct(): Promise<void> {    
+  static async createProduct(): Promise<void> {
     ProductGenerator.createAddProductEntity();
     const addProduct = await UseCaseServiceImpl.getUseCases().productUsecase.addProductUseCase.execute({
       ...ProductGenerator.product

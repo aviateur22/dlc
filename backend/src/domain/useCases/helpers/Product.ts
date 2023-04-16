@@ -2,6 +2,7 @@ import { AddProductException } from "../../../exceptions/AddProductException";
 import { ImageSizeException } from "../../../exceptions/ImageSizeException";
 import { ServerException } from "../../../exceptions/ServerException";
 import { EncodeBase64 } from "../../../infra/helpers/security/EncodeBase64";
+import { EncodeBase64Url } from "../../../infra/helpers/security/EncodeBase64Url";
 import { ImageModel } from "../../../infra/models/ImageModel";
 import { RepositoryServiceImpl } from "../../../infra/services/repository/RepositoryServiceImpl";
 import { AddImageEntity } from "../../entities/image/AddImageEntity";
@@ -89,10 +90,10 @@ export class Product {
     
     // Date de création
     let createdAt = new Date();
-
+    
     // Récupération des amis
-    const friends = await RepositoryServiceImpl.getRepository().userFriendRepository.findAllFriendByUserId(addProductData.userId!);
-
+    const friends = await RepositoryServiceImpl.getRepository().userFriendRepository.findAllFriendsWithAcceptedRelation(addProductData.userId!);
+   
     for(let friend of friends) {
       // Ajout du ProduitUser        
       const addProductUser =  await RepositoryServiceImpl.getRepository().productUserRepository.save({

@@ -1,0 +1,40 @@
+<div class="container">
+  <div class="inner__container">
+    <form [formGroup]="loginFormGroup" (submit)="validateLoginData()">     
+      <div class="login">
+        <!--button container-->
+        <div class="login__input__container">
+
+          <!-- login-->
+          <app-input            
+            [formGroup]="loginFormGroup"
+            [autoFocus]="true"  
+            type="text"                  
+            formControlName="email"           
+            placeHolder="mon@email.fr"
+            name="email"
+            id="email"
+            labelText="email"
+            [errorMessage]="emailMissing"
+          ></app-input>
+
+          <!-- password-->
+          <app-input
+            [formGroup]="loginFormGroup"       
+            type="password"                  
+            formControlName="password"           
+            placeHolder="mot de passe"
+            name="password"
+            id="password"
+            labelText="password"
+            [hasDisplaPasswordOption]="true"
+            [errorMessage]="passwordMissing"
+          ></app-input>
+        </div>
+
+        <app-rectangle-button type="submit" value="login"></app-rectangle-button>
+        
+      </div>
+    </form>    
+  </div>
+</div>

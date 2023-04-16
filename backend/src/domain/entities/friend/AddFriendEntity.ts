@@ -8,6 +8,7 @@ export class AddFriendEntity {
   userId!: string;
   friendId!: string;
   relationId!: string;
+  relationAccepted!: boolean;
   createdAt: Date;
   updatedAt: Date;
 

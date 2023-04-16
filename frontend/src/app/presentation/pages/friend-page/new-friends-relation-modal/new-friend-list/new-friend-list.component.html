@@ -1,0 +1,9 @@
+<!--Liste des nouvelles relations -->
+<div class="friends__list__container">
+  <ul class="friends__list" *ngFor="let friend of newFriendRelations">  
+    <li class="friends__item">
+      <!--relation-->
+      <app-new-friend-relation [friendRelation]="friend"></app-new-friend-relation>
+    </li>
+  </ul>
+</div>

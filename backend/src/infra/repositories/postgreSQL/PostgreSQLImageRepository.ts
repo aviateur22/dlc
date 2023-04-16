@@ -2,6 +2,7 @@ import { AddImageEntity } from "../../../domain/entities/image/AddImageEntity";
 import { ImageRepositorySchema } from "../../../domain/ports/repositoriesSchemas/ImageRepositorySchema";
 import { ImageModelMapper } from "../../dto/ImageModelMapper";
 import { ImageModel } from "../../models/ImageModel";
+import { ProductImageModel } from "../../models/ProductImageModel";
 import client from "./connexion/databaseConnexion";
 
 export class PostgreSQLImageRepository implements ImageRepositorySchema { 
@@ -63,6 +64,25 @@ export class PostgreSQLImageRepository implements ImageRepositorySchema {
    */
   async deleteAll(): Promise<void> {
     await client.query('TRUNCATE "image" RESTART IDENTITY CASCADE');
+  }
+
+  /**
+   * Trouve productImage
+   * @param imageId 
+   */
+  async findProductImageById(imageId: string): Promise<ProductImageModel | null> {
+    const image = await client.query('SELECT "id", "image_base64", "mime_type" FROM "image" WHERE id=$1', [
+      imageId
+    ]).then(result=>{
+
+      if(result.rowCount === 0) {
+        return null;
+      }
+
+      return ImageModelMapper.getProductImage(result.rows.shift());
+    });
+
+    return image;
   }
   
 }

@@ -1,0 +1,23 @@
+<div class="product__container">
+  <div class="product">
+    
+    <!--image-->
+    <div class="product__image__container">
+      <img [src]="productImage" alt="test">
+    </div>
+    
+
+    <!--Ouverture-->
+    <div class="product__text__container">
+      <p class="product__text">
+        ouvert depuis:  
+        <span class="text--strong">
+           {{product.openDay}} jour<ng-container *ngIf="product.openDay > 1">s</ng-container>
+        </span>       
+      </p> 
+    </div>
+    
+    <!--Suppression button-->
+    <app-round-button class="product__button" (clickEmit)="deleteProduct()" value="suppression"></app-round-button>
+  </div>
+</div>

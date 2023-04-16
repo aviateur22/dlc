@@ -1,22 +1,36 @@
-import { Observable } from "rxjs";
+import { Injectable } from "@angular/core";
+import { FlashMessageService } from "src/app/infra/services/flashMessage/flash-message.service";
 import { UserRepositoryService } from "src/app/infra/services/repositoryService/user-repository.service";
-import { UsecaseService } from "src/app/infra/services/useCaseService/usecase.service";
-import { LoginResponseSchema } from "../ports/EntitiesSchemas/LoginResponseSchema";
+import { LoginService } from "src/app/infra/services/useCaseService/login.service";
+import localStorage from "../helpers/localStorage";
 import { LoginSchema } from "../ports/EntitiesSchemas/LoginSchema";
-import { UserProductsUseCase } from "./UserProductsUseCase";
 
-/**
- * Login
- */
-export class LoginUseCase {
-
-  constructor(private userRepositoryService: UserRepositoryService, private userProductUseCase: UserProductsUseCase) {}
+@Injectable({
+  providedIn: 'root'
+})
+export class LoginUseCase { 
+ 
+  constructor(
+    private userService: UserRepositoryService, 
+    private loginService: LoginService
+    
+  ) { }
 
   /**
    * login user
    */
-  execute(loginData: LoginSchema): Observable<LoginResponseSchema> {   
-    this.userProductUseCase.execute()
-    return this.userRepositoryService.login(loginData);    
+  execute(loginData: LoginSchema): void {
+    this.userService.login(loginData).subscribe({
+
+      next: LoginResponse => {
+        this.loginService.updateLogin(LoginResponse);
+
+        // Localstorage
+        localStorage.loginData({
+          token: LoginResponse.token,
+          user: JSON.stringify(LoginResponse.user)
+        });
+      }
+    })
   }
 }

@@ -1,4 +1,5 @@
 import { ImageModel } from "../models/ImageModel";
+import { ProductImageModel } from "../models/ProductImageModel";
 
 export class ImageModelMapper {
   
@@ -24,5 +25,14 @@ export class ImageModelMapper {
    */
   static getImagesModels(datas: Array<any>): Array<ImageModel> {
     return datas.map(data=>ImageModelMapper.getImageModel(data));
+  } 
+
+  /**
+   * ProductImage
+   * @param {any} data 
+   * @returns 
+   */
+  static getProductImage(data: any): ProductImageModel {
+    return new ProductImageModel(data.id, data.image_base64, data.mime_type);
   }
 }

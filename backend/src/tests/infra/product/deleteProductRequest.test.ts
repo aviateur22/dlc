@@ -7,7 +7,7 @@ import { ProductUserGenerator } from "../../utilities/ProductUserGenerator";
 import { TestUtilities } from "../../utilities/TestUtilities";
 import { UserGenerator } from "../../utilities/UserGenerator";
 
-describe('DeleteUseCase', ()=>{
+describe('DeleteProductsUseCase', ()=>{
   // Selection Server Express
   const testUtilities = new TestUtilities();
 

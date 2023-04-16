@@ -15,19 +15,19 @@ export interface ProductRepositorySchema {
    * Find products by User
    * @param {string} userId
    */
-   findByUserId(userId: string): Promise<Array<ProductWithImageModel>>;
+  findByUserId(userId: string): Promise<Array<ProductWithImageModel>>;
 
-   /**
-    * FindProductById
-    * @param {string} productId 
-    */
-   findById(searchProduct: SearchProductEntity): Promise<ProductModel|null>
+  /**
+   * FindProductById
+   * @param {string} productId 
+   */
+  findById(searchProduct: SearchProductEntity): Promise<ProductModel|null>
 
-   /**
-    * DeleteByProductId
-    * @param {DeleteProductEntity} product 
-    */
-   deleteById(product: DeleteProductEntity): Promise<ProductModel|null>
+  /**
+   * DeleteByProductId
+   * @param {DeleteProductEntity} product 
+   */
+  deleteById(product: DeleteProductEntity): Promise<ProductModel|null>
 
   /**
    * findAll products

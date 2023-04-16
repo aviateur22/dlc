@@ -1,4 +1,5 @@
 import { ImageModel } from "../../../infra/models/ImageModel";
+import { ProductImageModel } from "../../../infra/models/ProductImageModel";
 import { AddImageEntity } from "../../entities/image/AddImageEntity";
 
 export interface ImageRepositorySchema {
@@ -12,6 +13,12 @@ export interface ImageRepositorySchema {
    * FindAll Image
    */
   findAll(): Promise<Array<ImageModel>>
+
+  /**
+   * Récuperation image
+   * @param {string} imageId 
+   */
+  findProductImageById(imageId: string): Promise<ProductImageModel|null>
 
   /**
    * DeleteById

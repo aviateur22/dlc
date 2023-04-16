@@ -7,11 +7,9 @@ import functionsHelpers from './helpers/FactorisationFunction';
 /**
  * Repository InMemory
  */
-export class InMemoryUserFriendRepository implements UserFriendRepositorySchema {  
+export class InMemoryUserFriendRepository implements UserFriendRepositorySchema { 
   
-  private userFriends: Array<UserFriendModel> = [];
-
-  
+  private userFriends: Array<UserFriendModel> = []; 
 
   /**
    * Ajout d'un ami
@@ -28,7 +26,8 @@ export class InMemoryUserFriendRepository implements UserFriendRepositorySchema 
       friendName: addFriend.friendName,
       relationId: addFriend.relationId,
       createdAt: addFriend.createdAt,
-      updatedAt: addFriend.updatedAt
+      updatedAt: addFriend.updatedAt,
+      relationAccepted: addFriend.relationAccepted
     });
 
     const userFriendRelation2 = await functionsHelpers.addUserFriendRelation(this.userFriends, {      
@@ -38,7 +37,9 @@ export class InMemoryUserFriendRepository implements UserFriendRepositorySchema 
       relationId: addFriend.relationId,
       friendName: addFriend.friendName,
       createdAt: addFriend.createdAt,
-      updatedAt: addFriend.updatedAt
+      updatedAt: addFriend.updatedAt,
+      relationAccepted: addFriend.relationAccepted
+
     });
 
     this.userFriends.push(userFriendRelation1, userFriendRelation2);
@@ -72,6 +73,16 @@ export class InMemoryUserFriendRepository implements UserFriendRepositorySchema 
 
     return findOneFriend;
   }
+
+  
+  /**
+   * Liste des amis ayant validée la relation
+   * @param {string} userId
+   * @returns Promise<UserFriendModel[]>
+   */
+  findAllFriendsWithAcceptedRelation(userId: string): Promise<UserFriendModel[]> {
+    throw new Error("Method not implemented.");
+  } 
 
   /**
    * Recherche des amis suivants une relation
