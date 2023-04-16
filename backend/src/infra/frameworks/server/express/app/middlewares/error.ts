@@ -17,6 +17,7 @@ import { TodoNotFindException } from "../../../../../../exceptions/TodoNotFindEx
 import { UserNotFindException } from "../../../../../../exceptions/UserNotFindException";
 import { ValidationException } from "../../../../../../exceptions/ValidationException";
 import { LoggerServiceImpl } from "../../../../../services/logger/LoggerServiceImpl";
+import { SessionExpiredException } from "../../../../../../exceptions/SessionExpiredException";
 
 /**
  * Gestion des erreurs
@@ -59,6 +60,7 @@ export default(err: any, req: Request, res: Response, next: NextFunction)=>{
 
     // Session expirée
     case ActionNotAllowedException:
+    case SessionExpiredException:
         return res.status(401).json({
             errorMessage: err.message
         });

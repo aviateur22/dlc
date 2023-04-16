@@ -1,6 +1,6 @@
 import { NextFunction, Response } from "express";
 import { ReqCookie } from "../interfaces/ReqCookie";
-import { ForbiddenException } from "../../../../../../exceptions/ForbiddenException";
+import { SessionExpiredException } from "../../../../../../exceptions/SessionExpiredException";
 import messages from "../../../../../../domain/messages/messages";
 import { JwtHandler } from "../../../../../helpers/security/jwt/JwtHandler";
 
@@ -8,7 +8,7 @@ export default(req: ReqCookie, res: Response, next: NextFunction)=>{
 
   // Recupération des cookies
   if(!req.cookieList || !req.cookieList.authorization){
-    throw new ForbiddenException(messages.message.forbiddenAction);
+    throw new SessionExpiredException(messages.message.expiredSession);
   }
 
   // Récupération JWT
