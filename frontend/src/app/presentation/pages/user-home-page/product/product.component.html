@@ -1,10 +1,20 @@
 <div class="product__container">
   <div class="product">
-    <img [src]="productImage" alt="test">
+    
+    <!--image-->
+    <div class="product__image__container">
+      <img [src]="productImage" alt="test">
+    </div>
+    
 
     <!--Ouverture-->
-    <div class="product__text">
-      <p>ouvert depuis: {{product.openDay}} jour <ng-container *ngIf="product.openDay > 1">s</ng-container> </p> 
+    <div class="product__text__container">
+      <p class="product__text">
+        ouvert depuis:  
+        <span class="text--strong">
+           {{product.openDay}} jour<ng-container *ngIf="product.openDay > 1">s</ng-container>
+        </span>       
+      </p> 
     </div>
     
     <!--Suppression button-->

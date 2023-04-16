@@ -25,12 +25,14 @@
   --banner_height: 105px;
   --max_width: 1024px;
 
-  /* font */
+  /* font-weight */
   --font_medium: 700;
   --font_heavy: 900;
 
-  /* mobile */
-  --title_mobile: 1.5em;
+  /* font-size */
+  --text_20: 1.25em;
+  --text_24: 1.5em;
+  --text_32: 2em;
 
   /* tablet */
   --text_tablet: 1.25em;

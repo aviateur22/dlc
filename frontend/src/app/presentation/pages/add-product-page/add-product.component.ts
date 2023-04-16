@@ -31,6 +31,21 @@ export class AddProductComponent {
   ) {}
 
   /**
+   * 
+   * @returns 
+   */
+  isImageSelected(): boolean {
+    return this.addProductFormGroup.valid
+  }
+
+  /**
+   * Retour home page
+   */
+  navigate(): void {
+    this.router.navigate([url.userProducts]);
+  }
+
+  /**
    * Validation données
    */
   validateProductData():  void {
@@ -45,7 +60,7 @@ export class AddProductComponent {
    * Ajout produit
    */
   private addProduct() {
-
+    
     // Suivi reponse 
     this.addProductService.addProductResponseObservable.subscribe(addProductResponse=>{
       if(addProductResponse) {

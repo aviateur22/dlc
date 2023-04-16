@@ -25,6 +25,9 @@ export class FriendComponent {
   // Liste des nouvelles relation
   newFriendRelations: Array<FriendResponseSchema> = [];
 
+  // Modal ajout nouvelle relation
+  isAddFriendModalVisible: boolean = false;
+
   constructor(
    private router: Router,
    private findFriendsUseCase: FindFriendsUseCase,
@@ -110,5 +113,9 @@ export class FriendComponent {
    */
   navigateToUserAccount() {
     this.router.navigate([url.userAccount]);
+  }
+
+  navigateToHomePage() {
+    this.router.navigate([url.userProducts]);
   }
 }

@@ -36,6 +36,7 @@ import { YesNoButtonComponent } from './presentation/components/yes-no-button/ye
 import { HeaderPageComponent } from './presentation/components/header-page/header-page.component';
 import { NewFriendRelationComponent } from './presentation/pages/friend-page/new-friends-relation-modal/friend-relation/friend-relation.component';
 import { NewFriendListComponent } from './presentation/pages/friend-page/new-friends-relation-modal/new-friend-list/new-friend-list.component';
+import { NavbarComponent } from './presentation/components/navbar/navbar.component';
 
 
 @NgModule({
@@ -65,7 +66,8 @@ import { NewFriendListComponent } from './presentation/pages/friend-page/new-fri
     YesNoButtonComponent,
     HeaderPageComponent,
     NewFriendRelationComponent,
-    NewFriendListComponent
+    NewFriendListComponent,
+    NavbarComponent
   ],
 
   imports: [

@@ -8,10 +8,6 @@ import { FriendResponseSchema } from 'src/app/domain/ports/EntitiesSchemas/frien
 })
 export class NewFriendsRelationModalComponent {
   
-  // Nouvelles relations
-  @Input()
-  newFriendRelations: Array<FriendResponseSchema> = []
-
   // Visibiliter modal
   isModalFriendVisible: boolean = false;
 

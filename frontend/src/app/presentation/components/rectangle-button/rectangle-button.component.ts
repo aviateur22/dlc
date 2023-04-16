@@ -11,10 +11,13 @@ export class RectangleButtonComponent {
   clickEmitter: EventEmitter<Event> = new EventEmitter<Event>();
 
   @Input()
-  type: string ='button'
+  type: string ='button';
 
   @Input()
-  value: string = ''
+  value: string = '';
+
+  @Input()
+  isPrimary: boolean = false;
 
   /**
    * Action du click

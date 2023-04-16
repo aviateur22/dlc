@@ -1,0 +1,20 @@
+.input {
+  border: 1px solid var(--main_color);
+  border-radius: 5px;
+  background: white;
+  color: var(--main_color); 
+  padding: 5px; 
+  cursor: pointer;
+  transition: all var(--time_3) ease-in-out;
+  width: 100%;
+}
+
+.input:hover {
+  box-shadow: rgba(17, 17, 26, 0.1) 0px 4px 16px, rgba(17, 17, 26, 0.1) 0px 8px 24px, rgba(17, 17, 26, 0.1) 0px 16px 56px;
+  font-weight: var(--font_medium);
+}
+
+.primary {
+  background: var(--main_color);
+  color: white;
+}

@@ -41,6 +41,14 @@ export class UserOptionComponent {
     this.router.navigate([url.userAccount]);
   }
 
+  navigateToProfil() {
+
+  }
+
+  navigateToFriend() {
+    this.router.navigate([url.friend]);
+  }
+
   displayOptionToggle() {
     this.isOptionDisplay = !this.isOptionDisplay;
   }

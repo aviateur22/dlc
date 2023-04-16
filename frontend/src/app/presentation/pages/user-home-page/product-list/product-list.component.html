@@ -6,7 +6,7 @@
   </app-delete-modal>
 
   <!--Lite des produits-->
-  <ul class="product__list" class="products">
+  <ul class="product__list">
     <li class="product__item" *ngFor="let product of products">
       <app-product class="product" (deleteProductEmit)="displayDeleteModal($event)" [product]="product">1</app-product>
     </li>    
