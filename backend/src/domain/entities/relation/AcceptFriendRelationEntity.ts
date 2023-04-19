@@ -3,9 +3,8 @@
  */
 export class AcceptFriendRelationEntity {
   readonly relationId!: string;
-  readonly isAccepted!: boolean;
-  readonly isNew!: boolean;
-  readonly updtedAt!: Date;
+  readonly isActivated!: boolean;
+  readonly updatedAt!: Date;
 
   constructor(acceptRelationData: Partial<AcceptFriendRelationEntity>) {
     let key: keyof typeof acceptRelationData;
@@ -14,6 +13,6 @@ export class AcceptFriendRelationEntity {
       this[key] = acceptRelationData[key];
     }
 
-    this.updtedAt = new Date();
+    this.updatedAt = new Date();
   }
 }

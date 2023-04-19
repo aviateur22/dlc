@@ -2,7 +2,6 @@ export class ProductUserModel {
   readonly id!: string;
   readonly userId!: string;
   readonly productId!: string;
-  readonly ownerId!: string;
   readonly createdAt!: Date;
   readonly updatedAt!: Date;
 

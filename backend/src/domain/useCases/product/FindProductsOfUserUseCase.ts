@@ -1,6 +1,7 @@
 import { UserNotFindException } from "../../../exceptions/UserNotFindException";
 import { UserMapper } from "../../dtos/UserMapper";
 import { UserHomePageEntity } from "../../entities/user/UserHomePageEntity";
+import messages from "../../messages/messages";
 import { UseCaseModel } from "../UseCaseModel";
 
 /**
@@ -14,7 +15,7 @@ export class FindProductsOfUserUseCase extends UseCaseModel {
     const findUser = await this.repositories.userRepository.findById(userId);
 
     if(!findUser) {
-      throw new UserNotFindException('user does not exist')
+      throw new UserNotFindException(messages.message.userNotFind)
     }
 
     // Recherche Product utilisateur

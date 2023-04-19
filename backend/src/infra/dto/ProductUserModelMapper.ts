@@ -16,7 +16,6 @@ export class ProductUserModelMapper {
       id: data.id.toString(),
       userId: data.user_id,
       productId: data.product_id,
-      ownerId: data.owner_id,
       createdAt: data.created_at,
       updatedAt: data.updated_at
     });

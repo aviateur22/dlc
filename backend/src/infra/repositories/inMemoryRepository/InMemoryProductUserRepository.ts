@@ -40,8 +40,8 @@ export class InMemoryProductUserRepository implements ProductUserRepositorySchem
    * @param {string} ownerId
    * @returns {Promise<Array<ProductUserModel>>} 
    */
-  async findByUserIdAndOwnerId(userId: string, ownerId: string): Promise<ProductUserModel[]> {
-    return this.productsUsers.filter(product=>(product.userId === userId && product.ownerId === ownerId));
+  async findByUserIdAndOwnerId(userId: string): Promise<ProductUserModel[]> {
+    return this.productsUsers.filter(product=>(product.userId === userId));
   }
 
   /**

@@ -26,8 +26,7 @@ export class AcceptFriendRelationUseCase extends UseCaseModel {
 
     const acceptRelationData = new AcceptFriendRelationEntity({
       relationId,
-      isAccepted: true,
-      isNew: false,
+      isActivated: true
     });
 
     // Mise a jour de la relation
@@ -38,14 +37,12 @@ export class AcceptFriendRelationUseCase extends UseCaseModel {
     }
 
     // Recherche user->friend et friend->user
-    const findFriendRelation = await this.repositories.userFriendRepository.findByRelationId(relationId);
-
-  
+    const findFriendRelation = await this.repositories.userFriendRepository.findByRelationId(relationId);  
 
     // Ajout des produits utilisateur user->friend et friend->user
-    for(let friend of findFriendRelation) {
-      await Product.addAllProductsToOneFriend(friend.userId, friend.friendId);      
-    }
+    // for(let friend of findFriendRelation) {
+    //   await Product.addAllProductsToOneFriend(friend.userId, friend.friendId);      
+    // }
    
     return RelationMapper.getRelationEntity(acceptRelation);
   }

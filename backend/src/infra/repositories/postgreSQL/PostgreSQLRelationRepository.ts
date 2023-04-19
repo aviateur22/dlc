@@ -47,18 +47,15 @@ export class PostgreSQLRelationRepository implements RelationRepositorySchema {
 
     const findRelation = await client.query(`
     SELECT 
-      "relation"."id",
-      "relation"."friend_id",
-      "relation"."is_accepted",
-      "relation"."is_new",
-      "relation"."created_at",
-      "relation"."updated_at",
-      "user"."email" AS friend_email
-      FROM "relation" 
-      JOIN "user" ON "relation"."friend_id" = "user"."id"
-      JOIN "friend_user" ON "relation"."id" = "friend_user"."relation_id"
-      WHERE "relation"."id"=$1 
-      GROUP BY "relation"."id","user"."email"
+    "relation"."id",
+    "relation"."created_at",
+    "relation"."updated_at",
+    "user"."email" AS friend_email
+    FROM "relation"      
+    JOIN "friend_user" ON "relation"."id" = "friend_user"."relation_id"
+    JOIN "user" ON "friend_user"."friend_id" = "user"."id"
+    WHERE "relation"."id"=$1 
+    GROUP BY "relation"."id","user"."email"
       `, [
       relationId
     ]).then(result=>{
@@ -105,8 +102,8 @@ export class PostgreSQLRelationRepository implements RelationRepositorySchema {
    */
   async updateById(relationData: AcceptFriendRelationEntity): Promise<RelationModel|null> {
     
-    const updateRepository = await client.query('UPDATE "relation" SET ("is_accepted", "is_new", "updated_at") = ($1, $2, $3) WHERE id=$4 RETURNING *', [
-      relationData.isAccepted, relationData.isNew, relationData.updtedAt, relationData.relationId
+    const updateRepository = await client.query('UPDATE "relation" SET ("is_activated", "updated_at") = ($1, $2) WHERE id=$3 RETURNING *', [
+      relationData.isActivated, relationData.updatedAt, relationData.relationId
     ]).then(result=>{
       if (result.rowCount === 0) {
         return null;

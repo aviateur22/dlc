@@ -10,6 +10,7 @@ import { AddProductException } from "../../../exceptions/AddProductException";
 import { ImageSizeException } from "../../../exceptions/ImageSizeException";
 import messages from "../../../domain/messages/messages";
 import { UserFriendGenerator } from "../../utilities/UserFriendGenerator";
+import { RelationGenerator } from "../../utilities/RelationGenerator";
 
 describe('AddProductUseCase', ()=>{
   // Selection Server Express
@@ -24,6 +25,7 @@ describe('AddProductUseCase', ()=>{
     await ImageGenerator.deleteImage();
     await UserFriendGenerator.deleteAllUserFriendRelations();
     await ProductUserGenerator.deleteProductUser();
+    await RelationGenerator.deleteAllRelations();
   });
 
   it('Should add a new product to a user', async()=>{
@@ -97,7 +99,7 @@ describe('AddProductUseCase', ()=>{
         friendName: 'céline',
         userId: '1'
       });
-
+console.log(addFriendRelation)
       // Validation de l'ajout d'ami
       const acceptFriendRelation = await UseCaseServiceImpl.getUseCases().relationUseCase.acceptFriendRelationUseCase.execute('1');
 
@@ -118,7 +120,7 @@ describe('AddProductUseCase', ()=>{
       // Recherche des relations friend-product
       const productFriendRelation = await RepositoryServiceImpl.getRepository().productUserRepository.findByUserId(addFriendRelation[0].friendId);
       const findAllProductsOfFriend = await RepositoryServiceImpl.getRepository().productRepository.findByUserId(addFriendRelation[0].friendId);
-      console.log(productFriendRelation)
+
       const findAllProductsOfUser = await RepositoryServiceImpl.getRepository().productRepository.findByUserId(addFriendRelation[0].userId);
 
       expect(productFriendRelation.length).toBe(2);

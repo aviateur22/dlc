@@ -36,8 +36,7 @@ export class AddProductUseCase extends UseCaseModel {
 
     const productUser = new ProductUserEntity({
       productId: product.id,
-      userId: addProduct.userId,
-      ownerId: addProduct.userId      
+      userId: addProduct.userId     
     });
 
     // Ajout de la relation produit-user
@@ -47,13 +46,13 @@ export class AddProductUseCase extends UseCaseModel {
       throw new ServerException(messages.message.errorServer);
     }
     
-    // Ajout de la relation a tous les amis
-    await Product.addOneProductToAllFriend(new AddFriendProductEntity({
-      productId: product.id,
-      userId: addProduct.userId!,
-      ownerId: addProduct.userId!
-    }));
+    // // Ajout de la relation a tous les amis
+    // await Product.addOneProductToAllFriend(new AddFriendProductEntity({
+    //   productId: product.id,
+    //   userId: addProductUser.userId,
+    //   ownerId: addProduct.userId!
+    // }));
     
-    return ProductMapper.getProductEntity({userId: addProduct.userId, ...product});
+    return ProductMapper.getProductEntity({userId: addProductUser.userId, ...product});
   }
 }

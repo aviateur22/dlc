@@ -2,7 +2,6 @@ export class ProductUserEntity {
   id!: string;
   userId!: string;
   productId!: string;
-  ownerId!: string;
   createdAt!: Date;
   updatedAt!: Date;
 

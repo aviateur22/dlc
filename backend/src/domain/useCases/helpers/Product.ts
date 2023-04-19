@@ -50,64 +50,64 @@ export class Product {
    * @param {string} userId - propriétaire du produit
    * @param {string} friendId - receveur du produit
    */
-  static async addAllProductsToOneFriend(userId: string, friendId: string): Promise<void> {
+  // static async addAllProductsToOneFriend(userId: string, friendId: string): Promise<void> {
   
-    // Récuparation des produits du user
-    const productsUser = await RepositoryServiceImpl.getRepository().productUserRepository.findByUserIdAndOwnerId(userId, userId);
+  //   // Récuparation des produits du user
+  //   const productsUser = await RepositoryServiceImpl.getRepository().productUserRepository.findByUserIdAndOwnerId(userId, userId);
   
-    for(let product of productsUser) {
+  //   for(let product of productsUser) {
       
-      // vérification si produit déja rattaché a l'utilisateur
-      const findProduct = await RepositoryServiceImpl.getRepository().productUserRepository.findByUserIdAndProductId(friendId, product.productId);
+  //     // vérification si produit déja rattaché a l'utilisateur
+  //     const findProduct = await RepositoryServiceImpl.getRepository().productUserRepository.findByUserIdAndProductId(friendId, product.productId);
       
-      if(findProduct.length === 0) {
-        // Date de création
-        let createdAt = new Date();
+  //     if(findProduct.length === 0) {
+  //       // Date de création
+  //       let createdAt = new Date();
 
-        // Ajout du ProduitUser        
-        const addProductUser =  await RepositoryServiceImpl.getRepository().productUserRepository.save({
-          productId: product.productId,
-          userId: friendId,
-          ownerId: product.ownerId,
-          createdAt:  createdAt,
-          updatedAt: createdAt
-        });
+  //       // Ajout du ProduitUser        
+  //       const addProductUser =  await RepositoryServiceImpl.getRepository().productUserRepository.save({
+  //         productId: product.productId,
+  //         userId: friendId,
+  //         ownerId: product.ownerId,
+  //         createdAt:  createdAt,
+  //         updatedAt: createdAt
+  //       });
 
-        if(!addProductUser) {
-          throw new ServerException(messages.message.errorServer);
-        }
-      }
-    }
+  //       if(!addProductUser) {
+  //         throw new ServerException(messages.message.errorServer);
+  //       }
+  //     }
+  //   }
     
-  }
+  // }
   
   /**
    * Ajout d'un produit à tous les amis
    * 
    * @param {Partial<AddFriendProductEntity>} addProductData
    */
-  static async addOneProductToAllFriend(addProductData: AddFriendProductEntity): Promise<void> {
+  // static async addOneProductToAllFriend(addProductData: AddFriendProductEntity): Promise<void> {
     
-    // Date de création
-    let createdAt = new Date();
+  //   // Date de création
+  //   let createdAt = new Date();
     
-    // Récupération des amis
-    const friends = await RepositoryServiceImpl.getRepository().userFriendRepository.findAllFriendsWithAcceptedRelation(addProductData.userId!);
+  //   // Récupération des amis
+  //   const friends = await RepositoryServiceImpl.getRepository().userFriendRepository.findAllFriendsWithAcceptedRelation(addProductData.userId!);
    
-    for(let friend of friends) {
-      // Ajout du ProduitUser        
-      const addProductUser =  await RepositoryServiceImpl.getRepository().productUserRepository.save({
-        userId: friend.friendId,
-        productId: addProductData.productId,
-        ownerId: addProductData.ownerId,
-        createdAt:  createdAt,
-        updatedAt: createdAt        
-      });
+  //   for(let friend of friends) {
+  //     // Ajout du ProduitUser        
+  //     const addProductUser =  await RepositoryServiceImpl.getRepository().productUserRepository.save({
+  //       userId: friend.friendId,
+  //       productId: addProductData.productId,
+  //       ownerId: addProductData.ownerId,
+  //       createdAt:  createdAt,
+  //       updatedAt: createdAt        
+  //     });
 
-      if(!addProductUser) {
-        throw new ServerException(messages.message.errorServer);
-      }
-    }
-  }
+  //     if(!addProductUser) {
+  //       throw new ServerException(messages.message.errorServer);
+  //     }
+  //   }
+  // }
   
 }
